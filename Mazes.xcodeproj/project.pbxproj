@@ -8,6 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		D238C7F42103CD9600909855 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238C7F32103CD9600909855 /* main.swift */; };
+		D28CA62121080D2E00D466BC /* Distances.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA62021080D2E00D466BC /* Distances.swift */; };
+		D28CA6232108182900D466BC /* DistanceGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA6222108182900D466BC /* DistanceGrid.swift */; };
+		D2DA180A21050F5800EA5EBE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180921050F5800EA5EBE /* Image.swift */; };
+		D2DA180F2106DA8800EA5EBE /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180B2106DA8800EA5EBE /* BinaryTree.swift */; };
+		D2DA18102106DA8800EA5EBE /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180C2106DA8800EA5EBE /* Cell.swift */; };
+		D2DA18112106DA8800EA5EBE /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180D2106DA8800EA5EBE /* Grid.swift */; };
+		D2DA18122106DA8800EA5EBE /* Sidewinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180E2106DA8800EA5EBE /* Sidewinder.swift */; };
+		D2FC7B1F210959DC00E40F7A /* MazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC7B1E210959DC00E40F7A /* MazeGenerator.swift */; };
+		D2FC7B21210967C700E40F7A /* ColoredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC7B20210967C700E40F7A /* ColoredGrid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +34,15 @@
 /* Begin PBXFileReference section */
 		D238C7F02103CD9600909855 /* Mazes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mazes; sourceTree = BUILT_PRODUCTS_DIR; };
 		D238C7F32103CD9600909855 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D28CA62021080D2E00D466BC /* Distances.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distances.swift; sourceTree = "<group>"; };
+		D28CA6222108182900D466BC /* DistanceGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceGrid.swift; sourceTree = "<group>"; };
+		D2DA180921050F5800EA5EBE /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		D2DA180B2106DA8800EA5EBE /* BinaryTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
+		D2DA180C2106DA8800EA5EBE /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
+		D2DA180D2106DA8800EA5EBE /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		D2DA180E2106DA8800EA5EBE /* Sidewinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sidewinder.swift; sourceTree = "<group>"; };
+		D2FC7B1E210959DC00E40F7A /* MazeGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MazeGenerator.swift; sourceTree = "<group>"; };
+		D2FC7B20210967C700E40F7A /* ColoredGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColoredGrid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +76,15 @@
 			isa = PBXGroup;
 			children = (
 				D238C7F32103CD9600909855 /* main.swift */,
+				D2DA180C2106DA8800EA5EBE /* Cell.swift */,
+				D2DA180921050F5800EA5EBE /* Image.swift */,
+				D2DA180D2106DA8800EA5EBE /* Grid.swift */,
+				D2FC7B20210967C700E40F7A /* ColoredGrid.swift */,
+				D28CA6222108182900D466BC /* DistanceGrid.swift */,
+				D28CA62021080D2E00D466BC /* Distances.swift */,
+				D2FC7B1E210959DC00E40F7A /* MazeGenerator.swift */,
+				D2DA180E2106DA8800EA5EBE /* Sidewinder.swift */,
+				D2DA180B2106DA8800EA5EBE /* BinaryTree.swift */,
 			);
 			path = Mazes;
 			sourceTree = "<group>";
@@ -121,7 +148,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2FC7B21210967C700E40F7A /* ColoredGrid.swift in Sources */,
+				D2FC7B1F210959DC00E40F7A /* MazeGenerator.swift in Sources */,
 				D238C7F42103CD9600909855 /* main.swift in Sources */,
+				D2DA18102106DA8800EA5EBE /* Cell.swift in Sources */,
+				D2DA180A21050F5800EA5EBE /* Image.swift in Sources */,
+				D28CA62121080D2E00D466BC /* Distances.swift in Sources */,
+				D2DA18112106DA8800EA5EBE /* Grid.swift in Sources */,
+				D2DA180F2106DA8800EA5EBE /* BinaryTree.swift in Sources */,
+				D28CA6232108182900D466BC /* DistanceGrid.swift in Sources */,
+				D2DA18122106DA8800EA5EBE /* Sidewinder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +289,7 @@
 				D238C7F92103CD9600909855 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
