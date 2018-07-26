@@ -62,16 +62,21 @@ func coloredGrid(_ grid: ColoredGrid) {
     }
 }
 
-let grid = ColoredGrid(rows: 20, columns: 20)
-// .binaryTree, .sidewinder
-let generator = Mazes.factory(.sidewinder, grid: grid)
-
-//maze(grid)
-//path(grid)
+//let grid = DistanceGrid(rows: 20, columns: 20)
+//// .binaryTree, .sidewinder
+//let generator = Mazes.factory(.binaryTree, grid: grid)
+////maze(grid)
+////path(grid)
 //let pathLength = longestPath(grid)
-//print( "longest path length:  \(pathLength)" )
-coloredGrid(grid)
+////print( "longest path length:  \(pathLength)" )
+//
+//image(for: grid, name: "maze" )
 
-image(for: grid, name: "coloredMagenta" )
+let grid = ColoredGrid(rows: 20, columns: 20)
+grid.mode = .grey
+// .binaryTree, .sidewinder
+let generator = Mazes.factory(.binaryTree, grid: grid)
+coloredGrid(grid)
+image(for: grid, name: "coloredGrey" )
 
 
