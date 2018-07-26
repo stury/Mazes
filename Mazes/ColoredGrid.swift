@@ -15,7 +15,7 @@ enum ColoredGridMode {
     case yellow
     case cyan
     case magenta
-    case grey
+    case gray
 }
 
 public class ColoredGrid : Grid {
@@ -55,7 +55,7 @@ public class ColoredGrid : Grid {
                     result = (dark, bright, bright)
                 case .magenta:
                     result = (bright, dark, bright)
-                case .grey:
+                case .gray:
                     result = (bright, bright, bright)
                 }
             }

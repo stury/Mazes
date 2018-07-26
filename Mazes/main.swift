@@ -73,10 +73,10 @@ func coloredGrid(_ grid: ColoredGrid) {
 //image(for: grid, name: "maze" )
 
 let grid = ColoredGrid(rows: 20, columns: 20)
-grid.mode = .grey
+grid.mode = .gray
 // .binaryTree, .sidewinder
 let generator = Mazes.factory(.binaryTree, grid: grid)
 coloredGrid(grid)
-image(for: grid, name: "coloredGrey" )
+image(for: grid, name: "coloredGray" )
 
 
