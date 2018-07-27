@@ -62,21 +62,33 @@ func coloredGrid(_ grid: ColoredGrid) {
     }
 }
 
-//let grid = DistanceGrid(rows: 20, columns: 20)
-//// .binaryTree, .sidewinder
-//let generator = Mazes.factory(.binaryTree, grid: grid)
-////maze(grid)
-////path(grid)
-//let pathLength = longestPath(grid)
-////print( "longest path length:  \(pathLength)" )
-//
-//image(for: grid, name: "maze" )
+func distanceGrid() {
+    let grid = DistanceGrid(rows: 20, columns: 20)
+    // .binaryTree, .sidewinder
+    let _ = Mazes.factory(.binaryTree, grid: grid)
+    //maze(grid)
+    //path(grid)
+    let pathLength = longestPath(grid)
+    print( "longest path length:  \(pathLength)" )
+    
+    image(for: grid, name: "maze" )
+}
+
+func aldousBroder(max: Int) {
+    for index in 1...max {
+        let grid = ColoredGrid(rows: 20, columns: 20)
+        // .binaryTree, .sidewinder
+        let _ = Mazes.factory(.aldousBroder, grid: grid)
+        coloredGrid(grid)
+        image(for: grid, name: "aldousBroder_\(index)" )
+    }
+}
 
 let grid = ColoredGrid(rows: 20, columns: 20)
-grid.mode = .gray
 // .binaryTree, .sidewinder
-let generator = Mazes.factory(.binaryTree, grid: grid)
+let generator = Mazes.factory(.wilsons, grid: grid)
 coloredGrid(grid)
-image(for: grid, name: "coloredGray" )
+image(for: grid, name: "wilsons" )
 
+//aldousBroder(max: 6)
 

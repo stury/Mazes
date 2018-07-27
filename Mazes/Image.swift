@@ -60,9 +60,9 @@ public extension Image {
                 let x2 = (cell.column+1)*cellSize
                 let y2 = (cell.row+1)*cellSize
                 
-                if grid.background() {
+                if maze.background() {
                     let red, green, blue: CGFloat
-                    (red, green, blue) = grid.backgroundColor(for: cell)
+                    (red, green, blue) = maze.backgroundColor(for: cell)
                     context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
                     //context.addRect( CGRect(x: 0, y: 0, width: width, height: height) )
                     context.fill(CGRect(x: x1, y: y1, width: x2-x1, height: y2-y1))
