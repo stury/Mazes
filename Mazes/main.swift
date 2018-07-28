@@ -88,7 +88,7 @@ func generateMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
 
 func deadends(_ tries:Int = 100) {
     let size = 20
-    let algorithms:[Mazes] = [.binaryTree, .sidewinder, .aldousBroder, .wilsons, .huntAndKill]
+    let algorithms:[Mazes] = Mazes.all()
     var averages:[Int] = [Int].init(repeating: 0, count: algorithms.count)
     
     for algorithm in algorithms {
@@ -112,11 +112,22 @@ func deadends(_ tries:Int = 100) {
     
     let totalCells = size*size
     print("\nAverage dead-ends per \(size)*\(size) maze \(totalCells) cells:\n")
-    
-    for (index, algorithm) in algorithms.enumerated() {
-        let percentage = averages[index]*100/(size*size)
-        print("\(algorithm.rawValue) : \(averages[index])/\(totalCells) (\(percentage)%)")
+        
+    let sortedAlgorithms = algorithms.sorted(by: { (lhs, rhs) -> Bool in
+        var result = false
+        if let lhsIndex = algorithms.index(of: lhs),
+            let rhsIndex = algorithms.index(of: rhs) {
+            result = averages[lhsIndex] > averages[rhsIndex]
+        }
+        return result
+    })
+    for algorithm in sortedAlgorithms {
+        if let index = algorithms.index(of: algorithm) {
+            let percentage = averages[index]*100/(size*size)
+            print("\(algorithm.rawValue) : \(averages[index])/\(totalCells) (\(percentage)%)")
+        }
     }
+    
 }
 
 
@@ -126,5 +137,5 @@ func deadends(_ tries:Int = 100) {
 //coloredGrid(grid)
 //image(for: grid, name: "wilsons" )
 
-generateMazes(.huntAndKill, max: 6, color: .blue)
-//deadends()
+//generateMazes(.huntAndKill, max: 6, color: .blue)
+deadends()

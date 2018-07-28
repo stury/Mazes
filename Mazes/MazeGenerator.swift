@@ -33,6 +33,10 @@ enum Mazes : String {
         }
         return result
     }
+    
+    static func all() -> [Mazes] {
+        return [.binaryTree, .sidewinder, .aldousBroder, .wilsons, .huntAndKill]
+    }
 }
 
 
