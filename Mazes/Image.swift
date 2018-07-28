@@ -95,6 +95,7 @@ public extension Image {
                     context.addLine(to: CGPoint(x: x2, y: y2))
                     context.drawPath(using: .fillStroke)
                 }
+                return false
             })
             
             context.restoreGState()

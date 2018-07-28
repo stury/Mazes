@@ -109,10 +109,19 @@ public class Grid : CustomStringConvertible {
         }
     }
     
-    public func eachCell(_ block: (Cell)->Void ) {
+    // Return true from the block to tell us to stop iterating over the cells!
+    public func eachCell(_ block: (Cell)->Bool ) {
+        var stop = false
         for row in grid {
             for col in row {
-                block(col)
+                stop = block(col)
+                
+                if stop {
+                    break
+                }
+            }
+            if stop {
+                break
             }
         }
     }
@@ -160,7 +169,7 @@ public class Grid : CustomStringConvertible {
         return result
     }
     
-    // protocol for Image callback to grid to see if we want to color the backgrounds.
+    // protocol for Image callback to grid to see if we want to color the backgrounds.  Do we need this???
     public func background( ) -> Bool {
         return false
     }
@@ -181,5 +190,16 @@ public class Grid : CustomStringConvertible {
         return result
     }
     
-
+    public func deadends() -> [Cell] {
+        var result = [Cell]()
+        
+        eachCell { (cell) -> Bool in
+            if cell.links.count == 1 {
+                result.append(cell)
+            }
+            return false
+        }
+        
+        return result
+    }
 }

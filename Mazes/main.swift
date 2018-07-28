@@ -74,21 +74,57 @@ func distanceGrid() {
     image(for: grid, name: "maze" )
 }
 
-func aldousBroder(max: Int) {
+func generateMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
     for index in 1...max {
         let grid = ColoredGrid(rows: 20, columns: 20)
+        grid.mode = color
         // .binaryTree, .sidewinder
-        let _ = Mazes.factory(.aldousBroder, grid: grid)
+        let _ = Mazes.factory(maze, grid: grid)
+        print("\(grid.deadends().count) dead-ends in maze")
         coloredGrid(grid)
-        image(for: grid, name: "aldousBroder_\(index)" )
+        image(for: grid, name: "\(maze.rawValue)_\(index)" )
     }
 }
 
-let grid = ColoredGrid(rows: 20, columns: 20)
-// .binaryTree, .sidewinder
-let generator = Mazes.factory(.wilsons, grid: grid)
-coloredGrid(grid)
-image(for: grid, name: "wilsons" )
+func deadends(_ tries:Int = 100) {
+    let size = 20
+    let algorithms:[Mazes] = [.binaryTree, .sidewinder, .aldousBroder, .wilsons, .huntAndKill]
+    var averages:[Int] = [Int].init(repeating: 0, count: algorithms.count)
+    
+    for algorithm in algorithms {
+        
+        print("running \(algorithm.rawValue)")
+        
+        var deadendCounts = [Int]()
+        for _ in 1...tries {
+            let grid = Grid(rows: size, columns: size)
+            let _ = Mazes.factory(algorithm, grid: grid)
+            deadendCounts.append(grid.deadends().count)
+        }
+        var totalDeadends = 0
+        for count in deadendCounts {
+            totalDeadends += count
+        }
+        if let index = algorithms.index(of: algorithm) {
+            averages[index] = totalDeadends / deadendCounts.count
+        }
+    }
+    
+    let totalCells = size*size
+    print("\nAverage dead-ends per \(size)*\(size) maze \(totalCells) cells:\n")
+    
+    for (index, algorithm) in algorithms.enumerated() {
+        let percentage = averages[index]*100/(size*size)
+        print("\(algorithm.rawValue) : \(averages[index])/\(totalCells) (\(percentage)%)")
+    }
+}
 
-//aldousBroder(max: 6)
 
+//let grid = ColoredGrid(rows: 20, columns: 20)
+//// .binaryTree, .sidewinder
+//let generator = Mazes.factory(.wilsons, grid: grid)
+//coloredGrid(grid)
+//image(for: grid, name: "wilsons" )
+
+generateMazes(.huntAndKill, max: 6, color: .blue)
+//deadends()

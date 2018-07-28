@@ -16,6 +16,7 @@ class Wilsons : MazeGenerator {
         var unvisited : [Cell] = [Cell]()
         grid.eachCell { (cell) in
             unvisited.append(cell)
+            return false
         }
         
         let first = unvisited.sample()

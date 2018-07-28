@@ -8,11 +8,12 @@
 
 import Foundation
 
-enum Mazes {
+enum Mazes : String {
     case binaryTree
     case sidewinder
     case aldousBroder
     case wilsons
+    case huntAndKill
     
     static func factory(_ maze:Mazes, grid: Grid) -> MazeGenerator {
         var result : MazeGenerator
@@ -25,6 +26,8 @@ enum Mazes {
             result = AldousBroder(grid: grid)
         case .wilsons:
             result = Wilsons(grid: grid)
+        case .huntAndKill:
+            result = HuntAndKill(grid: grid)
 //        default:
 //            result = BinaryTree(grid: grid)
         }

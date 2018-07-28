@@ -17,6 +17,7 @@ public class BinaryTree : MazeGenerator {
                 let neighbor = neighbors[index]
                 cell.link(cell: neighbor)
             }
+            return false
         }
     }
 }
