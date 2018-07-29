@@ -10,8 +10,7 @@ import Foundation
 
 class Wilsons : MazeGenerator {
     
-    override public init( grid: Grid ){
-        super.init(grid: grid)
+    public static func on( grid: Grid ) {
         
         var unvisited : [Cell] = [Cell]()
         grid.eachCell { (cell) in

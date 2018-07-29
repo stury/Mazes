@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D238C7F42103CD9600909855 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238C7F32103CD9600909855 /* main.swift */; };
 		D28AA1EC210C035400898B17 /* HuntAndKill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1EB210C035400898B17 /* HuntAndKill.swift */; };
+		D28AA1EE210E301300898B17 /* RecursiveBacktracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */; };
 		D28CA62121080D2E00D466BC /* Distances.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA62021080D2E00D466BC /* Distances.swift */; };
 		D28CA6232108182900D466BC /* DistanceGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA6222108182900D466BC /* DistanceGrid.swift */; };
 		D2C7FB68210ABCE500386F74 /* AldousBroder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7FB67210ABCE500386F74 /* AldousBroder.swift */; };
@@ -38,6 +39,7 @@
 		D238C7F02103CD9600909855 /* Mazes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mazes; sourceTree = BUILT_PRODUCTS_DIR; };
 		D238C7F32103CD9600909855 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D28AA1EB210C035400898B17 /* HuntAndKill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntAndKill.swift; sourceTree = "<group>"; };
+		D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveBacktracker.swift; sourceTree = "<group>"; };
 		D28CA62021080D2E00D466BC /* Distances.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distances.swift; sourceTree = "<group>"; };
 		D28CA6222108182900D466BC /* DistanceGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceGrid.swift; sourceTree = "<group>"; };
 		D2C7FB67210ABCE500386F74 /* AldousBroder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AldousBroder.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				D2C7FB67210ABCE500386F74 /* AldousBroder.swift */,
 				D2C7FB69210AC2DA00386F74 /* Wilsons.swift */,
 				D28AA1EB210C035400898B17 /* HuntAndKill.swift */,
+				D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */,
 			);
 			path = Mazes;
 			sourceTree = "<group>";
@@ -165,6 +168,7 @@
 				D2DA180A21050F5800EA5EBE /* Image.swift in Sources */,
 				D28CA62121080D2E00D466BC /* Distances.swift in Sources */,
 				D2C7FB6A210AC2DA00386F74 /* Wilsons.swift in Sources */,
+				D28AA1EE210E301300898B17 /* RecursiveBacktracker.swift in Sources */,
 				D2DA18112106DA8800EA5EBE /* Grid.swift in Sources */,
 				D2DA180F2106DA8800EA5EBE /* BinaryTree.swift in Sources */,
 				D28CA6232108182900D466BC /* DistanceGrid.swift in Sources */,

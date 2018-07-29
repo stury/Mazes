@@ -14,36 +14,36 @@ enum Mazes : String {
     case aldousBroder
     case wilsons
     case huntAndKill
+    case recursiveBacktracker
     
-    static func factory(_ maze:Mazes, grid: Grid) -> MazeGenerator {
-        var result : MazeGenerator
+    static func factory(_ maze:Mazes, grid: Grid) {
+        
         switch maze {
         case .binaryTree:
-            result = BinaryTree(grid: grid)
+            BinaryTree.on(grid: grid)
         case .sidewinder:
-            result = Sidewinder(grid: grid)
+            Sidewinder.on(grid: grid)
         case .aldousBroder:
-            result = AldousBroder(grid: grid)
+            AldousBroder.on(grid: grid)
         case .wilsons:
-            result = Wilsons(grid: grid)
+            Wilsons.on(grid: grid)
         case .huntAndKill:
-            result = HuntAndKill(grid: grid)
+            HuntAndKill.on(grid: grid)
+        case .recursiveBacktracker:
+            RecursiveBacktracker.on(grid: grid)
 //        default:
 //            result = BinaryTree(grid: grid)
         }
-        return result
     }
     
     static func all() -> [Mazes] {
-        return [.binaryTree, .sidewinder, .aldousBroder, .wilsons, .huntAndKill]
+        return [.binaryTree, .sidewinder, .aldousBroder, .wilsons, .huntAndKill, .recursiveBacktracker]
     }
 }
 
 
-public class MazeGenerator {
-    
-    // Override init, and implement your maze generation algorithm!
-    public init( grid: Grid ){
-    }
-    
+public protocol MazeGenerator {
+    // Create this method, and implement your maze generation algorithm!
+    static func on( grid: Grid )
+   
 }

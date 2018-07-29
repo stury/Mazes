@@ -65,7 +65,7 @@ func coloredGrid(_ grid: ColoredGrid) {
 func distanceGrid() {
     let grid = DistanceGrid(rows: 20, columns: 20)
     // .binaryTree, .sidewinder
-    let _ = Mazes.factory(.binaryTree, grid: grid)
+    Mazes.factory(.binaryTree, grid: grid)
     //maze(grid)
     //path(grid)
     let pathLength = longestPath(grid)
@@ -79,7 +79,7 @@ func generateMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
         let grid = ColoredGrid(rows: 20, columns: 20)
         grid.mode = color
         // .binaryTree, .sidewinder
-        let _ = Mazes.factory(maze, grid: grid)
+        Mazes.factory(maze, grid: grid)
         print("\(grid.deadends().count) dead-ends in maze")
         coloredGrid(grid)
         image(for: grid, name: "\(maze.rawValue)_\(index)" )
@@ -98,7 +98,7 @@ func deadends(_ tries:Int = 100) {
         var deadendCounts = [Int]()
         for _ in 1...tries {
             let grid = Grid(rows: size, columns: size)
-            let _ = Mazes.factory(algorithm, grid: grid)
+            Mazes.factory(algorithm, grid: grid)
             deadendCounts.append(grid.deadends().count)
         }
         var totalDeadends = 0
@@ -133,7 +133,7 @@ func deadends(_ tries:Int = 100) {
 
 //let grid = ColoredGrid(rows: 20, columns: 20)
 //// .binaryTree, .sidewinder
-//let generator = Mazes.factory(.wilsons, grid: grid)
+//Mazes.factory(.wilsons, grid: grid)
 //coloredGrid(grid)
 //image(for: grid, name: "wilsons" )
 

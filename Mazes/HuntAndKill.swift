@@ -20,8 +20,7 @@ import Foundation
 
 class HuntAndKill : MazeGenerator {
     
-    override public init( grid: Grid ){
-        super.init(grid: grid)
+    public static func on( grid: Grid ) {
         
         var current = grid.randomCell()
         var neighbor : Cell?
@@ -40,7 +39,7 @@ class HuntAndKill : MazeGenerator {
             else {
                 current = nil
             }
-            
+
             grid.eachCell({ (cell) in
                 var result = false
                 let visitedNeighbors = cell.neighbors().filter({ (cell) -> Bool in
@@ -55,6 +54,21 @@ class HuntAndKill : MazeGenerator {
                 }
                 return result
             })
+            
+//            // Alternate implementation - doesn't seem to help!
+//            let cells = grid.cells
+//            for cell in cells {
+//                let visitedNeighbors = cell.neighbors().filter({ (cell) -> Bool in
+//                    cell.links.count > 0
+//                })
+//                if cell.links.count == 0 && visitedNeighbors.count > 0 {
+//                    current = cell
+//                    
+//                    let neighbor = visitedNeighbors.sample()
+//                    current?.link(cell: neighbor)
+//                    break
+//                }
+//            }
         }
     }
 }

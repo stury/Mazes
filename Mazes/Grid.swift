@@ -126,6 +126,19 @@ public class Grid : CustomStringConvertible {
         }
     }
     
+    public var cells : [Cell] {
+        get {
+            var result = [Cell]()
+            
+            eachCell { (cell) -> Bool in
+                result.append(cell)
+                return false
+            }
+            //print( result )
+            return result
+        }
+    }
+    
     public func contentsOfCell(_ cell:Cell) -> String {
         return " "
     }

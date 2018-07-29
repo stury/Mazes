@@ -10,8 +10,7 @@ import Foundation
 
 class AldousBroder : MazeGenerator {
     
-    override public init( grid: Grid ){
-        super.init(grid: grid)
+    public static func on( grid: Grid ) {
         var cell = grid.randomCell()
         var unvisited = grid.size()-1
         

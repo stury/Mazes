@@ -1,8 +1,7 @@
 import Foundation
 
 public class BinaryTree : MazeGenerator {
-    override public init( grid: Grid ){
-        super.init(grid: grid)
+    public static func on( grid: Grid ) {
         grid.eachCell { (cell) in
             var neighbors = [Cell]()
             if let north = cell.north {
