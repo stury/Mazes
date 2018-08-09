@@ -11,36 +11,45 @@ import Foundation
 class Wilsons : MazeGenerator {
     
     public static func on( grid: Grid ) {
-        
         var unvisited : [Cell] = [Cell]()
         grid.eachCell { (cell) in
             unvisited.append(cell)
             return false
         }
-        
         let first = unvisited.sample()
-        unvisited = unvisited.filter { $0 != first }
-//        if let index = unvisited.index(of: first) {
-//            unvisited.remove(at: index)
-//        }
-        
-        while unvisited.count > 0 {
-            var cell = unvisited.sample()
-            var path = [Cell]()
-            path.append(cell)
+        Wilsons.on(grid: grid, at: first)
+    }
+
+    static func on( grid: Grid, at: Cell? ) {
+        var unvisited : [Cell] = [Cell]()
+        grid.eachCell { (cell) in
+            unvisited.append(cell)
+            return false
+        }
+        if let first = at {
+            unvisited = unvisited.filter { $0 != first }
+            //        if let index = unvisited.index(of: first) {
+            //            unvisited.remove(at: index)
+            //        }
             
-            while let _ = unvisited.index(of: cell) {
-                cell = cell.neighbors().sample()
-                let position = path.index(of: cell)
-                if position != nil {
-                    path.removeAll()
-                }
+            while unvisited.count > 0 {
+                var cell = unvisited.sample()
+                var path = [Cell]()
                 path.append(cell)
-            }
-            
-            for index in 0...path.count-2 {
-                path[index].link(cell: path[index+1])
-                unvisited = unvisited.filter { $0 != path[index] }
+                
+                while let _ = unvisited.index(of: cell) {
+                    cell = cell.neighbors().sample()
+                    let position = path.index(of: cell)
+                    if position != nil {
+                        path.removeAll()
+                    }
+                    path.append(cell)
+                }
+                
+                for index in 0...path.count-2 {
+                    path[index].link(cell: path[index+1])
+                    unvisited = unvisited.filter { $0 != path[index] }
+                }
             }
         }
     }

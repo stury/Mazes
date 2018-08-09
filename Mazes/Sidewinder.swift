@@ -8,6 +8,7 @@ public extension Array {
 }
 
 public class Sidewinder : MazeGenerator {
+
     public static func on( grid: Grid ) {
         grid.eachRow { (row) in
             var run = [Cell]()

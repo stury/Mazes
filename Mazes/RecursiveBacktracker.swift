@@ -10,8 +10,12 @@ import Foundation
 
 class RecursiveBacktracker : MazeGenerator {
     static func on(grid: Grid) {
+        RecursiveBacktracker.on( grid: grid, at: grid.randomCell() )
+    }
+    
+    static func on( grid: Grid, at: Cell? ) {
         var stack = [Cell]()
-        if let startCell = grid.randomCell() {
+        if let startCell = at {
             stack.append(startCell)
         }
         

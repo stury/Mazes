@@ -11,7 +11,17 @@ import Foundation
 class AldousBroder : MazeGenerator {
     
     public static func on( grid: Grid ) {
-        var cell = grid.randomCell()
+        AldousBroder.on( grid:grid, at: grid.randomCell() )
+    }
+    
+    static func on( grid: Grid, at: Cell? ) {
+        var cell : Cell?
+        if let at = at {
+            cell = at
+        }
+        else {
+            cell = grid.randomCell()
+        }
         var unvisited = grid.size()-1
         
         while unvisited > 0 {

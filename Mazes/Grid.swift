@@ -4,6 +4,7 @@ import Foundation
 public func random(_ maxInt: Int ) -> Int {
     var result : Int = 0
     
+    // arc4random_stir() // ?  Doesn't seem to help any for huntAndKill Maze
     result = Int(arc4random_uniform(UInt32(maxInt)))
     
     return result
@@ -36,7 +37,7 @@ public class Grid : CustomStringConvertible {
         configureCells()
     }
     
-    private func prepareGrid() -> [[Cell]] {
+    internal func prepareGrid() -> [[Cell]] {
         var result = [[Cell]]()
         for row in 0..<rows {
             var rowArray = [Cell]()
@@ -65,10 +66,14 @@ public class Grid : CustomStringConvertible {
                 //                if col < columns-1 {
                 //                    cell.east  = grid[row][col+1]
                 //                }
-                cell.north = self[Point(row:row-1, col:col)]
-                cell.south = self[Point(row:row+1, col:col)]
-                cell.east  = self[Point(row:row, col:col+1)]
-                cell.west  = self[Point(row:row, col:col-1)]
+//                cell.north = self[Point(row:row-1, col:col)]
+//                cell.south = self[Point(row:row+1, col:col)]
+//                cell.east  = self[Point(row:row, col:col+1)]
+//                cell.west  = self[Point(row:row, col:col-1)]
+                cell.north = self[[row-1,col]]
+                cell.south = self[[row+1,col]]
+                cell.east  = self[[row,col+1]]
+                cell.west  = self[[row,col-1]]
             }
         }
     }
@@ -92,11 +97,35 @@ public class Grid : CustomStringConvertible {
             }
         }
     }
-    
+
+    public subscript(_ location: [Int]) -> Cell? {
+        get {
+            var result : Cell? = nil
+            if location.count == 2 {
+                let point = Point(row: location[0], col: location[1])
+                if point.row >= 0 && point.row < rows &&
+                    point.col >= 0 && point.col < columns {
+                    result = grid[point.row][point.col]
+                }
+            }
+            return result
+        }
+        set (newValue) {
+            if let newValue = newValue, location.count == 2 {
+                let point = Point(row: location[0], col: location[1])
+                if point.row >= 0 && point.row < rows &&
+                    point.col >= 0 && point.col < columns {
+                    grid[point.row][point.col] = newValue
+                }
+            }
+        }
+    }
+
     public func randomCell() -> Cell? {
         let row = random(rows)
         let col = random(columns)
-        return self[Point(row, col)]
+        //return self[Point(row, col)]
+        return self[[row, col]]
     }
     
     public func size() -> Int {
@@ -154,7 +183,14 @@ public class Grid : CustomStringConvertible {
             for cell in row {
                 let contents = contentsOfCell(cell)
                 let body : String
-                switch( contents.characters.count ) {
+                
+                #if swift(>=3.2)
+                    let length = contents.count
+                #else
+                    let length = contents.characters.count
+                #endif
+                
+                switch( length ) {
                 case 1:
                     body = " \(contents) "
                 case 2:
@@ -162,6 +198,7 @@ public class Grid : CustomStringConvertible {
                 default:
                     body = contents
                 }
+        
                 var east_boundary : String = "|"
                 if let eastCell = cell.east, cell.linked(eastCell) {
                     east_boundary = " "
@@ -182,12 +219,12 @@ public class Grid : CustomStringConvertible {
         return result
     }
     
-    // protocol for Image callback to grid to see if we want to color the backgrounds.  Do we need this???
+    /// protocol for Image callback to grid to see if we want to color the backgrounds.  Do we need this???
     public func background( ) -> Bool {
         return false
     }
 
-    // protocol for Image callback to grid for the background color
+    /// protocol for Image callback to grid for the background color
     public func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat) {
         return (1.0, 1.0, 1.0)
     }

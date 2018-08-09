@@ -21,8 +21,11 @@ import Foundation
 class HuntAndKill : MazeGenerator {
     
     public static func on( grid: Grid ) {
-        
-        var current = grid.randomCell()
+        HuntAndKill.on( grid: grid, at: grid.randomCell() )
+    }
+    
+    static func on( grid: Grid, at: Cell? ) {
+        var current = at
         var neighbor : Cell?
         
         while current != nil {

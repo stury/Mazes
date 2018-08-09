@@ -22,7 +22,8 @@ func maze(_ grid: Grid ) {
 }
 
 func path(_ grid: DistanceGrid) {
-    let start = grid[Point(row:0,col:0)]
+//    let start = grid[Point(row:0,col:0)]
+    let start = grid[[0,0]]
     if let distances = start?.distances() {
         grid.distances = distances
         print( grid )
@@ -86,50 +87,41 @@ func generateMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
     }
 }
 
-func deadends(_ tries:Int = 100) {
-    let size = 20
-    let algorithms:[Mazes] = Mazes.all()
-    var averages:[Int] = [Int].init(repeating: 0, count: algorithms.count)
-    
-    for algorithm in algorithms {
-        
-        print("running \(algorithm.rawValue)")
-        
-        var deadendCounts = [Int]()
-        for _ in 1...tries {
-            let grid = Grid(rows: size, columns: size)
-            Mazes.factory(algorithm, grid: grid)
-            deadendCounts.append(grid.deadends().count)
-        }
-        var totalDeadends = 0
-        for count in deadendCounts {
-            totalDeadends += count
-        }
-        if let index = algorithms.index(of: algorithm) {
-            averages[index] = totalDeadends / deadendCounts.count
-        }
-    }
-    
-    let totalCells = size*size
-    print("\nAverage dead-ends per \(size)*\(size) maze \(totalCells) cells:\n")
-        
-    let sortedAlgorithms = algorithms.sorted(by: { (lhs, rhs) -> Bool in
-        var result = false
-        if let lhsIndex = algorithms.index(of: lhs),
-            let rhsIndex = algorithms.index(of: rhs) {
-            result = averages[lhsIndex] > averages[rhsIndex]
-        }
-        return result
-    })
-    for algorithm in sortedAlgorithms {
-        if let index = algorithms.index(of: algorithm) {
-            let percentage = averages[index]*100/(size*size)
-            print("\(algorithm.rawValue) : \(averages[index])/\(totalCells) (\(percentage)%)")
-        }
-    }
-    
-}
+func killingCells() {
+    let grid = Grid(rows: 5, columns: 5)
 
+    /// This function removes the north, south, east, and west cells from accessing the cell.
+    func orphanCell( _ cell : Cell ) {
+        if let east = cell.east {
+            east.west = nil
+        }
+        cell.east  = nil
+        if let west = cell.west {
+            west.east = nil
+        }
+        cell.west  = nil
+        
+        if let south = cell.south {
+            south.north = nil
+        }
+        cell.south = nil
+        if let north = cell.north {
+            north.south = nil
+        }
+        cell.north = nil
+    }
+    
+    if let nwCell = grid[Point( row:0, col:0 )] {
+        orphanCell( nwCell )
+    }
+    if let seCell = grid[Point( row:4, col:4 )] {
+        orphanCell( seCell )
+    }
+    RecursiveBacktracker.on(grid: grid, at: grid[Point(row:1, col:1)])
+    
+    print( grid )
+    image(for: grid, name: "killingCells" )
+}
 
 //let grid = ColoredGrid(rows: 20, columns: 20)
 //// .binaryTree, .sidewinder
@@ -137,5 +129,7 @@ func deadends(_ tries:Int = 100) {
 //coloredGrid(grid)
 //image(for: grid, name: "wilsons" )
 
-//generateMazes(.huntAndKill, max: 6, color: .blue)
-deadends()
+//generateMazes(.recursiveBacktracker, max: 6, color: .red)
+//Mazes.deadends()
+
+killingCells()

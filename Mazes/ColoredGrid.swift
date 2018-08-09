@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ColoredGridMode {
+enum ColoredGridMode : String {
     case red
     case green
     case blue
