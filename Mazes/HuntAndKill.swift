@@ -45,15 +45,17 @@ class HuntAndKill : MazeGenerator {
 
             grid.eachCell({ (cell) in
                 var result = false
-                let visitedNeighbors = cell.neighbors().filter({ (cell) -> Bool in
+                if let visitedNeighbors = cell?.neighbors().filter({ (cell) -> Bool in
                     cell.links.count > 0
-                })
-                if cell.links.count == 0 && visitedNeighbors.count > 0 {
-                    current = cell
+                }) {
                     
-                    let neighbor = visitedNeighbors.sample()
-                    current?.link(cell: neighbor)
-                    result = true
+                    if cell?.links.count == 0 && visitedNeighbors.count > 0 {
+                        current = cell
+                        
+                        let neighbor = visitedNeighbors.sample()
+                        current?.link(cell: neighbor)
+                        result = true
+                    }
                 }
                 return result
             })

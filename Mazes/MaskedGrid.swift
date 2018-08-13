@@ -16,9 +16,35 @@ public class MaskedGrid : Grid {
         super.init(rows: rows, columns: columns)
     }
     
-    override internal func prepareGrid() -> [[Cell]] {
-        
-        
-        return super.prepareGrid()
+    init(_ mask: Mask) {
+        self.mask = mask
+        super.init(rows: mask.rows, columns: mask.columns)
+    }
+    
+    override internal func prepareGrid() -> [[Cell?]] {
+        var result = [[Cell?]]()
+        for row in 0..<rows {
+            var rowArray = [Cell?]()
+            for column in 0..<columns {
+                var cell : Cell? = nil
+                if mask[[row,column]] {
+                    cell = Cell(row: row, column: column)
+                }
+                rowArray.append(cell)
+            }
+            result.append(rowArray)
+        }
+        return result
+    }
+    
+    override public func randomCell() -> Cell? {
+        let location = mask.randomLocation()
+        let row = location[0]
+        let col = location[1]
+        return self[[row, col]]
+    }
+    
+    override public func size() -> Int {
+        return mask.count
     }
 }

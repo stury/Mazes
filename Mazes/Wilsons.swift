@@ -13,7 +13,9 @@ class Wilsons : MazeGenerator {
     public static func on( grid: Grid ) {
         var unvisited : [Cell] = [Cell]()
         grid.eachCell { (cell) in
-            unvisited.append(cell)
+            if let cell = cell {
+                unvisited.append(cell)
+            }
             return false
         }
         let first = unvisited.sample()
@@ -23,7 +25,9 @@ class Wilsons : MazeGenerator {
     static func on( grid: Grid, at: Cell? ) {
         var unvisited : [Cell] = [Cell]()
         grid.eachCell { (cell) in
-            unvisited.append(cell)
+            if let cell = cell {
+                unvisited.append(cell)
+            }
             return false
         }
         if let first = at {

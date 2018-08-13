@@ -27,7 +27,7 @@ func path(_ grid: DistanceGrid) {
     if let distances = start?.distances() {
         grid.distances = distances
         print( grid )
-        if let southwestCell = grid[Point(row:grid.rows-1, col:0)] {
+        if let southwestCell = grid[[grid.rows-1, 0]] {
             grid.distances = distances.path(to: southwestCell)
             print( "Path from northwest corner to southwest corner" )
             print( grid )
@@ -39,7 +39,7 @@ func path(_ grid: DistanceGrid) {
 func longestPath(_ grid: DistanceGrid) -> Int {
     var result : Int = 0
     
-    let start = grid[Point(row:0,col:0)]
+    let start = grid[[0,0]]
     if let distances = start?.distances() {
         var newStart: Cell
         var distance : Int
@@ -58,7 +58,7 @@ func longestPath(_ grid: DistanceGrid) -> Int {
 }
 
 func coloredGrid(_ grid: ColoredGrid) {
-    if let start = grid[Point(row:grid.rows/2,col:grid.columns/2)] {
+    if let start = grid[[grid.rows/2,grid.columns/2]] {
         grid.distances = start.distances() 
     }
 }
@@ -87,7 +87,23 @@ func generateMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
     }
 }
 
-func killingCells() {
+func generateMazes(_ mazes: [Mazes], maxes: [Int], color:[ColoredGridMode] = [.green]) {
+    for (mazeIndex, maze) in mazes.enumerated() {
+        let max = maxes[mazeIndex%maxes.count]
+        for index in 1...max {
+            let grid = ColoredGrid(rows: 20, columns: 20)
+            grid.mode = color[index%color.count]
+            // .binaryTree, .sidewinder
+            Mazes.factory(maze, grid: grid)
+            print("\(grid.deadends().count) dead-ends in maze")
+            coloredGrid(grid)
+            image(for: grid, name: "\(maze.rawValue)_\(index)" )
+        }
+    }
+}
+
+
+func killingCells_v1() {
     let grid = Grid(rows: 5, columns: 5)
 
     /// This function removes the north, south, east, and west cells from accessing the cell.
@@ -111,25 +127,45 @@ func killingCells() {
         cell.north = nil
     }
     
-    if let nwCell = grid[Point( row:0, col:0 )] {
+    if let nwCell = grid[[0, 0]] {
         orphanCell( nwCell )
     }
-    if let seCell = grid[Point( row:4, col:4 )] {
+    if let seCell = grid[[4, 4]] {
         orphanCell( seCell )
     }
-    RecursiveBacktracker.on(grid: grid, at: grid[Point(row:1, col:1)])
+    RecursiveBacktracker.on(grid: grid, at: grid[[1, 1]])
     
     print( grid )
     image(for: grid, name: "killingCells" )
 }
 
-//let grid = ColoredGrid(rows: 20, columns: 20)
-//// .binaryTree, .sidewinder
-//Mazes.factory(.wilsons, grid: grid)
-//coloredGrid(grid)
-//image(for: grid, name: "wilsons" )
+func killingCells_v2() {
+    let mask = Mask(rows: 5, columns: 5)
+    mask[[0,0]] = false
+    mask[[2,2]] = false
+    mask[[4,4]] = false
+    
+    let grid = MaskedGrid(mask)
+    RecursiveBacktracker.on(grid: grid)
+    
+    print( grid )
+    image(for: grid, name: "killingCells" )
+}
+
+func killingCells() {
+    let url = URL(fileURLWithPath: "../../../../../Examples/MazeMask.txt")
+    if let mask = Mask.from(url) {
+        let grid = MaskedGrid.init(mask)
+        RecursiveBacktracker.on(grid: grid)
+        print( grid )
+        image(for: grid, name: "killingCells" )
+    }
+    else {
+        print( "File \(url) did not exist!" )
+    }
+}
 
 //generateMazes(.recursiveBacktracker, max: 6, color: .red)
 //Mazes.deadends()
-
+//generateMazes(Mazes.allCases, maxes: [6], color: ColoredGridMode.allCases )
 killingCells()

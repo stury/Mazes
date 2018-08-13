@@ -13,22 +13,24 @@ public class Sidewinder : MazeGenerator {
         grid.eachRow { (row) in
             var run = [Cell]()
             for cell in row {
-                run.append(cell)
-                
-                let atEasternBoundary = cell.east == nil
-                let atNorthernBoundary = cell.north == nil
-                let shouldCloseOut = atEasternBoundary || (!atNorthernBoundary&&random(2) == 0)
-                if shouldCloseOut {
-                    let member = run.sample()
-                    if let north = member.north {
-                        member.link(cell: north)
+                if let cell = cell {
+                    run.append(cell)
+                    
+                    let atEasternBoundary = cell.east == nil
+                    let atNorthernBoundary = cell.north == nil
+                    let shouldCloseOut = atEasternBoundary || (!atNorthernBoundary&&random(2) == 0)
+                    if shouldCloseOut {
+                        let member = run.sample()
+                        if let north = member.north {
+                            member.link(cell: north)
+                        }
+                        run.removeAll()
                     }
-                    run.removeAll()
-                }
-                else
-                {
-                    if let east = cell.east {
-                        cell.link(cell: east)
+                    else
+                    {
+                        if let east = cell.east {
+                            cell.link(cell: east)
+                        }
                     }
                 }
             }

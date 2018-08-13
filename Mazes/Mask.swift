@@ -20,9 +20,9 @@ public class Mask {
         self.bits = [[Bool]].init(repeating: row, count: rows)
     }
 
-    public subscript(_ location: [Int]) -> Bool? {
+    public subscript(_ location: [Int]) -> Bool {
         get {
-            var result : Bool? = nil
+            var result : Bool = false
             if location.count == 2 {
                 let point = Point(row: location[0], col: location[1])
                 if point.row >= 0 && point.row < rows &&
@@ -33,11 +33,12 @@ public class Mask {
             return result
         }
         set (newValue) {
-            if let newValue = newValue, location.count == 2 {
-                let point = Point(row: location[0], col: location[1])
-                if point.row >= 0 && point.row < rows &&
-                    point.col >= 0 && point.col < columns {
-                    bits[point.row][point.col] = newValue
+            if location.count == 2 {
+                let row = location[0]
+                let col = location[1]
+                if row >= 0 && row < rows &&
+                    col >= 0 && col < columns {
+                    bits[row][col] = newValue
                 }
             }
         }
@@ -67,4 +68,68 @@ public class Mask {
         }
     }
     
+}
+
+public extension Mask {
+    
+    public static func from(_ text: String ) -> Mask {
+        // First trim extra whitespace and line feeds form the string.
+        let trimmed = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        var lines = trimmed.components(separatedBy: CharacterSet.newlines)
+        
+        let rows = lines.count
+        // Need to trim whitespace from each line, in case someone accidentally added extra whitespace.
+        #if swift(>=3.2)
+            let columns = lines[0].trimmingCharacters(in: CharacterSet.whitespaces).count
+        #else
+            let columns = lines[0].trimmingCharacters(in: CharacterSet.whitespaces).characters.count
+        #endif
+        
+        let mask : Mask = Mask(rows: rows, columns: columns)
+        
+        for (row, line) in lines.enumerated() {
+            let trimmedLine = line.trimmingCharacters(in: CharacterSet.whitespaces)
+            #if swift(>=3.2)
+            for (col, char) in trimmedLine.enumerated() {
+                if char == "X" || char == "x" {
+                    mask[[row, col]] = false
+                }
+                // Should not need the following lines, since by default all cells should be available.
+//                else {
+//                    mask[[row, col]] = true
+//                }
+            }
+            #else
+                for (col, char) in trimmedLine.characters.enumerated() {
+                    if char == "X" || char == "x" {
+                        mask[[row, col]] = false
+                    }
+                }
+            #endif
+        }
+
+        return mask
+    }
+    
+    public static func from(_ url: URL ) -> Mask? {
+        var result : Mask? = nil
+
+        // The more complicated way...
+//        let filePath : String = url.relativeString
+//        if url.isFileURL, FileManager.default.fileExists(atPath: filePath ) {
+//            if let fileContent = FileManager.default.contents(atPath: filePath) {
+//                if let text = String(data: fileContent, encoding: .utf8) {
+//                    result = Mask.from(text)
+//                }
+//            }
+//        }
+
+        // Much simpler....
+        if let text = try? String(contentsOf: url) {
+            result = Mask.from(text)
+        }
+
+        return result
+    }
+
 }

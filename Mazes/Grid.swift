@@ -26,21 +26,21 @@ public typealias Point = (row: Int, col: Int)
 public class Grid : CustomStringConvertible {
     
     public let rows, columns : Int
-    var grid : [[Cell]]
+    var grid : [[Cell?]]
     
     public init( rows: Int, columns: Int) {
         self.rows = rows
         self.columns = columns
-        self.grid = [[Cell]]()
+        self.grid = [[Cell?]]()
         self.grid = prepareGrid()
         
         configureCells()
     }
     
-    internal func prepareGrid() -> [[Cell]] {
-        var result = [[Cell]]()
+    internal func prepareGrid() -> [[Cell?]] {
+        var result = [[Cell?]]()
         for row in 0..<rows {
-            var rowArray = [Cell]()
+            var rowArray = [Cell?]()
             for column in 0..<columns {
                 rowArray.append(Cell(row: row, column: column))
             }
@@ -52,51 +52,35 @@ public class Grid : CustomStringConvertible {
     private func configureCells() {
         for row in 0..<rows {
             for col in 0..<columns {
-                let cell = grid[row][col]
-                
-                //                if row > 0 {
-                //                    cell.north = grid[row-1][col]
-                //                }
-                //                if row < rows-1 {
-                //                    cell.south = grid[row+1][col]
-                //                }
-                //                if col > 0 {
-                //                    cell.west  = grid[row][col-1]
-                //                }
-                //                if col < columns-1 {
-                //                    cell.east  = grid[row][col+1]
-                //                }
-//                cell.north = self[Point(row:row-1, col:col)]
-//                cell.south = self[Point(row:row+1, col:col)]
-//                cell.east  = self[Point(row:row, col:col+1)]
-//                cell.west  = self[Point(row:row, col:col-1)]
-                cell.north = self[[row-1,col]]
-                cell.south = self[[row+1,col]]
-                cell.east  = self[[row,col+1]]
-                cell.west  = self[[row,col-1]]
-            }
-        }
-    }
-    
-    
-    public subscript(point: Point) -> Cell? {
-        get {
-            var result : Cell? = nil
-            if point.row >= 0 && point.row < rows &&
-                point.col >= 0 && point.col < columns {
-                result = grid[point.row][point.col]
-            }
-            return result
-        }
-        set (newValue) {
-            if let newValue = newValue {
-                if point.row >= 0 && point.row < rows &&
-                    point.col >= 0 && point.col < columns {
-                    grid[point.row][point.col] = newValue
+                if let cell = grid[row][col] {
+                    cell.north = self[[row-1,col]]
+                    cell.south = self[[row+1,col]]
+                    cell.east  = self[[row,col+1]]
+                    cell.west  = self[[row,col-1]]
                 }
             }
         }
     }
+    
+    
+//    public subscript(point: Point) -> Cell? {
+//        get {
+//            var result : Cell? = nil
+//            if point.row >= 0 && point.row < rows &&
+//                point.col >= 0 && point.col < columns {
+//                result = grid[point.row][point.col]
+//            }
+//            return result
+//        }
+//        set (newValue) {
+//            if let newValue = newValue {
+//                if point.row >= 0 && point.row < rows &&
+//                    point.col >= 0 && point.col < columns {
+//                    grid[point.row][point.col] = newValue
+//                }
+//            }
+//        }
+//    }
 
     public subscript(_ location: [Int]) -> Cell? {
         get {
@@ -132,14 +116,14 @@ public class Grid : CustomStringConvertible {
         return rows * columns
     }
     
-    public func eachRow(_ block: ([Cell])->Void ) {
+    public func eachRow(_ block: ([Cell?])->Void ) {
         for row in grid {
             block(row)
         }
     }
     
     // Return true from the block to tell us to stop iterating over the cells!
-    public func eachCell(_ block: (Cell)->Bool ) {
+    public func eachCell(_ block: (Cell?)->Bool ) {
         var stop = false
         for row in grid {
             for col in row {
@@ -155,9 +139,9 @@ public class Grid : CustomStringConvertible {
         }
     }
     
-    public var cells : [Cell] {
+    public var cells : [Cell?] {
         get {
-            var result = [Cell]()
+            var result = [Cell?]()
             
             eachCell { (cell) -> Bool in
                 result.append(cell)
@@ -171,59 +155,12 @@ public class Grid : CustomStringConvertible {
     public func contentsOfCell(_ cell:Cell) -> String {
         return " "
     }
-    
-    // MARK: - CustomStringConvertible
-    public var description: String {
-        var result = "+" + "---+" * columns + "\n"
-        
-        for row in grid {
-            var top = "|"
-            var bottom = "+"
-            
-            for cell in row {
-                let contents = contentsOfCell(cell)
-                let body : String
-                
-                #if swift(>=3.2)
-                    let length = contents.count
-                #else
-                    let length = contents.characters.count
-                #endif
-                
-                switch( length ) {
-                case 1:
-                    body = " \(contents) "
-                case 2:
-                    body = " \(contents)"
-                default:
-                    body = contents
-                }
-        
-                var east_boundary : String = "|"
-                if let eastCell = cell.east, cell.linked(eastCell) {
-                    east_boundary = " "
-                }
-                top += body + east_boundary
-                
-                var south_boundary : String = "---"
-                if let southCell = cell.south, cell.linked(southCell) {
-                    south_boundary = "   "
-                }
-                let corner = "+"
-                bottom += south_boundary + corner
-            }
-            result += top + "\n"
-            result += bottom + "\n"
-        }
-        
-        return result
-    }
-    
+
     /// protocol for Image callback to grid to see if we want to color the backgrounds.  Do we need this???
     public func background( ) -> Bool {
         return false
     }
-
+    
     /// protocol for Image callback to grid for the background color
     public func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat) {
         return (1.0, 1.0, 1.0)
@@ -244,12 +181,74 @@ public class Grid : CustomStringConvertible {
         var result = [Cell]()
         
         eachCell { (cell) -> Bool in
-            if cell.links.count == 1 {
-                result.append(cell)
+            if let cell = cell {
+                if cell.links.count == 1 {
+                    result.append(cell)
+                }
             }
             return false
         }
         
         return result
     }
+    
+    // MARK: - CustomStringConvertible
+    public var description: String {
+        var result = "+" + "---+" * columns + "\n"
+        
+        for row in grid {
+            var top = "|"
+            var bottom = "+"
+            for cell in row {
+                
+                let corner = "+"
+
+                if let cell = cell {
+                    let contents = contentsOfCell(cell)
+                    let body : String
+                    
+                    #if swift(>=3.2)
+                    let length = contents.count
+                    #else
+                    let length = contents.characters.count
+                    #endif
+                    
+                    switch( length ) {
+                    case 1:
+                        body = " \(contents) "
+                    case 2:
+                        body = " \(contents)"
+                    default:
+                        body = contents
+                    }
+                    
+                    var eastBoundary : String = "|"
+                    if let eastCell = cell.east, cell.linked(eastCell) {
+                        eastBoundary = " "
+                    }
+                    top += body + eastBoundary
+                    
+                    var southBoundary : String = "---"
+                    if let southCell = cell.south, cell.linked(southCell) {
+                        southBoundary = "   "
+                    }
+                    bottom += southBoundary + corner
+                }
+                else {
+                    let eastBoundary : String = "|"
+                    let southBoundary : String = "---"
+                    
+                    let body : String = "XXX"
+                    top += body + eastBoundary
+                    bottom += southBoundary + corner
+                }
+
+            }
+            result += top + "\n"
+            result += bottom + "\n"
+        }
+        
+        return result
+    }
+    
 }

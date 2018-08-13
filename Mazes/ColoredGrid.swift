@@ -8,7 +8,8 @@
 
 import Foundation
 
-enum ColoredGridMode : String {
+#if swift(>=4.2)
+public enum ColoredGridMode : String, CaseIterable {
     case red
     case green
     case blue
@@ -17,6 +18,30 @@ enum ColoredGridMode : String {
     case magenta
     case gray
 }
+#else
+public enum ColoredGridMode : String {
+    case red
+    case green
+    case blue
+    case yellow
+    case cyan
+    case magenta
+    case gray
+}
+#endif
+
+extension ColoredGridMode {
+    //static var allCases: Self.AllCases
+    #if swift(>=4.2)
+    #else
+    static var allCases : [ColoredGridMode]  {
+        get {
+            return [.red, .green, .blue, .yellow, .cyan, .magenta, .gray]
+        }
+    }
+    #endif
+}
+
 
 public class ColoredGrid : Grid {
     var mode : ColoredGridMode = .green

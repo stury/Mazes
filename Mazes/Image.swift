@@ -30,7 +30,7 @@ let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipl
 
 public extension Image {
     
-    public static func cgImage(for maze: Grid, cellSize: Int, solution: Bool = false ) -> CGImage? {
+    public static func cgImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -44,7 +44,7 @@ public extension Image {
             
             // Draw ...
             // the background color...
-            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
             //context.addRect( CGRect(x: 0, y: 0, width: width, height: height) )
             context.fill(CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight))
             
@@ -55,45 +55,61 @@ public extension Image {
             
             // fill in each cell
             maze.eachCell({ (cell) in
-                let x1 = cell.column * cellSize
-                let y1 = cell.row * cellSize
-                let x2 = (cell.column+1)*cellSize
-                let y2 = (cell.row+1)*cellSize
-                
-                if maze.background() {
-                    let red, green, blue: CGFloat
-                    (red, green, blue) = maze.backgroundColor(for: cell)
-                    context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
-                    //context.addRect( CGRect(x: 0, y: 0, width: width, height: height) )
-                    context.fill(CGRect(x: x1, y: y1, width: x2-x1, height: y2-y1))
-                }
-                
-                context.setLineWidth(2.0)
-                context.setFillColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-                
-                if cell.north == nil {
-                    context.move(to: CGPoint(x: x1, y: y1))
-                    context.addLine(to: CGPoint(x: x2, y: y1))
-                    context.drawPath(using: .fillStroke)
-                }
-                if cell.west == nil {
-                    context.move(to: CGPoint(x: x1, y: y1))
-                    context.addLine(to: CGPoint(x: x1, y: y2))
-                    context.drawPath(using: .fillStroke)
-                }
-                if let east = cell.east, cell.linked(east) {
-                }
-                else {
-                    context.move(to: CGPoint(x: x2, y: y1))
-                    context.addLine(to: CGPoint(x: x2, y: y2))
-                    context.drawPath(using: .fillStroke)
-                }
-                if let south = cell.south, cell.linked(south) {
-                }
-                else {
-                    context.move(to: CGPoint(x: x1, y: y2))
-                    context.addLine(to: CGPoint(x: x2, y: y2))
-                    context.drawPath(using: .fillStroke)
+                if let cell = cell {
+                    let x1 = cell.column * cellSize
+                    let y1 = cell.row * cellSize
+                    let x2 = (cell.column+1)*cellSize
+                    let y2 = (cell.row+1)*cellSize
+                    
+                    if maze.background() {
+                        let red, green, blue: CGFloat
+                        (red, green, blue) = maze.backgroundColor(for: cell)
+                        context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+                        if showGrid {
+                            context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize-1, height: cellSize-1))
+                        }
+                        else {
+                            context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize, height: cellSize))
+                        }
+                    }
+                    else {
+                        // Draw a box to eliminate the alpha location.
+                        context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                        if showGrid {
+                            context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize-1, height: cellSize-1))
+                        }
+                        else {
+                            context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize, height: cellSize))
+                        }
+                    }
+                    
+                    context.setLineWidth(2.0)
+                    context.setFillColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                    
+                    if cell.north == nil {
+                        context.move(to: CGPoint(x: x1, y: y1))
+                        context.addLine(to: CGPoint(x: x2, y: y1))
+                        context.drawPath(using: .fillStroke)
+                    }
+                    if cell.west == nil {
+                        context.move(to: CGPoint(x: x1, y: y1))
+                        context.addLine(to: CGPoint(x: x1, y: y2))
+                        context.drawPath(using: .fillStroke)
+                    }
+                    if let east = cell.east, cell.linked(east) {
+                    }
+                    else {
+                        context.move(to: CGPoint(x: x2, y: y1))
+                        context.addLine(to: CGPoint(x: x2, y: y2))
+                        context.drawPath(using: .fillStroke)
+                    }
+                    if let south = cell.south, cell.linked(south) {
+                    }
+                    else {
+                        context.move(to: CGPoint(x: x1, y: y2))
+                        context.addLine(to: CGPoint(x: x2, y: y2))
+                        context.drawPath(using: .fillStroke)
+                    }
                 }
                 return false
             })
