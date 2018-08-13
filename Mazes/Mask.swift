@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if os(macOS)
+    import AppKit
+#endif
 
 public class Mask {
     public let rows, columns : Int
@@ -111,6 +114,45 @@ public extension Mask {
         return mask
     }
     
+    private static func cgImage( _ image: Image ) -> CGImage? {
+        #if os(macOS)
+            let result = image.cgImage(forProposedRect: nil, context: nil, hints: nil)
+        #else
+            let result = image.cgImage
+        #endif
+        return result
+    }
+    
+    public static func from(_ image: Image ) -> Mask {
+
+        let rows = Int(image.size.height)
+        let columns = Int(image.size.width)
+        
+        let mask : Mask = Mask(rows: rows, columns: columns)
+        
+        // Calculate the mask based onthe image
+        if let cgImage = Mask.cgImage(image) {
+
+            for row in 0..<rows {
+                for col in 0..<columns {
+                    // Get a pixel from the Image and see if it's black or alpha'd out of the image.
+                    // If so, delete it!
+                    #if os(macOS)
+                        let bitmap = NSBitmapImageRep(cgImage: cgImage)
+                        if let color = bitmap.colorAt(x: col, y: row) {
+                            if color == NSColor.black || color == NSColor(calibratedRed: 0, green: 0, blue:0, alpha: 1) {
+                                mask[[row, col]] = false
+                            }
+                        }
+                    #endif
+                    
+                }
+            }
+        }
+        
+        return mask
+    }
+    
     public static func from(_ url: URL ) -> Mask? {
         var result : Mask? = nil
 
@@ -127,6 +169,12 @@ public extension Mask {
         // Much simpler....
         if let text = try? String(contentsOf: url) {
             result = Mask.from(text)
+        }
+        else {
+            let image = Image(contentsOf: url)
+            if let image = image {
+                result = Mask.from(image)
+            }
         }
 
         return result

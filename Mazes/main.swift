@@ -152,8 +152,8 @@ func killingCells_v2() {
     image(for: grid, name: "killingCells" )
 }
 
-func killingCells() {
-    let url = URL(fileURLWithPath: "../../../../../Examples/MazeMask.txt")
+func killingCells(_ path: String) {
+    let url = URL(fileURLWithPath: path)
     if let mask = Mask.from(url) {
         let grid = MaskedGrid.init(mask)
         RecursiveBacktracker.on(grid: grid)
@@ -168,4 +168,5 @@ func killingCells() {
 //generateMazes(.recursiveBacktracker, max: 6, color: .red)
 //Mazes.deadends()
 //generateMazes(Mazes.allCases, maxes: [6], color: ColoredGridMode.allCases )
-killingCells()
+//killingCells("../../../../../Examples/MazeMask.txt")
+killingCells("../../../../../Examples/MazeMask.png")
