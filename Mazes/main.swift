@@ -152,6 +152,7 @@ func killingCells_v2() {
     image(for: grid, name: "killingCells" )
 }
 
+/// This method works for Text and Image file data for the mask.
 func killingCells(_ path: String) {
     let url = URL(fileURLWithPath: path)
     if let mask = Mask.from(url) {

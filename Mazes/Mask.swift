@@ -114,12 +114,37 @@ public extension Mask {
         return mask
     }
     
+    /// Simple method to fetch the cgImage from a Image.  NOTE: It may fail if you have a non bitmap representation.
     private static func cgImage( _ image: Image ) -> CGImage? {
         #if os(macOS)
             let result = image.cgImage(forProposedRect: nil, context: nil, hints: nil)
         #else
             let result = image.cgImage
         #endif
+        return result
+    }
+
+    /// This method copies the current image to a new CGImage in the format we're expecting.
+    private static func cgImage32BitRGBA( _ image: Image ) -> CGImage? {
+        var result : CGImage? = nil
+        
+        if let inputCGImage = Mask.cgImage(image) {
+            let width  = inputCGImage.width
+            let height = inputCGImage.height
+            
+            let bytesPerPixel = 4
+            let bytesPerRow = bytesPerPixel*width
+            let bitsPerComponent = 8
+            
+            let colorSpace = CGColorSpaceCreateDeviceRGB()
+            if let context = CGContext.init(data: nil, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue |  CGBitmapInfo.byteOrder32Big.rawValue) {
+
+                context.draw(inputCGImage, in: CGRect(x: 0, y: 0, width: width, height: height))
+                
+                result = context.makeImage()
+            }
+        }
+        
         return result
     }
     
@@ -131,23 +156,49 @@ public extension Mask {
         let mask : Mask = Mask(rows: rows, columns: columns)
         
         // Calculate the mask based onthe image
-        if let cgImage = Mask.cgImage(image) {
-
-            for row in 0..<rows {
-                for col in 0..<columns {
-                    // Get a pixel from the Image and see if it's black or alpha'd out of the image.
-                    // If so, delete it!
-                    #if os(macOS)
-                        let bitmap = NSBitmapImageRep(cgImage: cgImage)
-                        if let color = bitmap.colorAt(x: col, y: row) {
-                            if color == NSColor.black || color == NSColor(calibratedRed: 0, green: 0, blue:0, alpha: 1) {
+        if let cgImage = Mask.cgImage32BitRGBA(image) {
+            
+            // Generic case:  Use the cgImage to get a dataProvider, so we can have access to teh raw data.
+            // NOTE: that we will need to pay attention to the cgImage.bitmapInfo for the bytesPerRow!
+            if let imageDataProvider = cgImage.dataProvider,
+                let data = imageDataProvider.data {
+                if let rawData = CFDataGetBytePtr(data) {
+                    let bytesPerRow = cgImage.bytesPerRow
+                    
+                    for row in 0..<rows {
+                        let rowBytesOffset = row*bytesPerRow
+                        for col in 0..<columns {
+                            // Get the pixel components from the Image data
+                            let red   = rawData[rowBytesOffset+(col*4)]
+                            let green = rawData[rowBytesOffset+(col*4+1)]
+                            let blue  = rawData[rowBytesOffset+(col*4+2)]
+                            let alpha = rawData[rowBytesOffset+(col*4+3)]
+                            
+                            // If the pixel is black, or alpha'd out of the image - delete it!
+                            if (red == 0 && green == 0 && blue == 0) || (alpha == 0) {
                                 mask[[row, col]] = false
                             }
                         }
-                    #endif
-                    
+                    }
                 }
             }
+
+//            // This was so much simpler on macOS, since there is the NSBitmapImageRep class!
+//            for row in 0..<rows {
+//                for col in 0..<columns {
+//                    // Get a pixel from the Image and see if it's black or alpha'd out of the image.
+//                    // If so, delete it!
+//                    #if os(macOS)
+//                        let bitmap = NSBitmapImageRep(cgImage: cgImage)
+//                        if let color = bitmap.colorAt(x: col, y: row) {
+//                            if color == NSColor.black || color == NSColor(calibratedRed: 0, green: 0, blue:0, alpha: 1) {
+//                                mask[[row, col]] = false
+//                            }
+//                        }
+//                    #endif
+//                    
+//                }
+//            }
         }
         
         return mask
