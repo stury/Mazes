@@ -17,6 +17,15 @@ func image( for grid: Grid, name: String = "maze" ) {
     }
 }
 
+func polarImage( for grid: Grid, name: String = "polarmaze" ) {
+    if let image = grid.image(cellSize: 20) {
+        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+        if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
+            output(image, url: documentURL)
+        }
+    }
+}
+
 func maze(_ grid: Grid ) {
     print( grid )
 }
@@ -170,4 +179,9 @@ func killingCells(_ path: String) {
 //Mazes.deadends()
 //generateMazes(Mazes.allCases, maxes: [6], color: ColoredGridMode.allCases )
 //killingCells("../../../../../Examples/MazeMask.txt")
-killingCells("../../../../../Examples/MazeMask.png")
+//killingCells("../../../../../Examples/MazeMask.png")
+
+let grid = PolarGrid(rows: 8, columns: 8)
+polarImage( for: grid, name: "polar")
+
+
