@@ -155,6 +155,65 @@ public extension Image {
             let centerPoint = CGPoint(x: center, y: center)
             
             // fill in each cell
+            if maze.background() {
+                maze.eachCell({ (cell) in
+                    if let cell = cell as? PolarCell {
+                        if cell.row > 0 {
+                            let theta = 2 * Double.pi / Double(maze.grid[cell.row].count)
+                            let innerRadius = Double(cell.row*cellSize)
+                            let outerRadius = Double((cell.row+1)*cellSize)
+                            let thetaCCW = Double(cell.column) * theta
+                            let thetaCW = Double((cell.column+1)) * theta
+                            
+                            let a = CGPoint(x: Int(Double(center)  + (innerRadius * cos(thetaCCW))),
+                                            y: Int(Double(center) + (innerRadius * sin(thetaCCW))))
+//                            let b = CGPoint(x: Int(Double(center)  + (outerRadius * cos(thetaCCW))),
+//                                            y: Int(Double(center) + (outerRadius * sin(thetaCCW))))
+//                            let c = CGPoint(x: Int(Double(center)  + (innerRadius * cos(thetaCW))),
+//                                            y: Int(Double(center) + (innerRadius * sin(thetaCW))))
+                            let d = CGPoint(x: Int(Double(center)  + (outerRadius * cos(thetaCW))),
+                                            y: Int(Double(center) + (outerRadius * sin(thetaCW))))
+                            
+                            let red, green, blue: CGFloat
+                            (red, green, blue) = maze.backgroundColor(for: cell)
+                            context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+                            context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
+                            context.setLineWidth(1.0)
+                            
+                            // Add in code here to fill in the area for this cell.
+                            context.beginPath()
+                            context.move(to: a)
+                            context.addArc(center: centerPoint, radius: CGFloat(innerRadius), startAngle: CGFloat(thetaCCW), endAngle: CGFloat(thetaCW), clockwise: false)
+                            context.addLine(to: d)
+                            context.addArc(center: centerPoint, radius: CGFloat(outerRadius), startAngle: CGFloat(thetaCW), endAngle: CGFloat(thetaCCW), clockwise: true)
+                            context.addLine(to: a)
+                            context.closePath()
+                            //context.fillPath()
+                            
+                            //                            context.beginPath()
+                            //                            context.move(to: CGPoint(x: ax, y: ay))
+                            //                            context.addLine(to: CGPoint(x: bx, y: by))
+                            //                            context.addLine(to: CGPoint(x: dx, y: dy))
+                            //                            context.addLine(to: CGPoint(x: cx, y: cy))
+                            //                            context.addLine(to: CGPoint(x: ax, y: ay))
+                            //                            context.closePath()
+                            context.drawPath(using: .fillStroke)
+                        }
+                    }
+                    
+                    return false
+                })
+
+            }
+
+            // redraw the outside wall
+            context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            context.setLineWidth(2.0)
+            
+            context.addEllipse(in: CGRect(x: 0, y: 0, width: imageSize, height: imageSize))
+            context.drawPath(using: .stroke)
+            
+            // Stroke each of the maze walls
             maze.eachCell({ (cell) in
                 if let cell = cell as? PolarCell {
                     if cell.row > 0 {
@@ -164,59 +223,33 @@ public extension Image {
                         let thetaCCW = Double(cell.column) * theta
                         let thetaCW = Double((cell.column+1)) * theta
                         
-                        let ax = Int(Double(center)  + (innerRadius * cos(thetaCCW)))
-                        let ay = Int(Double(center) + (innerRadius * sin(thetaCCW)))
-                        let bx = Int(Double(center)  + (outerRadius * cos(thetaCCW)))
-                        let by = Int(Double(center) + (outerRadius * sin(thetaCCW)))
-                        let cx = Int(Double(center)  + (innerRadius * cos(thetaCW)))
-                        let cy = Int(Double(center) + (innerRadius * sin(thetaCW)))
-                        let dx = Int(Double(center)  + (outerRadius * cos(thetaCW)))
-                        let dy = Int(Double(center) + (outerRadius * sin(thetaCW)))
+//                        let a = CGPoint(x: Int(Double(center)  + (innerRadius * cos(thetaCCW))),
+//                                        y: Int(Double(center) + (innerRadius * sin(thetaCCW))))
+//                        let b = CGPoint(x: Int(Double(center)  + (outerRadius * cos(thetaCCW))),
+//                                        y: Int(Double(center) + (outerRadius * sin(thetaCCW))))
+                        let c = CGPoint(x: Int(Double(center)  + (innerRadius * cos(thetaCW))),
+                                        y: Int(Double(center) + (innerRadius * sin(thetaCW))))
+                        let d = CGPoint(x: Int(Double(center)  + (outerRadius * cos(thetaCW))),
+                                        y: Int(Double(center) + (outerRadius * sin(thetaCW))))
                         
+                        context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
                         context.setLineWidth(2.0)
-                        
-                        if maze.background() {
-                            let red, green, blue: CGFloat
-                            (red, green, blue) = maze.backgroundColor(for: cell)
-                            context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
-                            
-                            // Add in code here to fill in the area for this cell.
-                            // context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize, height: cellSize))
-//                            context.beginPath()
-//                            context.addArc(center: centerPoint, radius: CGFloat(innerRadius+1), startAngle: CGFloat(thetaCW), endAngle: CGFloat(thetaCCW), clockwise: true)
-//                            context.move(to: CGPoint(x: cx, y: cy))
-//                            context.addLine(to: CGPoint(x: dx, y: dy))
-//                            context.addArc(center: centerPoint, radius: CGFloat(outerRadius-1), startAngle: CGFloat(thetaCCW), endAngle: CGFloat(thetaCW), clockwise: false)
-//                            context.move(to: CGPoint(x: bx, y: by))
-//                            context.addLine(to: CGPoint(x: ax, y: ay))
-//                            context.closePath()
-                            context.move(to: CGPoint(x: ax, y: ay))
-                            context.addLine(to: CGPoint(x: bx, y: by))
-                            context.addLine(to: CGPoint(x: dx, y: dy))
-                            context.addLine(to: CGPoint(x: cx, y: cy))
-                            context.addLine(to: CGPoint(x: ax, y: ay))
-                            context.drawPath(using: .fill)
-                        }
-                        
-//                        func unless(_ condition: ()->Bool ) -> Bool {
-//                            return !condition()
-//                        }
                         
                         if let inward = cell.inward {
                             if !cell.linked(inward) {
-//                                context.move(to: CGPoint(x: ax, y: ay))
-//                                context.addLine(to: CGPoint(x: cx, y: cy))
-//                                context.drawPath(using: .stroke)
-
+                                //                                context.move(to: CGPoint(x: ax, y: ay))
+                                //                                context.addLine(to: CGPoint(x: cx, y: cy))
+                                //                                context.drawPath(using: .stroke)
+                                
                                 context.addArc(center: centerPoint, radius: CGFloat(innerRadius), startAngle: CGFloat(thetaCW), endAngle: CGFloat(thetaCCW), clockwise: true)
                                 context.drawPath(using: .stroke)
                             }
                         }
-
+                        
                         if let cw = cell.cw {
                             if !cell.linked(cw) {
-                                context.move(to: CGPoint(x: cx, y: cy))
-                                context.addLine(to: CGPoint(x: dx, y: dy))
+                                context.move(to: c)
+                                context.addLine(to: d)
                                 context.drawPath(using: .stroke)
                             }
                         }
