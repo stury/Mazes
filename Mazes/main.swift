@@ -193,7 +193,7 @@ func circlularMaze(_ rows: Int, name: String = "polar" ) {
 //killingCells("../../../../../Examples/MazeMask.png")
 //killingCells("../../../../../Examples/Scott Maze.png")
 
-circlularGrid(8)
-circlularMaze(8)
+circlularGrid(20)
+circlularMaze(20)
 
 

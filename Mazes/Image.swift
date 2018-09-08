@@ -164,54 +164,17 @@ public extension Image {
                         let thetaCCW = Double(cell.column) * theta
                         let thetaCW = Double((cell.column+1)) * theta
                         
-                        let ax = Int(Double(center)  + (innerRadius * cos(thetaCCW)))
-                        let ay = Int(Double(center) + (innerRadius * sin(thetaCCW)))
-                        let bx = Int(Double(center)  + (outerRadius * cos(thetaCCW)))
-                        let by = Int(Double(center) + (outerRadius * sin(thetaCCW)))
+//                        let ax = Int(Double(center)  + (innerRadius * cos(thetaCCW)))
+//                        let ay = Int(Double(center) + (innerRadius * sin(thetaCCW)))
+//                        let bx = Int(Double(center)  + (outerRadius * cos(thetaCCW)))
+//                        let by = Int(Double(center) + (outerRadius * sin(thetaCCW)))
                         let cx = Int(Double(center)  + (innerRadius * cos(thetaCW)))
                         let cy = Int(Double(center) + (innerRadius * sin(thetaCW)))
                         let dx = Int(Double(center)  + (outerRadius * cos(thetaCW)))
                         let dy = Int(Double(center) + (outerRadius * sin(thetaCW)))
                         
-                        //                    if maze.background() {
-                        //                        let red, green, blue: CGFloat
-                        //                        (red, green, blue) = maze.backgroundColor(for: cell)
-                        //                        context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
-                        //
-                        //                        context.move(to: CGPoint(x: ax, y: ay))
-                        //                        context.addLine(to: CGPoint(x: bx, y: by))
-                        //
-                        //                        context.addLine(to: CGPoint(x: dx, y: dy))
-                        //                        context.addLine(to: CGPoint(x: cx, y: cy))
-                        //                        context.addLine(to: CGPoint(x: ax, y: ay))
-                        //                        context.closePath()
-                        //                        context.fillPath()
-                        //                    }
-                        //                    else {
-                        //                        // Draw a box to eliminate the alpha location.
-                        //                        context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                        //                        context.move(to: CGPoint(x: ax, y: ay))
-                        //                        context.addLine(to: CGPoint(x: bx, y: by))
-                        //                        //context.addArc(tangent1End: CGPoint(x: bx, y: by), tangent2End: CGPoint(x: dx, y: dy), radius: CGFloat(outerRadius))
-                        //                        context.addLine(to: CGPoint(x: dx, y: dy))
-                        //                        context.addLine(to: CGPoint(x: cx, y: cy))
-                        //                        context.addLine(to: CGPoint(x: ax, y: ay))
-                        //                        //context.addArc(tangent1End: CGPoint(x: cx, y: cy), tangent2End: CGPoint(x: ax, y: ay), radius: CGFloat(innerRadius))
-                        //                        context.closePath()
-                        //                        context.fillPath()
-                        //                    }
-                        
                         context.setLineWidth(2.0)
                         context.setFillColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-                        
-                        //                    // Draw the lines we need...
-                        //                    context.move(to: CGPoint(x: ax, y: ay))
-                        //                    context.addLine(to: CGPoint(x: bx, y: by))
-                        //                    context.drawPath(using: .stroke)
-                        //
-                        //                    context.move(to: CGPoint(x: cx, y: cy))
-                        //                    context.addLine(to: CGPoint(x: dx, y: dy))
-                        //                    context.drawPath(using: .stroke)
                         
 //                        func unless(_ condition: ()->Bool ) -> Bool {
 //                            return !condition()
@@ -219,14 +182,12 @@ public extension Image {
                         
                         if let inward = cell.inward {
                             if !cell.linked(inward) {
-                                context.move(to: CGPoint(x: ax, y: ay))
-                                context.addLine(to: CGPoint(x: cx, y: cy))
-                                context.drawPath(using: .stroke)
+//                                context.move(to: CGPoint(x: ax, y: ay))
+//                                context.addLine(to: CGPoint(x: cx, y: cy))
+//                                context.drawPath(using: .stroke)
 
-//                                context.addArc(center: centerPoint, radius: CGFloat(innerRadius), startAngle: CGFloat(thetaCW), endAngle: CGFloat(thetaCCW), clockwise: false)
-//                                context.drawPath(using: .stroke)
-//                                context.addArc(center: centerPoint, radius: CGFloat(outerRadius), startAngle: CGFloat(thetaCW), endAngle: CGFloat(thetaCCW), clockwise: false)
-//                                context.drawPath(using: .stroke)
+                                context.addArc(center: centerPoint, radius: CGFloat(innerRadius), startAngle: CGFloat(thetaCW), endAngle: CGFloat(thetaCCW), clockwise: true)
+                                context.drawPath(using: .stroke)
                             }
                         }
 
@@ -237,14 +198,7 @@ public extension Image {
                                 context.drawPath(using: .stroke)
                             }
                         }
-                        else {
-                            context.move(to: CGPoint(x: cx, y: cy))
-                            context.addLine(to: CGPoint(x: dx, y: dy))
-                            context.drawPath(using: .stroke)
-                        }
-
                     }
-                    
                 }
                 
                 return false
