@@ -175,13 +175,25 @@ func killingCells(_ path: String) {
     }
 }
 
+func circlularGrid(_ rows: Int, name: String = "polar_grid"  ) {
+    let grid = PolarGrid(rows)
+    polarImage( for: grid, name: name)
+}
+
+func circlularMaze(_ rows: Int, name: String = "polar" ) {
+    let grid = PolarGrid(rows)
+    RecursiveBacktracker.on(grid: grid)
+    polarImage( for: grid, name: name)
+}
+
 //generateMazes(.recursiveBacktracker, max: 6, color: .red)
 //Mazes.deadends()
 //generateMazes(Mazes.allCases, maxes: [6], color: ColoredGridMode.allCases )
 //killingCells("../../../../../Examples/MazeMask.txt")
 //killingCells("../../../../../Examples/MazeMask.png")
+//killingCells("../../../../../Examples/Scott Maze.png")
 
-let grid = PolarGrid(rows: 8, columns: 8)
-polarImage( for: grid, name: "polar")
+circlularGrid(8)
+circlularMaze(8)
 
 

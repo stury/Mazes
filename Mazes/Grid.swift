@@ -49,7 +49,7 @@ public class Grid : CustomStringConvertible {
         return result
     }
     
-    private func configureCells() {
+    internal func configureCells() {
         for row in 0..<rows {
             for col in 0..<columns {
                 if let cell = grid[row][col] {
@@ -88,7 +88,7 @@ public class Grid : CustomStringConvertible {
             if location.count == 2 {
                 let point = Point(row: location[0], col: location[1])
                 if point.row >= 0 && point.row < rows &&
-                    point.col >= 0 && point.col < columns {
+                    point.col >= 0 && point.col < grid[point.row].count {
                     result = grid[point.row][point.col]
                 }
             }
