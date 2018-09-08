@@ -11,6 +11,7 @@
 		29810C15211A9BEF004AD81C /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29810C14211A9BEF004AD81C /* Mask.swift */; };
 		D21DA624212BADAB0007FF2D /* PolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21DA623212BADAB0007FF2D /* PolarGrid.swift */; };
 		D238C7F42103CD9600909855 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238C7F32103CD9600909855 /* main.swift */; };
+		D27238942143733C006BF452 /* ColoredPolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27238932143733C006BF452 /* ColoredPolarGrid.swift */; };
 		D2759DDA213F79ED00C7FB65 /* PolarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2759DD9213F79ED00C7FB65 /* PolarCell.swift */; };
 		D28AA1EC210C035400898B17 /* HuntAndKill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1EB210C035400898B17 /* HuntAndKill.swift */; };
 		D28AA1EE210E301300898B17 /* RecursiveBacktracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */; };
@@ -45,6 +46,7 @@
 		D21DA623212BADAB0007FF2D /* PolarGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolarGrid.swift; sourceTree = "<group>"; };
 		D238C7F02103CD9600909855 /* Mazes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mazes; sourceTree = BUILT_PRODUCTS_DIR; };
 		D238C7F32103CD9600909855 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D27238932143733C006BF452 /* ColoredPolarGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPolarGrid.swift; sourceTree = "<group>"; };
 		D2759DD9213F79ED00C7FB65 /* PolarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarCell.swift; sourceTree = "<group>"; };
 		D28AA1EB210C035400898B17 /* HuntAndKill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntAndKill.swift; sourceTree = "<group>"; };
 		D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveBacktracker.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				D28CA6222108182900D466BC /* DistanceGrid.swift */,
 				290D3C6E211BDC300032DA6D /* MaskedGrid.swift */,
 				D21DA623212BADAB0007FF2D /* PolarGrid.swift */,
+				D27238932143733C006BF452 /* ColoredPolarGrid.swift */,
 				D28CA62021080D2E00D466BC /* Distances.swift */,
 				29810C14211A9BEF004AD81C /* Mask.swift */,
 				D2FC7B1E210959DC00E40F7A /* MazeGenerator.swift */,
@@ -177,6 +180,7 @@
 				D2FC7B1F210959DC00E40F7A /* MazeGenerator.swift in Sources */,
 				D238C7F42103CD9600909855 /* main.swift in Sources */,
 				D2DA18102106DA8800EA5EBE /* Cell.swift in Sources */,
+				D27238942143733C006BF452 /* ColoredPolarGrid.swift in Sources */,
 				D2DA180A21050F5800EA5EBE /* Image.swift in Sources */,
 				290D3C6F211BDC300032DA6D /* MaskedGrid.swift in Sources */,
 				D28CA62121080D2E00D466BC /* Distances.swift in Sources */,

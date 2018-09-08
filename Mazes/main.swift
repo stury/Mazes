@@ -175,6 +175,13 @@ func killingCells(_ path: String) {
     }
 }
 
+//generateMazes(.recursiveBacktracker, max: 6, color: .red)
+//Mazes.deadends()
+//generateMazes(Mazes.allCases, maxes: [6], color: ColoredGridMode.allCases )
+//killingCells("../../../../../Examples/MazeMask.txt")
+//killingCells("../../../../../Examples/MazeMask.png")
+//killingCells("../../../../../Examples/Scott Maze.png")
+
 func circlularGrid(_ rows: Int, name: String = "polar_grid"  ) {
     let grid = PolarGrid(rows)
     polarImage( for: grid, name: name)
@@ -186,14 +193,21 @@ func circlularMaze(_ rows: Int, name: String = "polar" ) {
     polarImage( for: grid, name: name)
 }
 
-//generateMazes(.recursiveBacktracker, max: 6, color: .red)
-//Mazes.deadends()
-//generateMazes(Mazes.allCases, maxes: [6], color: ColoredGridMode.allCases )
-//killingCells("../../../../../Examples/MazeMask.txt")
-//killingCells("../../../../../Examples/MazeMask.png")
-//killingCells("../../../../../Examples/Scott Maze.png")
+func generatePolarMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
+    for index in 1...max {
+        let grid = ColoredPolarGrid(20)
+        grid.mode = color
+        // .binaryTree, .sidewinder
+        Mazes.factory(maze, grid: grid)
+        print("\(grid.deadends().count) dead-ends in maze")
+        if let origin = grid[[0,0]] {
+            grid.distances = origin.distances()
+        }
+        image(for: grid, name: "polar_\(maze.rawValue)_\(index)" )
+    }
+}
 
-circlularGrid(20)
-circlularMaze(20)
-
+//circlularGrid(20)
+//circlularMaze(20)
+generatePolarMazes(.recursiveBacktracker, max: 1)
 

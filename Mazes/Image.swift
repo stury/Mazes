@@ -164,17 +164,39 @@ public extension Image {
                         let thetaCCW = Double(cell.column) * theta
                         let thetaCW = Double((cell.column+1)) * theta
                         
-//                        let ax = Int(Double(center)  + (innerRadius * cos(thetaCCW)))
-//                        let ay = Int(Double(center) + (innerRadius * sin(thetaCCW)))
-//                        let bx = Int(Double(center)  + (outerRadius * cos(thetaCCW)))
-//                        let by = Int(Double(center) + (outerRadius * sin(thetaCCW)))
+                        let ax = Int(Double(center)  + (innerRadius * cos(thetaCCW)))
+                        let ay = Int(Double(center) + (innerRadius * sin(thetaCCW)))
+                        let bx = Int(Double(center)  + (outerRadius * cos(thetaCCW)))
+                        let by = Int(Double(center) + (outerRadius * sin(thetaCCW)))
                         let cx = Int(Double(center)  + (innerRadius * cos(thetaCW)))
                         let cy = Int(Double(center) + (innerRadius * sin(thetaCW)))
                         let dx = Int(Double(center)  + (outerRadius * cos(thetaCW)))
                         let dy = Int(Double(center) + (outerRadius * sin(thetaCW)))
                         
                         context.setLineWidth(2.0)
-                        context.setFillColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                        
+                        if maze.background() {
+                            let red, green, blue: CGFloat
+                            (red, green, blue) = maze.backgroundColor(for: cell)
+                            context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+                            
+                            // Add in code here to fill in the area for this cell.
+                            // context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize, height: cellSize))
+//                            context.beginPath()
+//                            context.addArc(center: centerPoint, radius: CGFloat(innerRadius+1), startAngle: CGFloat(thetaCW), endAngle: CGFloat(thetaCCW), clockwise: true)
+//                            context.move(to: CGPoint(x: cx, y: cy))
+//                            context.addLine(to: CGPoint(x: dx, y: dy))
+//                            context.addArc(center: centerPoint, radius: CGFloat(outerRadius-1), startAngle: CGFloat(thetaCCW), endAngle: CGFloat(thetaCW), clockwise: false)
+//                            context.move(to: CGPoint(x: bx, y: by))
+//                            context.addLine(to: CGPoint(x: ax, y: ay))
+//                            context.closePath()
+                            context.move(to: CGPoint(x: ax, y: ay))
+                            context.addLine(to: CGPoint(x: bx, y: by))
+                            context.addLine(to: CGPoint(x: dx, y: dy))
+                            context.addLine(to: CGPoint(x: cx, y: cy))
+                            context.addLine(to: CGPoint(x: ax, y: ay))
+                            context.drawPath(using: .fill)
+                        }
                         
 //                        func unless(_ condition: ()->Bool ) -> Bool {
 //                            return !condition()
