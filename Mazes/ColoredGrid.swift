@@ -43,10 +43,10 @@ extension ColoredGridMode {
 }
 
 
-public class ColoredGrid : Grid {
+public class ColoredGrid : DistanceGrid {
     var mode : ColoredGridMode = .green
     var maximum : Int = 0
-    var distances : Distances? {
+    override var distances : Distances? {
         didSet {
             if let distances = distances {
                 (_, distance: maximum) = distances.max()

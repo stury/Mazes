@@ -84,6 +84,19 @@ func distanceGrid() {
     image(for: grid, name: "maze" )
 }
 
+func generateMazesSolution(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
+    for index in 1...max {
+        let grid = ColoredGrid(rows: 20, columns: 20)
+        grid.mode = color
+        // .binaryTree, .sidewinder
+        Mazes.factory(maze, grid: grid)
+        //print("\(grid.deadends().count) dead-ends in maze")
+        _ = longestPath(grid)
+        image(for: grid, name: "solution_\(maze.rawValue)_\(index)" )
+    }
+}
+
+
 func generateMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
     for index in 1...max {
         let grid = ColoredGrid(rows: 20, columns: 20)
@@ -179,7 +192,7 @@ func killingCells(_ path: String) {
 
 //generateMazes(.recursiveBacktracker, max: 6, color: .red)
 //Mazes.deadends()
-generateMazes(Mazes.allCases, maxes: [6], color: ColoredGridMode.allCases )
+//generateMazes(Mazes.allCases, maxes: [6], color: ColoredGridMode.allCases )
 //killingCells("../../../../../Examples/MazeMask.txt")
 //killingCells("../../../../../Examples/MazeMask.png")
 //killingCells("../../../../../Examples/Scott Maze.png")
@@ -209,10 +222,10 @@ func generatePolarMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green)
     }
 }
 
-distanceGrid()
+//distanceGrid()
+generateMazesSolution(Mazes.wilsons, max: 3)
 
 //circlularGrid(20)
 //circlularMaze(20)
-
-generatePolarMazes(.recursiveBacktracker, max: 1)
+//generatePolarMazes(.recursiveBacktracker, max: 1)
 
