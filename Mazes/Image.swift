@@ -55,7 +55,7 @@ public extension Image {
             
             // fill in each cell
             maze.eachCell({ (cell) in
-                if let cell = cell {
+                if let cell = cell as? RectCell {
                     let x1 = cell.column * cellSize
                     let y1 = cell.row * cellSize
                     let x2 = (cell.column+1)*cellSize

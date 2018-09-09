@@ -7,24 +7,7 @@ public class Cell : Equatable, CustomStringConvertible, Hashable {
     }
     
     public var description: String {
-        var result = "Cell(\(row), \(column)) {"
-        //        if let north = north {
-        //            result += " north:\(north)"
-        //        }
-        //        if let south = south {
-        //            result += " south:\(south)"
-        //        }
-        //        if let east = east {
-        //            result += " east:\(east)"
-        //        }
-        //        if let west = west {
-        //            result += " west:\(west)"
-        //        }
-        result += "}"
-        
-        //result += "links:\(links)"
-        
-        return result
+        return "Cell(\(row), \(column))"
     }
     
     public static func == (lhs: Cell, rhs: Cell) -> Bool {
@@ -32,17 +15,12 @@ public class Cell : Equatable, CustomStringConvertible, Hashable {
     }
     
     public let row, column : Int
-    public var north, south, east, west: Cell?
     public var links: [Cell]
     
     public init( row: Int, column: Int) {
         self.row = row
         self.column = column
         links = [Cell]()
-        north = nil
-        south = nil
-        east = nil
-        west = nil
     }
     
     public func link(cell: Cell, bidi: Bool = true) {
@@ -65,20 +43,7 @@ public class Cell : Equatable, CustomStringConvertible, Hashable {
     }
     
     public func neighbors() -> [Cell] {
-        var result = [Cell]()
-        if let north = north {
-            result.append(north)
-        }
-        if let south = south {
-            result.append(south)
-        }
-        if let east = east {
-            result.append(east)
-        }
-        if let west = west {
-            result.append(west)
-        }
-        return result
+        return [Cell]()
     }
     
     func distances() -> Distances {

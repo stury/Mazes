@@ -11,9 +11,9 @@ public class Sidewinder : MazeGenerator {
 
     public static func on( grid: Grid ) {
         grid.eachRow { (row) in
-            var run = [Cell]()
+            var run = [RectCell]()
             for cell in row {
-                if let cell = cell {
+                if let cell = cell as? RectCell {
                     run.append(cell)
                     
                     let atEasternBoundary = cell.east == nil
@@ -32,6 +32,9 @@ public class Sidewinder : MazeGenerator {
                             cell.link(cell: east)
                         }
                     }
+                }
+                else {
+                    print("Unknown Cell sent to BinaryTree to process!")
                 }
             }
         }

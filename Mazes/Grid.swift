@@ -42,7 +42,7 @@ public class Grid : CustomStringConvertible {
         for row in 0..<rows {
             var rowArray = [Cell?]()
             for column in 0..<columns {
-                rowArray.append(Cell(row: row, column: column))
+                rowArray.append(RectCell(row: row, column: column))
             }
             result.append(rowArray)
         }
@@ -52,11 +52,11 @@ public class Grid : CustomStringConvertible {
     internal func configureCells() {
         for row in 0..<rows {
             for col in 0..<columns {
-                if let cell = grid[row][col] {
-                    cell.north = self[[row-1,col]]
-                    cell.south = self[[row+1,col]]
-                    cell.east  = self[[row,col+1]]
-                    cell.west  = self[[row,col-1]]
+                if let cell = grid[row][col] as? RectCell {
+                    cell.north = self[[row-1,col]] as? RectCell
+                    cell.south = self[[row+1,col]] as? RectCell
+                    cell.east  = self[[row,col+1]] as? RectCell
+                    cell.west  = self[[row,col-1]] as? RectCell
                 }
             }
         }
@@ -203,7 +203,7 @@ public class Grid : CustomStringConvertible {
                 
                 let corner = "+"
 
-                if let cell = cell {
+                if let cell = cell as? RectCell {
                     let contents = contentsOfCell(cell)
                     let body : String
                     
@@ -242,7 +242,6 @@ public class Grid : CustomStringConvertible {
                     top += body + eastBoundary
                     bottom += southBoundary + corner
                 }
-
             }
             result += top + "\n"
             result += bottom + "\n"

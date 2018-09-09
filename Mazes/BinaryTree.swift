@@ -4,11 +4,16 @@ public class BinaryTree : MazeGenerator {
     public static func on( grid: Grid ) {
         grid.eachCell { (cell) in
             var neighbors = [Cell]()
-            if let north = cell?.north {
-                neighbors.append( north )
+            if let cell = cell as? RectCell {
+                if let north = cell.north {
+                    neighbors.append( north )
+                }
+                if let east = cell.east {
+                    neighbors.append( east )
+                }
             }
-            if let east = cell?.east {
-                neighbors.append( east )
+            else {
+                print("Unknown Cell sent to BinaryTree to process!")
             }
             
             if neighbors.count > 0 {

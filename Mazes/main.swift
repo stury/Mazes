@@ -117,23 +117,25 @@ func killingCells_v1() {
 
     /// This function removes the north, south, east, and west cells from accessing the cell.
     func orphanCell( _ cell : Cell ) {
-        if let east = cell.east {
-            east.west = nil
+        if let cell = cell as? RectCell {
+            if let east = cell.east {
+                east.west = nil
+            }
+            cell.east  = nil
+            if let west = cell.west {
+                west.east = nil
+            }
+            cell.west  = nil
+            
+            if let south = cell.south {
+                south.north = nil
+            }
+            cell.south = nil
+            if let north = cell.north {
+                north.south = nil
+            }
+            cell.north = nil
         }
-        cell.east  = nil
-        if let west = cell.west {
-            west.east = nil
-        }
-        cell.west  = nil
-        
-        if let south = cell.south {
-            south.north = nil
-        }
-        cell.south = nil
-        if let north = cell.north {
-            north.south = nil
-        }
-        cell.north = nil
     }
     
     if let nwCell = grid[[0, 0]] {
@@ -177,7 +179,7 @@ func killingCells(_ path: String) {
 
 //generateMazes(.recursiveBacktracker, max: 6, color: .red)
 //Mazes.deadends()
-//generateMazes(Mazes.allCases, maxes: [6], color: ColoredGridMode.allCases )
+generateMazes(Mazes.allCases, maxes: [6], color: ColoredGridMode.allCases )
 //killingCells("../../../../../Examples/MazeMask.txt")
 //killingCells("../../../../../Examples/MazeMask.png")
 //killingCells("../../../../../Examples/Scott Maze.png")
