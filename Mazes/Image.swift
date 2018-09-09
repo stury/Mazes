@@ -276,7 +276,7 @@ public func output(_ image: Image?, url: URL) {
         #if os(macOS)
             if let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
                 let bitmap = NSBitmapImageRep(cgImage: cgImage)
-                if let data = bitmap.representation(using: .PNG, properties: [:]) {
+                if let data = bitmap.representation(using: .png, properties: [:]) {
                     try? data.write(to: url)
                     print( url )
                 }

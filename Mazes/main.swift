@@ -209,7 +209,10 @@ func generatePolarMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green)
     }
 }
 
+distanceGrid()
+
 //circlularGrid(20)
 //circlularMaze(20)
+
 generatePolarMazes(.recursiveBacktracker, max: 1)
 
