@@ -8,6 +8,232 @@
 
 import Foundation
 
+class MazeGeneratorHelper {
+
+    /// MARK: Overrideable methods
+    func getGrid( _ size: (Int, Int)) -> Grid {
+        return Grid(rows: size.0, columns: size.1)
+    }
+
+    func getGrid( _ size: Int) -> Grid {
+        return getGrid((size, size))
+    }
+    
+    func getColoredGrid( _ size: Int) -> Grid {
+        return getColoredGrid((size, size))
+    }
+    
+    func getColoredGrid( _ size: (Int, Int)) -> Grid {
+        return ColoredRectGrid(rows: size.0, columns: size.1)
+    }
+    
+    var imageNamePrefix : String {
+        get {
+            return ""
+        }
+    }
+    
+    func startCell( _ grid: Grid ) -> Cell? {
+        return grid[[grid.rows/2,grid.columns/2]]
+    }
+    
+    var mazes:[Mazes] {
+        get {
+            return Mazes.allCases
+        }
+    }
+
+    /// MARK:
+    
+    func image( for grid: Grid, name: String = "maze" ) {
+        if let image = grid.image(cellSize: 20) {
+            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+            if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
+                output(image, url: documentURL)
+            }
+        }
+    }
+
+    /// Generated a quick grid, without any maze generation.
+    func generateGrid(_ size: Int, name: String  ) {
+        let grid = getGrid(size)
+        image( for: grid, name: name)
+    }
+    
+    /// generates a quick maze using hte RecursizeBacktracker algorithm.
+    func generateMaze(_ size: Int, name: String ) {
+        let grid = getGrid(size)
+        RecursiveBacktracker.on(grid: grid)
+        image( for: grid, name: name)
+    }
+    
+    /// generate a series of mazes at once, using a particular maze algorithm.
+    func generateMazes(_ maze: Mazes, max: Int, color:[ColoredGridMode] = ColoredGridMode.allCases) {
+        for index in 1...max {
+            let grid = getColoredGrid(20)
+            var coloredGrid = grid as? ColoredGrid
+            if coloredGrid != nil {
+                coloredGrid?.mode = color[index%color.count]
+            }
+            // .binaryTree, .sidewinder
+            Mazes.factory(maze, grid: grid)
+            print("\(grid.deadends().count) dead-ends in maze")
+            
+            if let startCell = startCell( grid ) {
+                if coloredGrid != nil {
+                    coloredGrid?.distances = startCell.distances()
+                }
+            }
+            image(for: grid, name: "\(imageNamePrefix)\(maze.rawValue)_\(index)" )
+        }
+    }
+    
+    /// generate a series of mazes at once, using a multiple maze algorithms.
+    func generateMazes(_ mazes: [Mazes], maxes: [Int], color:[ColoredGridMode] = ColoredGridMode.allCases) {
+        for (mazeIndex, maze) in mazes.enumerated() {
+            let max = maxes[mazeIndex%maxes.count]
+            generateMazes(maze, max: max, color:color)
+        }
+    }
+    
+    func longestPath(_ grid: Grid) -> Int {
+        var result : Int = 0
+        
+        let start = grid[[0,0]]
+        if let distances = start?.distances() {
+            var newStart: Cell
+            var distance : Int
+            (cell:newStart, distance:distance) = distances.max()
+            //print(distance)
+            let newDistances = newStart.distances()
+            let goal : Cell
+            (cell:goal,distance:distance) = newDistances.max()
+            //print(distance)
+            result = distance
+            
+            var coloredGrid = grid as? ColoredGrid
+            coloredGrid?.distances = newDistances.path(to: goal)
+            
+//            print( grid )
+        }
+        return result
+    }
+
+    
+    func generateMazesSolution(_ maze: Mazes, max: Int, color:[ColoredGridMode] = ColoredGridMode.allCases) {
+        for index in 1...max {
+            let grid = getColoredGrid((20, 20))
+            var coloredGrid = grid as? ColoredGrid
+            coloredGrid?.mode = color[index%color.count]
+            Mazes.factory(maze, grid: grid)
+            //print("\(grid.deadends().count) dead-ends in maze")
+            coloredGrid?.maximum = longestPath(grid)
+            image(for: grid, name: "solution_\(imageNamePrefix)\(maze.rawValue)_\(index)" )
+        }
+    }
+
+    /// generate a series of mazes at once, using a multiple maze algorithms.
+    func generateMazesSolutions(_ mazes: [Mazes], maxes: [Int], color:[ColoredGridMode] = ColoredGridMode.allCases) {
+        for (mazeIndex, maze) in mazes.enumerated() {
+            let max = maxes[mazeIndex%maxes.count]
+            generateMazesSolution(maze, max: max, color:color)
+        }
+    }
+}
+
+class CircularMazeHelper : MazeGeneratorHelper {
+    
+    override func getGrid( _ size: (Int, Int)) -> Grid {
+        return PolarGrid(size.0)
+    }
+    
+    override func getColoredGrid( _ size: (Int, Int)) -> Grid {
+        return ColoredPolarGrid(size.0)
+    }
+    
+    override var imageNamePrefix : String {
+        get {
+            return "circular_"
+        }
+    }
+    
+    override func startCell( _ grid: Grid ) -> Cell? {
+        return grid[[0,0]]
+    }
+
+    override var mazes:[Mazes] {
+        get {
+            var mazes = Mazes.agnosticMazes
+            // .aldousBroder mazes don't seem to work for circular mazes...
+            if let index = mazes.index(of: .aldousBroder) {
+                mazes.remove(at: index)
+            }
+            return mazes
+        }
+    }
+
+}
+
+class HexagonalMazeHelper : MazeGeneratorHelper {
+    
+    override func getGrid( _ size: (Int, Int)) -> Grid {
+        return HexGrid(rows: size.0, columns: size.1)
+    }
+    
+    override func getColoredGrid( _ size: (Int, Int)) -> Grid {
+        return ColoredHexGrid(rows: size.0, columns: size.1)
+    }
+    
+    override var imageNamePrefix : String {
+        get {
+            return "hex_"
+        }
+    }
+    
+    override var mazes:[Mazes] {
+        get {
+            return Mazes.agnosticMazes
+        }
+    }
+
+}
+
+class TriangularMazeHelper : MazeGeneratorHelper {
+    
+    override func getGrid( _ size: (Int, Int)) -> Grid {
+        return TriangleGrid(rows: size.0, columns: size.1)
+    }
+    
+    override func getColoredGrid( _ size: (Int, Int)) -> Grid {
+        return ColoredTriangleGrid(rows: size.0, columns: size.1)
+    }
+    
+    override var imageNamePrefix : String {
+        get {
+            return "triangle_"
+        }
+    }
+
+    override var mazes:[Mazes] {
+        get {
+            var mazes = Mazes.agnosticMazes
+            if let index = mazes.index(of: .binaryTree) {
+                mazes.remove(at: index)
+            }
+            return mazes
+        }
+    }
+}
+
+extension MazeGeneratorHelper {
+    /// Static variable where you can get all of the different MazeHelper classes as an array that you can iterate through.
+    static var allHelpers : [MazeGeneratorHelper] {
+        get {
+            return [MazeGeneratorHelper(), CircularMazeHelper(), HexagonalMazeHelper(), TriangularMazeHelper()]
+        }
+    }
+}
+
 func image( for grid: Grid, name: String = "maze" ) {
     if let image = grid.image(cellSize: 20) {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
@@ -16,15 +242,6 @@ func image( for grid: Grid, name: String = "maze" ) {
         }
     }
 }
-
-func polarImage( for grid: Grid, name: String = "polarmaze" ) {
-    image(for: grid, name: name)
-}
-
-func hexImage( for grid: Grid, name: String = "hexmaze" ) {
-    image(for: grid, name: name)
-}
-
 
 func maze(_ grid: Grid ) {
     print( grid )
@@ -42,7 +259,6 @@ func path(_ grid: DistanceGrid) {
             print( grid )
         }
     }
-    
 }
 
 func longestPath(_ grid: DistanceGrid) -> Int {
@@ -66,12 +282,6 @@ func longestPath(_ grid: DistanceGrid) -> Int {
     return result
 }
 
-func coloredGrid(_ grid: ColoredGrid) {
-    if let start = grid[[grid.rows/2,grid.columns/2]] {
-        grid.distances = start.distances() 
-    }
-}
-
 func distanceGrid() {
     let grid = DistanceGrid(rows: 20, columns: 20)
     // .binaryTree, .sidewinder
@@ -84,37 +294,6 @@ func distanceGrid() {
     image(for: grid, name: "maze" )
 }
 
-func generateMazesSolution(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
-    for index in 1...max {
-        let grid = ColoredGrid(rows: 20, columns: 20)
-        grid.mode = color
-        // .binaryTree, .sidewinder
-        Mazes.factory(maze, grid: grid)
-        //print("\(grid.deadends().count) dead-ends in maze")
-        _ = longestPath(grid)
-        image(for: grid, name: "solution_\(maze.rawValue)_\(index)" )
-    }
-}
-
-
-func generateMazes(_ maze: Mazes, max: Int, color:[ColoredGridMode] = [.green]) {
-    for index in 1...max {
-        let grid = ColoredGrid(rows: 20, columns: 20)
-        grid.mode = color[index%color.count]
-        // .binaryTree, .sidewinder
-        Mazes.factory(maze, grid: grid)
-        print("\(grid.deadends().count) dead-ends in maze")
-        coloredGrid(grid)
-        image(for: grid, name: "\(maze.rawValue)_\(index)" )
-    }
-}
-
-func generateMazes(_ mazes: [Mazes], maxes: [Int], color:[ColoredGridMode] = [.green]) {
-    for (mazeIndex, maze) in mazes.enumerated() {
-        let max = maxes[mazeIndex%maxes.count]
-        generateMazes(maze, max: max, color: color)
-    }
-}
 
 // MARK: - Masked Mazes
 
@@ -190,82 +369,33 @@ func killingCells(_ path: String) {
 //killingCells("../../../../../Examples/MazeMask.png")
 //killingCells("../../../../../Examples/Scott Maze.png")
 
-// MARK: - Circular Mazes
-
-func circlularGrid(_ rows: Int, name: String = "polar_grid"  ) {
-    let grid = PolarGrid(rows)
-    polarImage( for: grid, name: name)
-}
-
-func circlularMaze(_ rows: Int, name: String = "polar" ) {
-    let grid = PolarGrid(rows)
-    RecursiveBacktracker.on(grid: grid)
-    polarImage( for: grid, name: name)
-}
-
-func generateCircularMazes(_ maze: Mazes, max: Int, color:[ColoredGridMode] = [.green]) {
-    for index in 1...max {
-        let grid = ColoredPolarGrid(20)
-        grid.mode = color[index%color.count]
-        // .binaryTree, .sidewinder
-        Mazes.factory(maze, grid: grid)
-        print("\(grid.deadends().count) dead-ends in maze")
-        if let origin = grid[[0,0]] {
-            grid.distances = origin.distances()
-        }
-        image(for: grid, name: "polar_\(maze.rawValue)_\(index)" )
-    }
-}
-
-func generateCircularMazes(_ mazes: [Mazes], maxes: [Int], color:[ColoredGridMode] = [.green]) {
-    for (mazeIndex, maze) in mazes.enumerated() {
-        let max = maxes[mazeIndex%maxes.count]
-        generateCircularMazes(maze, max: max, color:color)
-    }
-}
-
-// MARK: - Hex Mazes
-func hexGrid(_ mazeSize: (Int,Int), name: String = "hex_grid"  ) {
-    let grid = HexGrid(rows: mazeSize.0, columns: mazeSize.1)
-    hexImage( for: grid, name: name)
-}
-
-func hexMaze(_ size: (Int, Int), name: String = "hex" ) {
-    let grid = HexGrid(rows: size.0, columns: size.1)
-    RecursiveBacktracker.on(grid: grid)
-    hexImage( for: grid, name: name)
-}
-
-func generateHexMazes(_ maze: Mazes, max: Int, color:[ColoredGridMode] = [.green]) {
-    for index in 1...max {
-        let grid = ColoredHexGrid(rows: 20, columns: 20)
-        grid.mode = color[index%color.count]
-        // .binaryTree, .sidewinder
-        Mazes.factory(maze, grid: grid)
-        print("\(grid.deadends().count) dead-ends in maze")
-        if let origin = grid[[grid.rows/2,grid.columns/2]] {
-            grid.distances = origin.distances()
-        }
-        image(for: grid, name: "hex_\(maze.rawValue)_\(index)" )
-    }
-}
-
-func generateHexMazes(_ mazes: [Mazes], maxes: [Int], color:[ColoredGridMode] = [.green]) {
-    for (mazeIndex, maze) in mazes.enumerated() {
-        let max = maxes[mazeIndex%maxes.count]
-        generateHexMazes(maze, max: max, color:color)
-    }
-}
-
 //distanceGrid()
 //generateMazesSolution(Mazes.wilsons, max: 3)
 
 //circlularGrid(20)
 //circlularMaze(20)
 //generateCircularMazes(.recursiveBacktracker, max: 1)
-generateCircularMazes(Mazes.agnosticMazes, maxes: [6], color: ColoredGridMode.allCases)
-
-hexGrid((20, 20))
-hexMaze((20, 20))
+//generateCircularMazes(Mazes.agnosticMazes, maxes: [6], color: ColoredGridMode.allCases)
+//
+//hexGrid((20, 20))
+//hexMaze((20, 20))
 //generateHexMazes(.recursiveBacktracker, max: 1)
 //generateHexMazes(Mazes.agnosticMazes, maxes: [6], color: ColoredGridMode.allCases)
+
+//triangleGrid((20, 20))
+//triangleMaze((20, 20))
+//generateTriMazes(Mazes.agnosticMazes, maxes: [6], color: ColoredGridMode.allCases )
+
+
+func generateMazes(_ helpers:[MazeGeneratorHelper]) {
+    for mazeHelper in helpers {
+        mazeHelper.generateGrid(20, name: "\(mazeHelper.imageNamePrefix)grid")
+        mazeHelper.generateMaze(20, name: "\(mazeHelper.imageNamePrefix)maze")
+        mazeHelper.generateMazes(mazeHelper.mazes, maxes: [6])
+        mazeHelper.generateMazesSolutions(mazeHelper.mazes, maxes: [6])
+    }
+}
+// Generate ALL Mazes!
+generateMazes(MazeGeneratorHelper.allHelpers)
+
+//generateMazes([TriangularMazeHelper()])

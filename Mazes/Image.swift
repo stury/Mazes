@@ -54,66 +54,62 @@ public extension Image {
             context.scaleBy(x: 1.0, y: -1.0)
             
             // fill in each cell
-            maze.eachCell({ (cell) in
-                if let cell = cell as? RectCell {
-                    let x1 = cell.column * cellSize
-                    let y1 = cell.row * cellSize
-                    let x2 = (cell.column+1)*cellSize
-                    let y2 = (cell.row+1)*cellSize
+            for mode in RenderingMode.allCases {
+                maze.eachCell({ (cell) in
+                    if let cell = cell as? RectCell {
+                        let x1 = cell.column * cellSize
+                        let y1 = cell.row * cellSize
+                        let x2 = (cell.column+1)*cellSize
+                        let y2 = (cell.row+1)*cellSize
                     
-                    if maze.background() {
-                        let red, green, blue: CGFloat
-                        (red, green, blue) = maze.backgroundColor(for: cell)
-                        context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
-                        if showGrid {
-                            context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize-1, height: cellSize-1))
+                        if mode == .backgrounds {
+                            var red, green, blue: CGFloat
+                            (red, green, blue) = (1.0, 1.0, 1.0)
+                            if let coloredMaze = maze as? ColoredGrid {
+                                (red, green, blue) = coloredMaze.backgroundColor(for: cell)
+                            }
+                            context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+                            if showGrid {
+                                context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize-1, height: cellSize-1))
+                            }
+                            else {
+                                context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize, height: cellSize))
+                            }
                         }
                         else {
-                            context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize, height: cellSize))
+                        
+                            context.setLineWidth(2.0)
+                            context.setFillColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                            
+                            if cell.north == nil {
+                                context.move(to: CGPoint(x: x1, y: y1))
+                                context.addLine(to: CGPoint(x: x2, y: y1))
+                                context.drawPath(using: .fillStroke)
+                            }
+                            if cell.west == nil {
+                                context.move(to: CGPoint(x: x1, y: y1))
+                                context.addLine(to: CGPoint(x: x1, y: y2))
+                                context.drawPath(using: .fillStroke)
+                            }
+                            if let east = cell.east, cell.linked(east) {
+                            }
+                            else {
+                                context.move(to: CGPoint(x: x2, y: y1))
+                                context.addLine(to: CGPoint(x: x2, y: y2))
+                                context.drawPath(using: .fillStroke)
+                            }
+                            if let south = cell.south, cell.linked(south) {
+                            }
+                            else {
+                                context.move(to: CGPoint(x: x1, y: y2))
+                                context.addLine(to: CGPoint(x: x2, y: y2))
+                                context.drawPath(using: .fillStroke)
+                            }
                         }
                     }
-                    else {
-                        // Draw a box to eliminate the alpha location.
-                        context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                        if showGrid {
-                            context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize-1, height: cellSize-1))
-                        }
-                        else {
-                            context.fill(CGRect(x: x1+1, y: y1+1, width: cellSize, height: cellSize))
-                        }
-                    }
-                    
-                    context.setLineWidth(2.0)
-                    context.setFillColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-                    
-                    if cell.north == nil {
-                        context.move(to: CGPoint(x: x1, y: y1))
-                        context.addLine(to: CGPoint(x: x2, y: y1))
-                        context.drawPath(using: .fillStroke)
-                    }
-                    if cell.west == nil {
-                        context.move(to: CGPoint(x: x1, y: y1))
-                        context.addLine(to: CGPoint(x: x1, y: y2))
-                        context.drawPath(using: .fillStroke)
-                    }
-                    if let east = cell.east, cell.linked(east) {
-                    }
-                    else {
-                        context.move(to: CGPoint(x: x2, y: y1))
-                        context.addLine(to: CGPoint(x: x2, y: y2))
-                        context.drawPath(using: .fillStroke)
-                    }
-                    if let south = cell.south, cell.linked(south) {
-                    }
-                    else {
-                        context.move(to: CGPoint(x: x1, y: y2))
-                        context.addLine(to: CGPoint(x: x2, y: y2))
-                        context.drawPath(using: .fillStroke)
-                    }
-                }
-                return false
-            })
-            
+                    return false
+                })
+            }
             context.restoreGState()
             
             // Get your image
@@ -165,7 +161,7 @@ public extension Image {
                         let col = Double(cell.column)
                         let cx = size + Double(3)  * col * aSize
                         var cy = bSize + row * height
-                        if cell.column.odd() {
+                        if cell.column.odd {
                             cy += bSize
                         }
                         
@@ -184,24 +180,16 @@ public extension Image {
                         switch( mode ) {
                             
                         case .backgrounds:
-                            if maze.background() {
-                                let red, green, blue: CGFloat
-                                (red, green, blue) = maze.backgroundColor(for: cell)
-                                context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
-                                context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
+                            var red, green, blue: CGFloat
+                            (red, green, blue) = (1.0, 1.0, 1.0)
+                            if let coloredMaze = maze as? ColoredGrid {
+                                (red, green, blue) = coloredMaze.backgroundColor(for: cell)
+                            }
+                            context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+                            context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
     
-                                context.drawPolygon(points: [(x_fw,y_m), (x_nw, y_n), (x_ne, y_n),
-                                                             (x_fe, y_m), (x_ne, y_s), (x_nw, y_s)])
-                            }
-                            else {
-                                let red, green, blue : CGFloat
-                                (red, green, blue) = (1.0, 1.0, 1.0)
-                                context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
-                                context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
-
-                                context.drawPolygon(points: [(x_fw,y_m), (x_nw, y_n), (x_ne, y_n),
-                                                             (x_fe, y_m), (x_ne, y_s), (x_nw, y_s)])
-                            }
+                            context.drawPolygon(points: [(x_fw,y_m), (x_nw, y_n), (x_ne, y_n),
+                                                         (x_fe, y_m), (x_ne, y_s), (x_nw, y_s)])
                         case .walls:
                             
                             context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
@@ -280,9 +268,8 @@ public extension Image {
             let center = Int(Double(imageSize) / 2.0)
             let centerPoint = CGPoint(x: center, y: center)
             
-            // fill in each cell
-            if maze.background() {
-                maze.eachCell({ (cell) in
+            for mode in RenderingMode.allCases {
+                maze.eachCell { (cell) in
                     if let cell = cell as? PolarCell {
                         if cell.row > 0 {
                             let theta = 2 * Double.pi / Double(maze.grid[cell.row].count)
@@ -295,95 +282,77 @@ public extension Image {
                                             y: Int(Double(center) + (innerRadius * sin(thetaCCW))))
                             //                            let b = CGPoint(x: Int(Double(center)  + (outerRadius * cos(thetaCCW))),
                             //                                            y: Int(Double(center) + (outerRadius * sin(thetaCCW))))
-                            //                            let c = CGPoint(x: Int(Double(center)  + (innerRadius * cos(thetaCW))),
-                            //                                            y: Int(Double(center) + (innerRadius * sin(thetaCW))))
+                            let c = CGPoint(x: Int(Double(center)  + (innerRadius * cos(thetaCW))),
+                                            y: Int(Double(center) + (innerRadius * sin(thetaCW))))
                             let d = CGPoint(x: Int(Double(center)  + (outerRadius * cos(thetaCW))),
                                             y: Int(Double(center) + (outerRadius * sin(thetaCW))))
                             
-                            let red, green, blue: CGFloat
-                            (red, green, blue) = maze.backgroundColor(for: cell)
-                            context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
-                            context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
-                            context.setLineWidth(1.0)
-                            
-                            // Add in code here to fill in the area for this cell.
-                            context.beginPath()
-                            context.move(to: a)
-                            context.addArc(center: centerPoint, radius: CGFloat(innerRadius), startAngle: CGFloat(thetaCCW), endAngle: CGFloat(thetaCW), clockwise: false)
-                            context.addLine(to: d)
-                            context.addArc(center: centerPoint, radius: CGFloat(outerRadius), startAngle: CGFloat(thetaCW), endAngle: CGFloat(thetaCCW), clockwise: true)
-                            context.addLine(to: a)
-                            context.closePath()
-                            //context.fillPath()
-                            
-                            //                            context.beginPath()
-                            //                            context.move(to: CGPoint(x: ax, y: ay))
-                            //                            context.addLine(to: CGPoint(x: bx, y: by))
-                            //                            context.addLine(to: CGPoint(x: dx, y: dy))
-                            //                            context.addLine(to: CGPoint(x: cx, y: cy))
-                            //                            context.addLine(to: CGPoint(x: ax, y: ay))
-                            //                            context.closePath()
-                            context.drawPath(using: .fillStroke)
-                        }
-                    }
-                    
-                    return false
-                })
-                
-            }
-            
-            // redraw the outside wall
-            context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-            context.setLineWidth(2.0)
-            
-            context.addEllipse(in: CGRect(x: 0, y: 0, width: imageSize, height: imageSize))
-            context.drawPath(using: .stroke)
-            
-            // Stroke each of the maze walls
-            maze.eachCell({ (cell) in
-                if let cell = cell as? PolarCell {
-                    if cell.row > 0 {
-                        let theta = 2 * Double.pi / Double(maze.grid[cell.row].count)
-                        let innerRadius = Double(cell.row*cellSize)
-                        let outerRadius = Double((cell.row+1)*cellSize)
-                        let thetaCCW = Double(cell.column) * theta
-                        let thetaCW = Double((cell.column+1)) * theta
-                        
-                        //                        let a = CGPoint(x: Int(Double(center)  + (innerRadius * cos(thetaCCW))),
-                        //                                        y: Int(Double(center) + (innerRadius * sin(thetaCCW))))
-                        //                        let b = CGPoint(x: Int(Double(center)  + (outerRadius * cos(thetaCCW))),
-                        //                                        y: Int(Double(center) + (outerRadius * sin(thetaCCW))))
-                        let c = CGPoint(x: Int(Double(center)  + (innerRadius * cos(thetaCW))),
-                                        y: Int(Double(center) + (innerRadius * sin(thetaCW))))
-                        let d = CGPoint(x: Int(Double(center)  + (outerRadius * cos(thetaCW))),
-                                        y: Int(Double(center) + (outerRadius * sin(thetaCW))))
-                        
-                        context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-                        context.setLineWidth(2.0)
-                        
-                        if let inward = cell.inward {
-                            if !cell.linked(inward) {
-                                //                                context.move(to: CGPoint(x: ax, y: ay))
-                                //                                context.addLine(to: CGPoint(x: cx, y: cy))
-                                //                                context.drawPath(using: .stroke)
+                            switch mode {
+                            case .backgrounds:
+                                // fill in each cell
+                                var red, green, blue: CGFloat
+                                (red, green, blue) = (1.0, 1.0, 1.0)
+                                if let coloredMaze = maze as? ColoredGrid {
+                                    (red, green, blue) = coloredMaze.backgroundColor(for: cell)
+                                }
+                                context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+                                context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
+                                context.setLineWidth(1.0)
                                 
-                                context.addArc(center: centerPoint, radius: CGFloat(innerRadius), startAngle: CGFloat(thetaCW), endAngle: CGFloat(thetaCCW), clockwise: true)
-                                context.drawPath(using: .stroke)
-                            }
-                        }
-                        
-                        if let cw = cell.cw {
-                            if !cell.linked(cw) {
-                                context.move(to: c)
+                                // Add in code here to fill in the area for this cell.
+                                context.beginPath()
+                                context.move(to: a)
+                                context.addArc(center: centerPoint, radius: CGFloat(innerRadius), startAngle: CGFloat(thetaCCW), endAngle: CGFloat(thetaCW), clockwise: false)
                                 context.addLine(to: d)
-                                context.drawPath(using: .stroke)
+                                context.addArc(center: centerPoint, radius: CGFloat(outerRadius), startAngle: CGFloat(thetaCW), endAngle: CGFloat(thetaCCW), clockwise: true)
+                                context.addLine(to: a)
+                                context.closePath()
+                                //context.fillPath()
+                                
+                                //                            context.beginPath()
+                                //                            context.move(to: CGPoint(x: ax, y: ay))
+                                //                            context.addLine(to: CGPoint(x: bx, y: by))
+                                //                            context.addLine(to: CGPoint(x: dx, y: dy))
+                                //                            context.addLine(to: CGPoint(x: cx, y: cy))
+                                //                            context.addLine(to: CGPoint(x: ax, y: ay))
+                                //                            context.closePath()
+                                context.drawPath(using: .fillStroke)
+                                
+                            case .walls:
+                                context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                                context.setLineWidth(2.0)
+                                
+                                if let inward = cell.inward {
+                                    if !cell.linked(inward) {
+                                        //                                context.move(to: CGPoint(x: ax, y: ay))
+                                        //                                context.addLine(to: CGPoint(x: cx, y: cy))
+                                        //                                context.drawPath(using: .stroke)
+                                        
+                                        context.addArc(center: centerPoint, radius: CGFloat(innerRadius), startAngle: CGFloat(thetaCW), endAngle: CGFloat(thetaCCW), clockwise: true)
+                                        context.drawPath(using: .stroke)
+                                    }
+                                }
+                                
+                                if let cw = cell.cw {
+                                    if !cell.linked(cw) {
+                                        context.move(to: c)
+                                        context.addLine(to: d)
+                                        context.drawPath(using: .stroke)
+                                    }
+                                }
                             }
                         }
                     }
+                    return false
                 }
                 
-                return false
-            })
+                // redraw the outside wall
+                context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                context.setLineWidth(2.0)
+                
+                context.addEllipse(in: CGRect(x: 0, y: 0, width: imageSize, height: imageSize))
+                context.drawPath(using: .stroke)
+            }
             
             context.restoreGState()
             
@@ -394,7 +363,113 @@ public extension Image {
         
         return result;
     }
-    
+   
+    public static func cgTriangleImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+        
+        var result : CGImage? = nil
+        
+        let size = Double(cellSize)
+        let halfWidth = size / 2.0
+        let height = size * Double(3.0).squareRoot() / 2.0
+        let halfHeight = height / 2.0
+        
+        let imgWidth = Int(size * Double(maze.columns+1)/2.0)
+        let imgHeight = Int(height * Double(maze.rows))
+        
+        // Create a bitmap graphics context of the given size
+        //
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        if let context = CGContext(data: nil, width: imgWidth+1, height: imgHeight+1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
+            
+            // Draw the background transparent...
+            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
+            context.fill(CGRect(x: 0, y: 0, width: imgWidth+1, height: imgHeight+1))
+            
+            // Setup the basic fill and stroke colors...
+            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            
+            // Flip the drawing coordinates so I can draw this top to bottom as it is in the ascii maze...
+            context.saveGState()
+            context.translateBy(x: 0, y: CGFloat(imgHeight))
+            context.scaleBy(x: 1.0, y: -1.0)
+            context.setLineWidth(2.0)
+            
+            for mode in RenderingMode.allCases {
+                maze.eachCell { (cell) -> Bool in
+                    
+                    if let cell = cell as? TriangleCell {
+                        
+                        let row = Double(cell.row)
+                        let col = Double(cell.column)
+                        
+                        let cx = halfWidth + col * halfWidth
+                        let cy = halfHeight + row * height
+                        
+                        let west_x = Int(cx - halfWidth)
+                        let mid_x = Int(cx)
+                        let east_x = Int(cx + halfWidth)
+                        
+                        var apex_y : Int
+                        var base_y : Int
+                        if cell.upright {
+                            apex_y = Int(cy - halfHeight)
+                            base_y = Int(cy + halfHeight)
+                        }
+                        else {
+                            apex_y = Int(cy + halfHeight)
+                            base_y = Int(cy - halfHeight)
+                        }
+                        
+                        switch( mode ) {
+                            
+                        case .backgrounds:
+                            var red, green, blue : CGFloat
+                            (red, green, blue) = (1.0, 1.0, 1.0)
+                            if let coloredMaze = maze as? ColoredGrid {
+                                (red, green, blue) = coloredMaze.backgroundColor(for: cell)
+                            }
+                            context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+                            context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
+                                
+                            context.drawPolygon(points: [(west_x,base_y), (mid_x, apex_y), (east_x, base_y)])
+
+                        case .walls:
+                            context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                            if cell.west == nil {
+                                context.drawLineSegment(points: [(west_x, base_y), (mid_x, apex_y)])
+                            }
+                            
+                            if cell.east == nil {
+                                context.drawLineSegment(points: [(east_x, base_y), (mid_x,apex_y)])
+                            }
+                            else if let east = cell.east, !cell.linked(east) {
+                                context.drawLineSegment(points: [(east_x, base_y), (mid_x,apex_y)])
+                            }
+                            
+                            let no_south = cell.upright && cell.south == nil
+                            let not_linked = !cell.upright && !cell.linked(cell.north)
+                            
+                            if no_south || not_linked {
+                                context.drawLineSegment(points: [(east_x,base_y), (west_x,base_y)])
+                            }
+                        }
+                    }
+                    
+                    return false
+                }
+            }
+            
+            context.restoreGState()
+            
+            // Get your image
+            //
+            result = context.makeImage()
+        }
+        
+        return result;
+    }
+
 }
 
 

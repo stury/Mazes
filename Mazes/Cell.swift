@@ -41,6 +41,14 @@ public class Cell : Equatable, CustomStringConvertible, Hashable {
         let result = links.contains(cell)
         return result
     }
+
+    public func linked(_ cell: Cell?) -> Bool {
+        var result = false
+        if let cell = cell {
+            result = linked(cell)
+        }
+        return result
+    }
     
     public func neighbors() -> [Cell] {
         return [Cell]()

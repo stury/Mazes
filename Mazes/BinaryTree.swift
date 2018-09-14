@@ -28,6 +28,17 @@ public class BinaryTree : MazeGenerator {
                     neighbors.append( southeast )
                 }
             }
+            else if let cell = cell as? TriangleCell {
+                if let north = cell.north {
+                    neighbors.append( north )
+                }
+                if let south = cell.south {
+                    neighbors.append( south )
+                }
+                if let east = cell.east {
+                    neighbors.append( east )
+                }
+            }
             else {
                 print("Unknown Cell sent to BinaryTree to process!")
             }

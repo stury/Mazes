@@ -156,15 +156,15 @@ public class Grid : CustomStringConvertible {
         return " "
     }
 
-    /// protocol for Image callback to grid to see if we want to color the backgrounds.  Do we need this???
-    public func background( ) -> Bool {
-        return false
-    }
+//    /// protocol for Image callback to grid to see if we want to color the backgrounds.  Do we need this???
+//    public func background( ) -> Bool {
+//        return false
+//    }
     
-    /// protocol for Image callback to grid for the background color
-    public func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat) {
-        return (1.0, 1.0, 1.0)
-    }
+//    /// protocol for Image callback to grid for the background color
+//    public func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat) {
+//        return (1.0, 1.0, 1.0)
+//    }
     
     public func image( cellSize: Int ) -> Image? {
         var result : Image? = nil

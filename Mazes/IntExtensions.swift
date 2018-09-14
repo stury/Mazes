@@ -11,12 +11,16 @@ import Foundation
 extension Int {
     
     /// Return true is the Int is an even number.
-    func even() -> Bool {
-        return (self % 2 == 0)
+    public var even : Bool {
+        get {
+            return (self % 2 == 0)
+        }
     }
     
     /// Return true is the Int is an odd number.
-    func odd() -> Bool {
-        return !even()
+    public var odd : Bool {
+        get {
+            return !even
+        }
     }
 }
