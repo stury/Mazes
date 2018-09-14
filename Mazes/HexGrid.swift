@@ -8,16 +8,6 @@
 
 import Foundation
 
-extension Int {
-    
-    func even() -> Bool {
-        return (self % 2 == 0)
-    }
-    func odd() -> Bool {
-        return !even()
-    }
-}
-
 public class HexGrid : Grid {
     
     override public func image( cellSize: Int ) -> Image? {
@@ -30,10 +20,6 @@ public class HexGrid : Grid {
         
         return result
     }
-    
-//    public init( _ rows: Int ) {
-//        super.init(rows: rows, columns: 1)
-//    }
     
     override internal func prepareGrid() -> [[Cell?]] {
         var result = [[Cell?]]()

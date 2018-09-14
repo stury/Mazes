@@ -11,7 +11,12 @@ import Foundation
 class AldousBroder : MazeGenerator {
     
     public static func on( grid: Grid ) {
-        AldousBroder.on( grid:grid, at: grid.randomCell() )
+        var cell : Cell? = grid.randomCell()
+        // AldousBroder doesn't work very well with PolarCells...  At least start them at 0,0 so we can see something, even if it doesn't grow too large.
+        if let _ = cell as?  PolarCell {
+            cell = grid[[0,0]]
+        }
+        AldousBroder.on( grid:grid, at: cell )
     }
     
     static func on( grid: Grid, at: Cell? ) {

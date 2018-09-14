@@ -59,6 +59,16 @@ static var allCases : [Mazes]  {
     }
 #endif
 
+    /// Maze algorithms that are not relyant on a particular cell type.
+    static var agnosticMazes : [Mazes] {
+        get{
+            var rectOnlyMazes = allCases
+            if let index = rectOnlyMazes.index(of: sidewinder) {
+                rectOnlyMazes.remove(at: index)
+            }
+            return rectOnlyMazes
+        }
+    }
     static func deadends(_ tries:Int = 100) {
         let size = 20
         let algorithms:[Mazes] = Mazes.allCases

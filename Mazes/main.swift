@@ -97,10 +97,10 @@ func generateMazesSolution(_ maze: Mazes, max: Int, color:ColoredGridMode = .gre
 }
 
 
-func generateMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
+func generateMazes(_ maze: Mazes, max: Int, color:[ColoredGridMode] = [.green]) {
     for index in 1...max {
         let grid = ColoredGrid(rows: 20, columns: 20)
-        grid.mode = color
+        grid.mode = color[index%color.count]
         // .binaryTree, .sidewinder
         Mazes.factory(maze, grid: grid)
         print("\(grid.deadends().count) dead-ends in maze")
@@ -112,18 +112,11 @@ func generateMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
 func generateMazes(_ mazes: [Mazes], maxes: [Int], color:[ColoredGridMode] = [.green]) {
     for (mazeIndex, maze) in mazes.enumerated() {
         let max = maxes[mazeIndex%maxes.count]
-        for index in 1...max {
-            let grid = ColoredGrid(rows: 20, columns: 20)
-            grid.mode = color[index%color.count]
-            // .binaryTree, .sidewinder
-            Mazes.factory(maze, grid: grid)
-            print("\(grid.deadends().count) dead-ends in maze")
-            coloredGrid(grid)
-            image(for: grid, name: "\(maze.rawValue)_\(index)" )
-        }
+        generateMazes(maze, max: max, color: color)
     }
 }
 
+// MARK: - Masked Mazes
 
 func killingCells_v1() {
     let grid = Grid(rows: 5, columns: 5)
@@ -197,6 +190,8 @@ func killingCells(_ path: String) {
 //killingCells("../../../../../Examples/MazeMask.png")
 //killingCells("../../../../../Examples/Scott Maze.png")
 
+// MARK: - Circular Mazes
+
 func circlularGrid(_ rows: Int, name: String = "polar_grid"  ) {
     let grid = PolarGrid(rows)
     polarImage( for: grid, name: name)
@@ -208,10 +203,10 @@ func circlularMaze(_ rows: Int, name: String = "polar" ) {
     polarImage( for: grid, name: name)
 }
 
-func generatePolarMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
+func generateCircularMazes(_ maze: Mazes, max: Int, color:[ColoredGridMode] = [.green]) {
     for index in 1...max {
         let grid = ColoredPolarGrid(20)
-        grid.mode = color
+        grid.mode = color[index%color.count]
         // .binaryTree, .sidewinder
         Mazes.factory(maze, grid: grid)
         print("\(grid.deadends().count) dead-ends in maze")
@@ -222,6 +217,14 @@ func generatePolarMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green)
     }
 }
 
+func generateCircularMazes(_ mazes: [Mazes], maxes: [Int], color:[ColoredGridMode] = [.green]) {
+    for (mazeIndex, maze) in mazes.enumerated() {
+        let max = maxes[mazeIndex%maxes.count]
+        generateCircularMazes(maze, max: max, color:color)
+    }
+}
+
+// MARK: - Hex Mazes
 func hexGrid(_ mazeSize: (Int,Int), name: String = "hex_grid"  ) {
     let grid = HexGrid(rows: mazeSize.0, columns: mazeSize.1)
     hexImage( for: grid, name: name)
@@ -233,10 +236,10 @@ func hexMaze(_ size: (Int, Int), name: String = "hex" ) {
     hexImage( for: grid, name: name)
 }
 
-func generateHexMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
+func generateHexMazes(_ maze: Mazes, max: Int, color:[ColoredGridMode] = [.green]) {
     for index in 1...max {
         let grid = ColoredHexGrid(rows: 20, columns: 20)
-        grid.mode = color
+        grid.mode = color[index%color.count]
         // .binaryTree, .sidewinder
         Mazes.factory(maze, grid: grid)
         print("\(grid.deadends().count) dead-ends in maze")
@@ -247,14 +250,22 @@ func generateHexMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
     }
 }
 
+func generateHexMazes(_ mazes: [Mazes], maxes: [Int], color:[ColoredGridMode] = [.green]) {
+    for (mazeIndex, maze) in mazes.enumerated() {
+        let max = maxes[mazeIndex%maxes.count]
+        generateHexMazes(maze, max: max, color:color)
+    }
+}
+
 //distanceGrid()
 //generateMazesSolution(Mazes.wilsons, max: 3)
 
 //circlularGrid(20)
 //circlularMaze(20)
-//generatePolarMazes(.recursiveBacktracker, max: 1)
+//generateCircularMazes(.recursiveBacktracker, max: 1)
+generateCircularMazes(Mazes.agnosticMazes, maxes: [6], color: ColoredGridMode.allCases)
 
 hexGrid((20, 20))
 hexMaze((20, 20))
-generateHexMazes(.recursiveBacktracker, max: 1)
-
+//generateHexMazes(.recursiveBacktracker, max: 1)
+//generateHexMazes(Mazes.agnosticMazes, maxes: [6], color: ColoredGridMode.allCases)

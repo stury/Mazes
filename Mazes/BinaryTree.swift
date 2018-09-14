@@ -12,6 +12,22 @@ public class BinaryTree : MazeGenerator {
                     neighbors.append( east )
                 }
             }
+            else if let cell = cell as? PolarCell {
+                if let ccw = cell.ccw {
+                    neighbors.append( ccw )
+                }
+                if let inward = cell.inward {
+                    neighbors.append( inward )
+                }
+            }
+            else if let cell = cell as? HexCell {
+                if let north = cell.north {
+                    neighbors.append( north )
+                }
+                if let southeast = cell.southeast {
+                    neighbors.append( southeast )
+                }
+            }
             else {
                 print("Unknown Cell sent to BinaryTree to process!")
             }
