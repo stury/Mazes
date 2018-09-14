@@ -18,13 +18,13 @@ func image( for grid: Grid, name: String = "maze" ) {
 }
 
 func polarImage( for grid: Grid, name: String = "polarmaze" ) {
-    if let image = grid.image(cellSize: 20) {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
-            output(image, url: documentURL)
-        }
-    }
+    image(for: grid, name: name)
 }
+
+func hexImage( for grid: Grid, name: String = "hexmaze" ) {
+    image(for: grid, name: name)
+}
+
 
 func maze(_ grid: Grid ) {
     print( grid )
@@ -222,10 +222,39 @@ func generatePolarMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green)
     }
 }
 
+func hexGrid(_ mazeSize: (Int,Int), name: String = "hex_grid"  ) {
+    let grid = HexGrid(rows: mazeSize.0, columns: mazeSize.1)
+    hexImage( for: grid, name: name)
+}
+
+func hexMaze(_ size: (Int, Int), name: String = "hex" ) {
+    let grid = HexGrid(rows: size.0, columns: size.1)
+    RecursiveBacktracker.on(grid: grid)
+    hexImage( for: grid, name: name)
+}
+
+func generateHexMazes(_ maze: Mazes, max: Int, color:ColoredGridMode = .green) {
+    for index in 1...max {
+        let grid = ColoredHexGrid(rows: 20, columns: 20)
+        grid.mode = color
+        // .binaryTree, .sidewinder
+        Mazes.factory(maze, grid: grid)
+        print("\(grid.deadends().count) dead-ends in maze")
+        if let origin = grid[[grid.rows/2,grid.columns/2]] {
+            grid.distances = origin.distances()
+        }
+        image(for: grid, name: "hex_\(maze.rawValue)_\(index)" )
+    }
+}
+
 //distanceGrid()
-generateMazesSolution(Mazes.wilsons, max: 3)
+//generateMazesSolution(Mazes.wilsons, max: 3)
 
 //circlularGrid(20)
 //circlularMaze(20)
 //generatePolarMazes(.recursiveBacktracker, max: 1)
+
+hexGrid((20, 20))
+hexMaze((20, 20))
+generateHexMazes(.recursiveBacktracker, max: 1)
 

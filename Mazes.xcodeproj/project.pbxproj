@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		290D3C6F211BDC300032DA6D /* MaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290D3C6E211BDC300032DA6D /* MaskedGrid.swift */; };
 		29810C15211A9BEF004AD81C /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29810C14211A9BEF004AD81C /* Mask.swift */; };
+		D201A1AB214B003A009D14BC /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AA214B003A009D14BC /* HexCell.swift */; };
+		D201A1AD214B0227009D14BC /* HexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AC214B0227009D14BC /* HexGrid.swift */; };
+		D201A1AF214B08A2009D14BC /* RenderingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AE214B08A2009D14BC /* RenderingMode.swift */; };
+		D201A1B1214B1AFE009D14BC /* ColoredHexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B0214B1AFE009D14BC /* ColoredHexGrid.swift */; };
+		D201A1B3214B3133009D14BC /* CGContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B2214B3133009D14BC /* CGContextExtensions.swift */; };
+		D201A1B5214B31B5009D14BC /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B4214B31B5009D14BC /* IntExtensions.swift */; };
 		D21DA624212BADAB0007FF2D /* PolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21DA623212BADAB0007FF2D /* PolarGrid.swift */; };
 		D238C7F42103CD9600909855 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238C7F32103CD9600909855 /* main.swift */; };
 		D27238942143733C006BF452 /* ColoredPolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27238932143733C006BF452 /* ColoredPolarGrid.swift */; };
@@ -44,6 +50,12 @@
 /* Begin PBXFileReference section */
 		290D3C6E211BDC300032DA6D /* MaskedGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaskedGrid.swift; sourceTree = "<group>"; };
 		29810C14211A9BEF004AD81C /* Mask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mask.swift; sourceTree = "<group>"; };
+		D201A1AA214B003A009D14BC /* HexCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexCell.swift; sourceTree = "<group>"; };
+		D201A1AC214B0227009D14BC /* HexGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexGrid.swift; sourceTree = "<group>"; };
+		D201A1AE214B08A2009D14BC /* RenderingMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderingMode.swift; sourceTree = "<group>"; };
+		D201A1B0214B1AFE009D14BC /* ColoredHexGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredHexGrid.swift; sourceTree = "<group>"; };
+		D201A1B2214B3133009D14BC /* CGContextExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGContextExtensions.swift; sourceTree = "<group>"; };
+		D201A1B4214B31B5009D14BC /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
 		D21DA623212BADAB0007FF2D /* PolarGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolarGrid.swift; sourceTree = "<group>"; };
 		D238C7F02103CD9600909855 /* Mazes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mazes; sourceTree = BUILT_PRODUCTS_DIR; };
 		D238C7F32103CD9600909855 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -99,13 +111,19 @@
 				D2DA180C2106DA8800EA5EBE /* Cell.swift */,
 				D2B345722144C3BE0034E71A /* RectCell.swift */,
 				D2759DD9213F79ED00C7FB65 /* PolarCell.swift */,
+				D201A1AA214B003A009D14BC /* HexCell.swift */,
+				D201A1B2214B3133009D14BC /* CGContextExtensions.swift */,
 				D2DA180921050F5800EA5EBE /* Image.swift */,
+				D201A1AE214B08A2009D14BC /* RenderingMode.swift */,
 				D2DA180D2106DA8800EA5EBE /* Grid.swift */,
 				D2FC7B20210967C700E40F7A /* ColoredGrid.swift */,
 				D28CA6222108182900D466BC /* DistanceGrid.swift */,
 				290D3C6E211BDC300032DA6D /* MaskedGrid.swift */,
 				D21DA623212BADAB0007FF2D /* PolarGrid.swift */,
 				D27238932143733C006BF452 /* ColoredPolarGrid.swift */,
+				D201A1AC214B0227009D14BC /* HexGrid.swift */,
+				D201A1B0214B1AFE009D14BC /* ColoredHexGrid.swift */,
+				D201A1B4214B31B5009D14BC /* IntExtensions.swift */,
 				D28CA62021080D2E00D466BC /* Distances.swift */,
 				29810C14211A9BEF004AD81C /* Mask.swift */,
 				D2FC7B1E210959DC00E40F7A /* MazeGenerator.swift */,
@@ -181,8 +199,12 @@
 			files = (
 				D2C7FB68210ABCE500386F74 /* AldousBroder.swift in Sources */,
 				D2FC7B21210967C700E40F7A /* ColoredGrid.swift in Sources */,
+				D201A1B1214B1AFE009D14BC /* ColoredHexGrid.swift in Sources */,
 				D2FC7B1F210959DC00E40F7A /* MazeGenerator.swift in Sources */,
 				D238C7F42103CD9600909855 /* main.swift in Sources */,
+				D201A1AF214B08A2009D14BC /* RenderingMode.swift in Sources */,
+				D201A1B3214B3133009D14BC /* CGContextExtensions.swift in Sources */,
+				D201A1B5214B31B5009D14BC /* IntExtensions.swift in Sources */,
 				D2DA18102106DA8800EA5EBE /* Cell.swift in Sources */,
 				D27238942143733C006BF452 /* ColoredPolarGrid.swift in Sources */,
 				D2DA180A21050F5800EA5EBE /* Image.swift in Sources */,
@@ -192,9 +214,11 @@
 				D2C7FB6A210AC2DA00386F74 /* Wilsons.swift in Sources */,
 				D2B345732144C3BE0034E71A /* RectCell.swift in Sources */,
 				D21DA624212BADAB0007FF2D /* PolarGrid.swift in Sources */,
+				D201A1AD214B0227009D14BC /* HexGrid.swift in Sources */,
 				D28AA1EE210E301300898B17 /* RecursiveBacktracker.swift in Sources */,
 				D2DA18112106DA8800EA5EBE /* Grid.swift in Sources */,
 				D2DA180F2106DA8800EA5EBE /* BinaryTree.swift in Sources */,
+				D201A1AB214B003A009D14BC /* HexCell.swift in Sources */,
 				D28CA6232108182900D466BC /* DistanceGrid.swift in Sources */,
 				D28AA1EC210C035400898B17 /* HuntAndKill.swift in Sources */,
 				D2DA18122106DA8800EA5EBE /* Sidewinder.swift in Sources */,
