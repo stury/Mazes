@@ -1,5 +1,5 @@
 //
-//  ColoredHexGrid.swift
+//  ColoredTriangleGrid.swift
 //  Mazes
 //
 //  Created by Scott Tury on 9/13/18.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ColoredHexGrid : HexGrid, ColoredGrid {
+public class ColoredTriangleGrid : TriangleGrid, ColoredGrid {
     var mode : ColoredGridMode = .green
     var maximum : Int = 0
     var distances : Distances? {
