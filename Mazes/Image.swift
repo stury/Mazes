@@ -470,6 +470,117 @@ public extension Image {
         return result;
     }
 
+    public static func cgPyramidImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+        
+        var result : CGImage? = nil
+        
+        let size = Double(cellSize)
+        let halfWidth = size / 2.0
+        let height = size * Double(3.0).squareRoot() / 2.0
+        let halfHeight = height / 2.0
+        
+        let imgWidth = Int(size * Double(maze.columns+1)/2.0)
+        let imgHeight = Int(height * Double(maze.rows))
+        
+        // Create a bitmap graphics context of the given size
+        //
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        if let context = CGContext(data: nil, width: imgWidth+1, height: imgHeight+1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
+            
+            // Draw the background transparent...
+            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
+            context.fill(CGRect(x: 0, y: 0, width: imgWidth+1, height: imgHeight+1))
+            
+            // Setup the basic fill and stroke colors...
+            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            
+            // Flip the drawing coordinates so I can draw this top to bottom as it is in the ascii maze...
+            context.saveGState()
+            context.translateBy(x: 0, y: CGFloat(imgHeight))
+            context.scaleBy(x: 1.0, y: -1.0)
+            context.setLineWidth(2.0)
+            
+            for mode in RenderingMode.allCases {
+                maze.eachCell { (cell) -> Bool in
+                    
+                    if let cell = cell as? TriangleCell {
+                        
+                        let row = Double(cell.row)
+                        let col = Double(cell.column)
+                        
+                        let currentCellsInRow = maze.grid[cell.row].count
+                        let baseCellsInRow = maze.grid[maze.rows-1].count
+                        let padding = Double(baseCellsInRow - currentCellsInRow)/2.0
+                        
+                        let cx = halfWidth + ((col+padding)*halfWidth)
+                        let cy = halfHeight + row * height
+                        
+                        let west_x = Int(cx - halfWidth)
+                        let mid_x = Int(cx)
+                        let east_x = Int(cx + halfWidth)
+                        
+                        var apex_y : Int
+                        var base_y : Int
+                        
+                        if cell.upright {
+                            apex_y = Int(cy - halfHeight)
+                            base_y = Int(cy + halfHeight)
+                        }
+                        else {
+                            apex_y = Int(cy + halfHeight)
+                            base_y = Int(cy - halfHeight)
+                        }
+                        
+                        switch( mode ) {
+                            
+                        case .backgrounds:
+                            var red, green, blue : CGFloat
+                            (red, green, blue) = (1.0, 1.0, 1.0)
+                            if let coloredMaze = maze as? ColoredGrid {
+                                (red, green, blue) = coloredMaze.backgroundColor(for: cell)
+                            }
+                            context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+                            context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
+                            
+                            context.drawPolygon(points: [(west_x,base_y), (mid_x, apex_y), (east_x, base_y)])
+                            
+                        case .walls:
+                            context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                            if cell.west == nil {
+                                context.drawLineSegment(points: [(west_x, base_y), (mid_x, apex_y)])
+                            }
+                            
+                            if cell.east == nil {
+                                context.drawLineSegment(points: [(east_x, base_y), (mid_x,apex_y)])
+                            }
+                            else if let east = cell.east, !cell.linked(east) {
+                                context.drawLineSegment(points: [(east_x, base_y), (mid_x,apex_y)])
+                            }
+                            
+                            let no_south = cell.upright && cell.south == nil
+                            let not_linked = !cell.upright && !cell.linked(cell.north)
+                            
+                            if no_south || not_linked {
+                                context.drawLineSegment(points: [(east_x,base_y), (west_x,base_y)])
+                            }
+                        }
+                    }
+                    
+                    return false
+                }
+            }
+            
+            context.restoreGState()
+            
+            // Get your image
+            //
+            result = context.makeImage()
+        }
+        
+        return result;
+    }
+
 }
 
 

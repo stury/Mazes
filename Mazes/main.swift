@@ -225,11 +225,46 @@ class TriangularMazeHelper : MazeGeneratorHelper {
     }
 }
 
+class PyramidMazeHelper : MazeGeneratorHelper {
+    
+    override func getGrid( _ size: (Int, Int)) -> Grid {
+        return PyramidGrid(rows: size.0, columns: size.1)
+    }
+    
+    override func getColoredGrid( _ size: (Int, Int)) -> Grid {
+        return ColoredPyramidGrid(rows: size.0, columns: size.1)
+    }
+    
+    override var imageNamePrefix : String {
+        get {
+            return "pyramid_"
+        }
+    }
+    
+    override func startCell( _ grid: Grid ) -> Cell? {
+        // For a pyramid, this should be the middle of the pyramid.  rows/2. col = rows
+        let row = grid.rows/2
+        let cells = grid.grid[row]
+        let col = cells.count/2
+        return grid[[row,col]]
+    }
+
+    override var mazes:[Mazes] {
+        get {
+            var mazes = Mazes.agnosticMazes
+            if let index = mazes.index(of: .binaryTree) {
+                mazes.remove(at: index)
+            }
+            return mazes
+        }
+    }
+}
+
 extension MazeGeneratorHelper {
     /// Static variable where you can get all of the different MazeHelper classes as an array that you can iterate through.
     static var allHelpers : [MazeGeneratorHelper] {
         get {
-            return [MazeGeneratorHelper(), CircularMazeHelper(), HexagonalMazeHelper(), TriangularMazeHelper()]
+            return [MazeGeneratorHelper(), CircularMazeHelper(), HexagonalMazeHelper(), TriangularMazeHelper(), PyramidMazeHelper()]
         }
     }
 }
@@ -362,8 +397,8 @@ func killingCells(_ path: String, name: String = "killingCells") {
     }
 }
 
-killingCells("../../../../../Examples/MazeMask.txt", name: "killingCells")
-killingCells("../../../../../Examples/MazeMask.png", name: "killingCells2")
+//killingCells("../../../../../Examples/MazeMask.txt", name: "killingCells")
+//killingCells("../../../../../Examples/MazeMask.png", name: "killingCells2")
 //killingCells("../../../../../Examples/Scott Maze.png")
 
 func generateMazes(_ helpers:[MazeGeneratorHelper]) {
@@ -376,4 +411,4 @@ func generateMazes(_ helpers:[MazeGeneratorHelper]) {
 }
 // Generate ALL Mazes!
 //generateMazes(MazeGeneratorHelper.allHelpers)
-//generateMazes([TriangularMazeHelper()])
+generateMazes([PyramidMazeHelper()])
