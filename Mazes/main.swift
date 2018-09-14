@@ -349,43 +349,22 @@ func killingCells_v2() {
 }
 
 /// This method works for Text and Image file data for the mask.
-func killingCells(_ path: String) {
+func killingCells(_ path: String, name: String = "killingCells") {
     let url = URL(fileURLWithPath: path)
     if let mask = Mask.from(url) {
         let grid = MaskedGrid.init(mask)
         RecursiveBacktracker.on(grid: grid)
         print( grid )
-        image(for: grid, name: "killingCells" )
+        image(for: grid, name: name )
     }
     else {
         print( "File \(url) did not exist!" )
     }
 }
 
-//generateMazes(.recursiveBacktracker, max: 6, color: .red)
-//Mazes.deadends()
-//generateMazes(Mazes.allCases, maxes: [6], color: ColoredGridMode.allCases )
-//killingCells("../../../../../Examples/MazeMask.txt")
-//killingCells("../../../../../Examples/MazeMask.png")
+killingCells("../../../../../Examples/MazeMask.txt", name: "killingCells")
+killingCells("../../../../../Examples/MazeMask.png", name: "killingCells2")
 //killingCells("../../../../../Examples/Scott Maze.png")
-
-//distanceGrid()
-//generateMazesSolution(Mazes.wilsons, max: 3)
-
-//circlularGrid(20)
-//circlularMaze(20)
-//generateCircularMazes(.recursiveBacktracker, max: 1)
-//generateCircularMazes(Mazes.agnosticMazes, maxes: [6], color: ColoredGridMode.allCases)
-//
-//hexGrid((20, 20))
-//hexMaze((20, 20))
-//generateHexMazes(.recursiveBacktracker, max: 1)
-//generateHexMazes(Mazes.agnosticMazes, maxes: [6], color: ColoredGridMode.allCases)
-
-//triangleGrid((20, 20))
-//triangleMaze((20, 20))
-//generateTriMazes(Mazes.agnosticMazes, maxes: [6], color: ColoredGridMode.allCases )
-
 
 func generateMazes(_ helpers:[MazeGeneratorHelper]) {
     for mazeHelper in helpers {
@@ -396,6 +375,5 @@ func generateMazes(_ helpers:[MazeGeneratorHelper]) {
     }
 }
 // Generate ALL Mazes!
-generateMazes(MazeGeneratorHelper.allHelpers)
-
+//generateMazes(MazeGeneratorHelper.allHelpers)
 //generateMazes([TriangularMazeHelper()])

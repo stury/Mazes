@@ -28,7 +28,7 @@ public class MaskedGrid : Grid {
             for column in 0..<columns {
                 var cell : Cell? = nil
                 if mask[[row,column]] {
-                    cell = Cell(row: row, column: column)
+                    cell = RectCell(row: row, column: column)
                 }
                 rowArray.append(cell)
             }
