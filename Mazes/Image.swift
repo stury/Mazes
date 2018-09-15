@@ -355,7 +355,9 @@ public extension Image {
                                 context.setLineWidth(1.0)
                                 
                                 context.beginPath()
-                                context.addEllipse(in: CGRect(origin: centerPoint, size: CGSize(width: CGFloat(outerRadius), height: CGFloat(outerRadius))))
+                                let origin = CGPoint(x: centerPoint.x-CGFloat(outerRadius), y: centerPoint.x-CGFloat(outerRadius))
+                                let rect = CGRect(origin: origin, size: CGSize(width: CGFloat(2*outerRadius), height: CGFloat(2*outerRadius)))
+                                context.addEllipse(in: rect)
                                 context.closePath()
                                 
                                 context.fillPath()
