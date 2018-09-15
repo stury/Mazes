@@ -21,8 +21,6 @@ extension String {
     }
 }
 
-public typealias Point = (row: Int, col: Int)
-
 public class Grid : CustomStringConvertible {
     
     public let rows, columns : Int
@@ -53,63 +51,39 @@ public class Grid : CustomStringConvertible {
         for row in 0..<rows {
             for col in 0..<columns {
                 if let cell = grid[row][col] as? RectCell {
-                    cell.north = self[[row-1,col]] as? RectCell
-                    cell.south = self[[row+1,col]] as? RectCell
-                    cell.east  = self[[row,col+1]] as? RectCell
-                    cell.west  = self[[row,col-1]] as? RectCell
+                    cell.north = self[(row-1,col)] as? RectCell
+                    cell.south = self[(row+1,col)] as? RectCell
+                    cell.east  = self[(row,col+1)] as? RectCell
+                    cell.west  = self[(row,col-1)] as? RectCell
                 }
             }
         }
     }
     
-    
-//    public subscript(point: Point) -> Cell? {
-//        get {
-//            var result : Cell? = nil
-//            if point.row >= 0 && point.row < rows &&
-//                point.col >= 0 && point.col < columns {
-//                result = grid[point.row][point.col]
-//            }
-//            return result
-//        }
-//        set (newValue) {
-//            if let newValue = newValue {
-//                if point.row >= 0 && point.row < rows &&
-//                    point.col >= 0 && point.col < columns {
-//                    grid[point.row][point.col] = newValue
-//                }
-//            }
-//        }
-//    }
-
-    public subscript(_ location: [Int]) -> Cell? {
+    public subscript(_ location: (Int,Int)) -> Cell? {
         get {
             var result : Cell? = nil
-            if location.count == 2 {
-                let point = Point(row: location[0], col: location[1])
-                if point.row >= 0 && point.row < rows &&
-                    point.col >= 0 && point.col < grid[point.row].count {
-                    result = grid[point.row][point.col]
-                }
+            if location.0 >= 0 && location.0 < rows &&
+                location.1 >= 0 && location.1 < grid[location.0].count {
+                result = grid[location.0][location.1]
             }
             return result
         }
         set (newValue) {
-            if let newValue = newValue, location.count == 2 {
-                let point = Point(row: location[0], col: location[1])
-                if point.row >= 0 && point.row < rows &&
-                    point.col >= 0 && point.col < columns {
-                    grid[point.row][point.col] = newValue
+            if let newValue = newValue {
+                if location.0 >= 0 && location.0 < rows &&
+                    location.1 >= 0 && location.1 < grid[location.0].count {
+                    grid[location.0][location.1] = newValue
                 }
             }
         }
     }
 
+    
     public func randomCell() -> Cell? {
         let row = random(rows)
         let col = random(columns)
-        //return self[Point(row, col)]
-        return self[[row, col]]
+        return self[(row, col)]
     }
     
     public func size() -> Int {

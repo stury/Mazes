@@ -51,12 +51,12 @@ public class HexGrid : Grid {
                     southDiagonal = row + 1
                 }
                 
-                cell.north = self[[row-1, col]] as? HexCell
-                cell.northeast = self[[northDiagonal, col+1]] as? HexCell
-                cell.northwest = self[[northDiagonal, col-1]] as? HexCell
-                cell.south = self[[row+1, col]] as? HexCell
-                cell.southeast = self[[southDiagonal, col+1]] as? HexCell
-                cell.southwest = self[[southDiagonal, col-1]] as? HexCell
+                cell.north = self[(row-1, col)] as? HexCell
+                cell.northeast = self[(northDiagonal, col+1)] as? HexCell
+                cell.northwest = self[(northDiagonal, col-1)] as? HexCell
+                cell.south = self[(row+1, col)] as? HexCell
+                cell.southeast = self[(southDiagonal, col+1)] as? HexCell
+                cell.southwest = self[(southDiagonal, col-1)] as? HexCell
 
             }
             return false

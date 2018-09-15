@@ -23,26 +23,21 @@ public class Mask {
         self.bits = [[Bool]].init(repeating: row, count: rows)
     }
 
-    public subscript(_ location: [Int]) -> Bool {
+    public subscript(_ location: (Int, Int)) -> Bool {
         get {
             var result : Bool = false
-            if location.count == 2 {
-                let point = Point(row: location[0], col: location[1])
-                if point.row >= 0 && point.row < rows &&
-                    point.col >= 0 && point.col < columns {
-                    result = bits[point.row][point.col]
-                }
+            if location.0 >= 0 && location.0 < rows &&
+                location.1 >= 0 && location.1 < columns {
+                result = bits[location.0][location.1]
             }
             return result
         }
         set (newValue) {
-            if location.count == 2 {
-                let row = location[0]
-                let col = location[1]
-                if row >= 0 && row < rows &&
-                    col >= 0 && col < columns {
-                    bits[row][col] = newValue
-                }
+            let row = location.0
+            let col = location.1
+            if row >= 0 && row < rows &&
+                col >= 0 && col < columns {
+                bits[row][col] = newValue
             }
         }
     }
@@ -95,11 +90,11 @@ public extension Mask {
             #if swift(>=3.2)
             for (col, char) in trimmedLine.enumerated() {
                 if char == "X" || char == "x" {
-                    mask[[row, col]] = false
+                    mask[(row, col)] = false
                 }
                 // Should not need the following lines, since by default all cells should be available.
 //                else {
-//                    mask[[row, col]] = true
+//                    mask[(row, col)] = true
 //                }
             }
             #else
@@ -176,7 +171,7 @@ public extension Mask {
                             
                             // If the pixel is black, or alpha'd out of the image - delete it!
                             if (red == 0 && green == 0 && blue == 0) || (alpha == 0) {
-                                mask[[row, col]] = false
+                                mask[(row, col)] = false
                             }
                         }
                     }

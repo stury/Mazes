@@ -39,7 +39,7 @@ class MazeGeneratorHelper {
     }
     
     func startCell( _ grid: Grid ) -> Cell? {
-        return grid[[grid.rows/2,grid.columns/2]]
+        return grid[(grid.rows/2,grid.columns/2)]
     }
     
     var mazes:[Mazes] {
@@ -104,7 +104,7 @@ class MazeGeneratorHelper {
     func longestPath(_ grid: Grid) -> Int {
         var result : Int = 0
         
-        let start = grid[[0,0]]
+        let start = grid[(0,0)]
         if let distances = start?.distances() {
             var newStart: Cell
             var distance : Int
@@ -163,7 +163,7 @@ class CircularMazeHelper : MazeGeneratorHelper {
     }
     
     override func startCell( _ grid: Grid ) -> Cell? {
-        return grid[[0,0]]
+        return grid[(0,0)]
     }
 
     override var mazes:[Mazes] {
@@ -251,7 +251,7 @@ class PyramidMazeHelper : MazeGeneratorHelper {
         let row = grid.rows/2
         let cells = grid.grid[row]
         let col = cells.count/2
-        return grid[[row,col]]
+        return grid[(row,col)]
     }
 
     override var mazes:[Mazes] {
@@ -288,12 +288,11 @@ func maze(_ grid: Grid ) {
 }
 
 func path(_ grid: DistanceGrid) {
-//    let start = grid[Point(row:0,col:0)]
-    let start = grid[[0,0]]
+    let start = grid[(0,0)]
     if let distances = start?.distances() {
         grid.distances = distances
         print( grid )
-        if let southwestCell = grid[[grid.rows-1, 0]] {
+        if let southwestCell = grid[(grid.rows-1, 0)] {
             grid.distances = distances.path(to: southwestCell)
             print( "Path from northwest corner to southwest corner" )
             print( grid )
@@ -304,7 +303,7 @@ func path(_ grid: DistanceGrid) {
 func longestPath(_ grid: DistanceGrid) -> Int {
     var result : Int = 0
     
-    let start = grid[[0,0]]
+    let start = grid[(0,0)]
     if let distances = start?.distances() {
         var newStart: Cell
         var distance : Int
@@ -363,13 +362,13 @@ func killingCells_v1() {
         }
     }
     
-    if let nwCell = grid[[0, 0]] {
+    if let nwCell = grid[(0, 0)] {
         orphanCell( nwCell )
     }
-    if let seCell = grid[[4, 4]] {
+    if let seCell = grid[(4, 4)] {
         orphanCell( seCell )
     }
-    RecursiveBacktracker.on(grid: grid, at: grid[[1, 1]])
+    RecursiveBacktracker.on(grid: grid, at: grid[(1, 1)])
     
     print( grid )
     image(for: grid, name: "killingCells" )
@@ -377,9 +376,9 @@ func killingCells_v1() {
 
 func killingCells_v2() {
     let mask = Mask(rows: 5, columns: 5)
-    mask[[0,0]] = false
-    mask[[2,2]] = false
-    mask[[4,4]] = false
+    mask[(0,0)] = false
+    mask[(2,2)] = false
+    mask[(4,4)] = false
     
     let grid = MaskedGrid(mask)
     RecursiveBacktracker.on(grid: grid)
@@ -416,4 +415,4 @@ func generateMazes(_ helpers:[MazeGeneratorHelper]) {
 }
 // Generate ALL Mazes!
 generateMazes(MazeGeneratorHelper.allHelpers)
-//generateMazes([PyramidMazeHelper()])
+//generateMazes([CircularMazeHelper()])

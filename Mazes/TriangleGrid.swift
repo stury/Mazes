@@ -40,14 +40,14 @@ public class TriangleGrid : Grid {
                 let row = cell.row
                 let col = cell.column
                 
-                cell.west = self[[row,col-1]] as? TriangleCell
-                cell.east = self[[row,col+1]] as? TriangleCell
+                cell.west = self[(row,col-1)] as? TriangleCell
+                cell.east = self[(row,col+1)] as? TriangleCell
                 
                 if cell.upright {
-                    cell.south = self[[row+1,col]] as? TriangleCell
+                    cell.south = self[(row+1,col)] as? TriangleCell
                 }
                 else {
-                    cell.north = self[[row-1,col]] as? TriangleCell
+                    cell.north = self[(row-1,col)] as? TriangleCell
                 }
             }
             return false

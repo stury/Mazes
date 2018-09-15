@@ -58,8 +58,8 @@ public class PolarGrid : Grid {
                 let row = cell.row
                 let col = cell.column
                 if row > 0 {
-                    cell.cw = self[[row, col+1]] as? PolarCell
-                    cell.ccw = self[[row, col-1]] as? PolarCell
+                    cell.cw = self[(row, col+1)] as? PolarCell
+                    cell.ccw = self[(row, col-1)] as? PolarCell
                     
                     let ratio = Double(grid[row].count) / Double(grid[row-1].count)
                     if let parent = grid[row-1][Int(Double(col)/ratio)] as? PolarCell {
@@ -72,28 +72,25 @@ public class PolarGrid : Grid {
         }
     }
     
-    override public subscript(_ location: [Int]) -> Cell? {
+    override public subscript(_ location: (Int, Int)) -> Cell? {
         get {
             var result : Cell? = nil
-            if location.count == 2 {
-                let row = location[0]
-                var col = location[1] % grid[row].count
-                if col == -1 {
-                    col = grid[row].count-1
-                }
-                if row >= 0 && row < rows &&
-                    col >= 0 && col < grid[row].count {
-                    result = grid[row][col]
-                }
+            let row = location.0
+            var col = location.1 % grid[row].count
+            if col == -1 {
+                col = grid[row].count-1
+            }
+            if row >= 0 && row < rows &&
+                col >= 0 && col < grid[row].count {
+                result = grid[row][col]
             }
             return result
         }
         set (newValue) {
-            if let newValue = newValue, location.count == 2 {
-                let point = Point(row: location[0], col: location[1])
-                if point.row >= 0 && point.row < rows &&
-                    point.col >= 0 && point.col < columns {
-                    grid[point.row][point.col] = newValue
+            if let newValue = newValue {
+                if location.0 >= 0 && location.0 < rows &&
+                    location.1 >= 0 && location.1 < grid[location.0].count {
+                    grid[location.0][location.1] = newValue
                 }
             }
         }

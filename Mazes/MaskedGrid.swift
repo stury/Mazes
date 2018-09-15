@@ -27,7 +27,7 @@ public class MaskedGrid : Grid {
             var rowArray = [Cell?]()
             for column in 0..<columns {
                 var cell : Cell? = nil
-                if mask[[row,column]] {
+                if mask[(row,column)] {
                     cell = RectCell(row: row, column: column)
                 }
                 rowArray.append(cell)
@@ -41,7 +41,7 @@ public class MaskedGrid : Grid {
         let location = mask.randomLocation()
         let row = location[0]
         let col = location[1]
-        return self[[row, col]]
+        return self[(row, col)]
     }
     
     override public func size() -> Int {
