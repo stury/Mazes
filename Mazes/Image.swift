@@ -342,6 +342,25 @@ public extension Image {
                                 }
                             }
                         }
+                        else {  // row == 0
+                            let outerRadius = Double((cell.row+1)*cellSize)
+                            if mode == .backgrounds {
+                                var red, green, blue: CGFloat
+                                (red, green, blue) = (1.0, 1.0, 1.0)
+                                if let coloredMaze = maze as? ColoredGrid {
+                                    (red, green, blue) = coloredMaze.backgroundColor(for: cell)
+                                }
+                                context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+                                context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
+                                context.setLineWidth(1.0)
+                                
+                                context.beginPath()
+                                context.addEllipse(in: CGRect(origin: centerPoint, size: CGSize(width: CGFloat(outerRadius), height: CGFloat(outerRadius))))
+                                context.closePath()
+                                
+                                context.fillPath()
+                            }
+                        }
                     }
                     return false
                 }
@@ -581,19 +600,23 @@ public extension Image {
         return result;
     }
 
-}
-
-
-
-public func output(_ image: Image?, url: URL) {
-    if let image = image {
+    /// A simple method for outputting the image as a PNG image.
+    public func output(_ url: URL) {
+        let image = self
         #if os(macOS)
             if let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {
                 let bitmap = NSBitmapImageRep(cgImage: cgImage)
+                #if swift(>=4.0)
                 if let data = bitmap.representation(using: .png, properties: [:]) {
                     try? data.write(to: url)
                     print( url )
                 }
+                #else
+                if let data = bitmap.representation(using: .PNG, properties: [:]) {
+                    try? data.write(to: url)
+                    print( url )
+                }
+                #endif
             }
         //        if let bits = imageRep.representations.first as? NSBitmapImageRep {
         //            if let data = bits.representation(using: .png, properties: [:]) {
@@ -602,5 +625,5 @@ public func output(_ image: Image?, url: URL) {
         //        }
         #endif
     }
-}
 
+}

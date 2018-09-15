@@ -10,6 +10,11 @@ import Foundation
 
 class MazeGeneratorHelper {
 
+    /// The size of the maze
+    public var mazeSize: Int = 40
+    // the number of pixels to use for drawing the cell in the maze
+    public var cellSize: Int = 40
+    
     /// MARK: Overrideable methods
     func getGrid( _ size: (Int, Int)) -> Grid {
         return Grid(rows: size.0, columns: size.1)
@@ -46,10 +51,10 @@ class MazeGeneratorHelper {
     /// MARK:
     
     func image( for grid: Grid, name: String = "maze" ) {
-        if let image = grid.image(cellSize: 20) {
+        if let image = grid.image(cellSize: cellSize) {
             let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
             if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
-                output(image, url: documentURL)
+                image.output(documentURL)
             }
         }
     }
@@ -70,7 +75,7 @@ class MazeGeneratorHelper {
     /// generate a series of mazes at once, using a particular maze algorithm.
     func generateMazes(_ maze: Mazes, max: Int, color:[ColoredGridMode] = ColoredGridMode.allCases) {
         for index in 1...max {
-            let grid = getColoredGrid(20)
+            let grid = getColoredGrid(mazeSize)
             var coloredGrid = grid as? ColoredGrid
             if coloredGrid != nil {
                 coloredGrid?.mode = color[index%color.count]
@@ -122,7 +127,7 @@ class MazeGeneratorHelper {
     
     func generateMazesSolution(_ maze: Mazes, max: Int, color:[ColoredGridMode] = ColoredGridMode.allCases) {
         for index in 1...max {
-            let grid = getColoredGrid((20, 20))
+            let grid = getColoredGrid((mazeSize, mazeSize))
             var coloredGrid = grid as? ColoredGrid
             coloredGrid?.mode = color[index%color.count]
             Mazes.factory(maze, grid: grid)
@@ -270,10 +275,10 @@ extension MazeGeneratorHelper {
 }
 
 func image( for grid: Grid, name: String = "maze" ) {
-    if let image = grid.image(cellSize: 20) {
+    if let image = grid.image(cellSize: 40) {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
-            output(image, url: documentURL)
+            image.output(documentURL)
         }
     }
 }
@@ -410,5 +415,5 @@ func generateMazes(_ helpers:[MazeGeneratorHelper]) {
     }
 }
 // Generate ALL Mazes!
-//generateMazes(MazeGeneratorHelper.allHelpers)
-generateMazes([PyramidMazeHelper()])
+generateMazes(MazeGeneratorHelper.allHelpers)
+//generateMazes([PyramidMazeHelper()])
