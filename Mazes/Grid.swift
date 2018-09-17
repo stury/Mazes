@@ -9,6 +9,21 @@ public func random(_ maxInt: Int ) -> Int {
     
     return result
 }
+/// returns a value between 0 and 1.0.
+public func rand() -> Double {
+    var result : Double = 0.0
+    
+    result = Double(arc4random())/Double(Int.max)
+    
+    return result
+}
+
+/// A method to try and mimic the Ruby next statement, which is followed by a condition.  If the condition is true, we skip the block.
+public func next( _ condition: Bool, block:()->Void ) {
+    if !condition {
+        block()
+    }
+}
 
 // Extend String such that we can use multiplication operator to duplicate a String X times...
 extension String {
@@ -20,6 +35,34 @@ extension String {
         return result
     }
 }
+
+#if swift(>=4.2)
+#elseif swift(>=4.0)
+// From https://stackoverflow.com/questions/24026510/how-do-i-shuffle-an-array-in-swift
+extension MutableCollection {
+    /// Shuffles the contents of this collection.
+    mutating func shuffle() {
+        let c = count
+        guard c > 1 else { return }
+        
+        for (firstUnshuffled, unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
+            // Change `Int` in the next line to `IndexDistance` in < Swift 4.1
+            let d: Int = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
+            let i = index(firstUnshuffled, offsetBy: d)
+            swapAt(firstUnshuffled, i)
+        }
+    }
+}
+
+extension Sequence {
+    /// Returns an array with the contents of this sequence, shuffled.
+    func shuffled() -> [Element] {
+        var result = Array(self)
+        result.shuffle()
+        return result
+    }
+}
+#endif
 
 public class Grid : CustomStringConvertible {
     
@@ -164,6 +207,27 @@ public class Grid : CustomStringConvertible {
         }
         
         return result
+    }
+    
+    /// Turns your perfect maze into a raided maze.  This means that loops will be introduced
+    /// at various dead ends such that there are multiple paths through the maze.
+    public func braid(_ p:Double = 1.0) {
+        let deadends = self.deadends().shuffled()
+        for cell in deadends {
+            // next if cell.links.count != 1 || rand() > p\
+            next( cell.links.count != 1 || rand() > p ) { () in
+                let neighbors = cell.neighbors().filter { !cell.linked($0) }
+                var best = neighbors.filter { $0.links.count == 1 }
+                if best.count == 0 {
+                    best = neighbors
+                }
+                
+                if best.count > 0 {
+                    let neighbor = best.sample()
+                    cell.link(cell: neighbor)
+                }
+            }
+        }
     }
     
     // MARK: - CustomStringConvertible

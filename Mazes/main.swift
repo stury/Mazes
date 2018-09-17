@@ -15,6 +15,8 @@ class MazeGeneratorHelper {
     // the number of pixels to use for drawing the cell in the maze
     public var cellSize: Int = 40
     
+    public var braided: Bool = false
+    
     /// MARK: Overrideable methods
     func getGrid( _ size: (Int, Int)) -> Grid {
         return Grid(rows: size.0, columns: size.1)
@@ -32,11 +34,8 @@ class MazeGeneratorHelper {
         return ColoredRectGrid(rows: size.0, columns: size.1)
     }
     
-    var imageNamePrefix : String {
-        get {
-            return ""
-        }
-    }
+    public var imageNamePrefix : String   = ""
+    public var braidedImagePrefix : String = "braided_"
     
     func startCell( _ grid: Grid ) -> Cell? {
         return grid[(grid.rows/2,grid.columns/2)]
@@ -84,12 +83,19 @@ class MazeGeneratorHelper {
             Mazes.factory(maze, grid: grid)
             print("\(grid.deadends().count) dead-ends in maze")
             
+            var imageName = "\(imageNamePrefix)"
+            if braided {
+                grid.braid()
+                imageName += "\(braidedImagePrefix)"
+            }
+            imageName += "\(maze.rawValue)_\(index)"
+            
             if let startCell = startCell( grid ) {
                 if coloredGrid != nil {
                     coloredGrid?.distances = startCell.distances()
                 }
             }
-            image(for: grid, name: "\(imageNamePrefix)\(maze.rawValue)_\(index)" )
+            image(for: grid, name: imageName )
         }
     }
     
@@ -131,9 +137,17 @@ class MazeGeneratorHelper {
             var coloredGrid = grid as? ColoredGrid
             coloredGrid?.mode = color[index%color.count]
             Mazes.factory(maze, grid: grid)
+            
+            var imageName = "solution_\(imageNamePrefix)"
+            if braided {
+                grid.braid()
+                imageName += "\(braidedImagePrefix)"
+            }
+            imageName += "\(maze.rawValue)_\(index)"
+
             //print("\(grid.deadends().count) dead-ends in maze")
             coloredGrid?.maximum = longestPath(grid)
-            image(for: grid, name: "solution_\(imageNamePrefix)\(maze.rawValue)_\(index)" )
+            image(for: grid, name: imageName )
         }
     }
 
@@ -148,18 +162,17 @@ class MazeGeneratorHelper {
 
 class CircularMazeHelper : MazeGeneratorHelper {
     
+    override init() {
+        super.init()
+        imageNamePrefix = "circular_"
+    }
+    
     override func getGrid( _ size: (Int, Int)) -> Grid {
         return PolarGrid(size.0)
     }
     
     override func getColoredGrid( _ size: (Int, Int)) -> Grid {
         return ColoredPolarGrid(size.0)
-    }
-    
-    override var imageNamePrefix : String {
-        get {
-            return "circular_"
-        }
     }
     
     override func startCell( _ grid: Grid ) -> Cell? {
@@ -181,18 +194,17 @@ class CircularMazeHelper : MazeGeneratorHelper {
 
 class HexagonalMazeHelper : MazeGeneratorHelper {
     
+    override init() {
+        super.init()
+        imageNamePrefix = "hex_"
+    }
+
     override func getGrid( _ size: (Int, Int)) -> Grid {
         return HexGrid(rows: size.0, columns: size.1)
     }
     
     override func getColoredGrid( _ size: (Int, Int)) -> Grid {
         return ColoredHexGrid(rows: size.0, columns: size.1)
-    }
-    
-    override var imageNamePrefix : String {
-        get {
-            return "hex_"
-        }
     }
     
     override var mazes:[Mazes] {
@@ -204,7 +216,12 @@ class HexagonalMazeHelper : MazeGeneratorHelper {
 }
 
 class TriangularMazeHelper : MazeGeneratorHelper {
-    
+
+    override init() {
+        super.init()
+        imageNamePrefix = "triangle_"
+    }
+
     override func getGrid( _ size: (Int, Int)) -> Grid {
         return TriangleGrid(rows: size.0, columns: size.1)
     }
@@ -213,12 +230,6 @@ class TriangularMazeHelper : MazeGeneratorHelper {
         return ColoredTriangleGrid(rows: size.0, columns: size.1)
     }
     
-    override var imageNamePrefix : String {
-        get {
-            return "triangle_"
-        }
-    }
-
     override var mazes:[Mazes] {
         get {
             var mazes = Mazes.agnosticMazes
@@ -232,18 +243,17 @@ class TriangularMazeHelper : MazeGeneratorHelper {
 
 class PyramidMazeHelper : MazeGeneratorHelper {
     
+    override init() {
+        super.init()
+        imageNamePrefix = "pyramid_"
+    }
+
     override func getGrid( _ size: (Int, Int)) -> Grid {
         return PyramidGrid(rows: size.0, columns: size.1)
     }
     
     override func getColoredGrid( _ size: (Int, Int)) -> Grid {
         return ColoredPyramidGrid(rows: size.0, columns: size.1)
-    }
-    
-    override var imageNamePrefix : String {
-        get {
-            return "pyramid_"
-        }
     }
     
     override func startCell( _ grid: Grid ) -> Cell? {
@@ -271,6 +281,17 @@ extension MazeGeneratorHelper {
         get {
             return [MazeGeneratorHelper(), CircularMazeHelper(), HexagonalMazeHelper(), TriangularMazeHelper(), PyramidMazeHelper()]
         }
+    }
+    
+    /// This accessor allows you to fetch all of the helpers, and configure them all in the same manner with a block initializer.
+    /// You can use this for things like getting helpers to set the braiding of th ehelpers, so you can generate braided mazes, without
+    /// having to manually walk though th elist yourself to set the values.
+    static func allHelpers(with blockInitializer:(MazeGeneratorHelper)->Void ) -> [MazeGeneratorHelper] {
+        let  result = MazeGeneratorHelper.allHelpers
+        for helper in result {
+            blockInitializer(helper)
+        }
+        return result
     }
 }
 
@@ -413,6 +434,15 @@ func generateMazes(_ helpers:[MazeGeneratorHelper]) {
         mazeHelper.generateMazesSolutions(mazeHelper.mazes, maxes: [6])
     }
 }
+
+
 // Generate ALL Mazes!
-generateMazes(MazeGeneratorHelper.allHelpers)
-//generateMazes([CircularMazeHelper()])
+// generateMazes(MazeGeneratorHelper.allHelpers)
+
+// Now generate all of the mazes, and make the mazes braided!
+let helpers = MazeGeneratorHelper.allHelpers { (helper) in
+    helper.braided = true
+    helper.mazeSize = 20
+}
+generateMazes(helpers)
+
