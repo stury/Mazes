@@ -1,31 +1,6 @@
 import Foundation
 
-// returns a value of 0 to maxInt.  So random(4) would return one of the following: 0, 1, 2, 3
-public func random(_ maxInt: Int ) -> Int {
-    var result : Int = 0
-    
-    // arc4random_stir() // ?  Doesn't seem to help any for huntAndKill Maze
-    result = Int(arc4random_uniform(UInt32(maxInt)))
-    
-    return result
-}
-/// returns a value between 0 and 1.0.
-public func rand() -> Double {
-    var result : Double = 0.0
-    
-    result = Double(arc4random())/Double(Int.max)
-    
-    return result
-}
-
-/// A method to try and mimic the Ruby next statement, which is followed by a condition.  If the condition is true, we skip the block.
-public func next( _ condition: Bool, block:()->Void ) {
-    if !condition {
-        block()
-    }
-}
-
-// Extend String such that we can use multiplication operator to duplicate a String X times...
+/// Extend String such that we can use multiplication operator to duplicate a String X times...
 extension String {
     public static func *(left: String, right: Int) -> String {
         var result:String = ""
@@ -35,34 +10,6 @@ extension String {
         return result
     }
 }
-
-#if swift(>=4.2)
-#elseif swift(>=4.0)
-// From https://stackoverflow.com/questions/24026510/how-do-i-shuffle-an-array-in-swift
-extension MutableCollection {
-    /// Shuffles the contents of this collection.
-    mutating func shuffle() {
-        let c = count
-        guard c > 1 else { return }
-        
-        for (firstUnshuffled, unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
-            // Change `Int` in the next line to `IndexDistance` in < Swift 4.1
-            let d: Int = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
-            let i = index(firstUnshuffled, offsetBy: d)
-            swapAt(firstUnshuffled, i)
-        }
-    }
-}
-
-extension Sequence {
-    /// Returns an array with the contents of this sequence, shuffled.
-    func shuffled() -> [Element] {
-        var result = Array(self)
-        result.shuffle()
-        return result
-    }
-}
-#endif
 
 public class Grid : CustomStringConvertible {
     
@@ -172,17 +119,7 @@ public class Grid : CustomStringConvertible {
     public func contentsOfCell(_ cell:Cell) -> String {
         return " "
     }
-
-//    /// protocol for Image callback to grid to see if we want to color the backgrounds.  Do we need this???
-//    public func background( ) -> Bool {
-//        return false
-//    }
-    
-//    /// protocol for Image callback to grid for the background color
-//    public func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat) {
-//        return (1.0, 1.0, 1.0)
-//    }
-    
+        
     public func image( cellSize: Int ) -> Image? {
         var result : Image? = nil
         

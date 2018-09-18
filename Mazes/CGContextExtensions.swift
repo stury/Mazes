@@ -10,6 +10,7 @@ import Foundation
 
 public extension CGContext {
     
+    /// Simple method for drawing a Polygon using abn array of (x, y) points.
     public func drawPolygon( points: [(Int, Int)], fill: Bool = true, stroke: Bool = true ) {
         
         if points.count > 0 {
@@ -32,6 +33,7 @@ public extension CGContext {
         }
     }
     
+    /// Simple method to draw a line segment in the current context.
     public func drawLineSegment( points: [(Int, Int)] ) {
         
         if points.count == 2 {

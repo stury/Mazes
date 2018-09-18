@@ -22,6 +22,13 @@
 		D201A1BF214C533B009D14BC /* ColoredPyramidGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BE214C533B009D14BC /* ColoredPyramidGrid.swift */; };
 		D201A1C1214C60DB009D14BC /* PyramidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1C0214C60DB009D14BC /* PyramidCell.swift */; };
 		D21DA624212BADAB0007FF2D /* PolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21DA623212BADAB0007FF2D /* PolarGrid.swift */; };
+		D22B3F9A21508AA800E8FB06 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9921508AA800E8FB06 /* Random.swift */; };
+		D22B3F9C21509C9500E8FB06 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9B21509C9500E8FB06 /* CollectionExtension.swift */; };
+		D22B3F9E2150A08200E8FB06 /* MazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9D2150A08200E8FB06 /* MazeHelper.swift */; };
+		D22B3FA02150A0AD00E8FB06 /* CircularMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9F2150A0AD00E8FB06 /* CircularMazeHelper.swift */; };
+		D22B3FA22150A0DA00E8FB06 /* HexagonalMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA12150A0DA00E8FB06 /* HexagonalMazeHelper.swift */; };
+		D22B3FA42150A10000E8FB06 /* TriangularMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA32150A10000E8FB06 /* TriangularMazeHelper.swift */; };
+		D22B3FA62150A11D00E8FB06 /* PyramidMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA52150A11D00E8FB06 /* PyramidMazeHelper.swift */; };
 		D238C7F42103CD9600909855 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238C7F32103CD9600909855 /* main.swift */; };
 		D27238942143733C006BF452 /* ColoredPolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27238932143733C006BF452 /* ColoredPolarGrid.swift */; };
 		D2759DDA213F79ED00C7FB65 /* PolarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2759DD9213F79ED00C7FB65 /* PolarCell.swift */; };
@@ -69,6 +76,13 @@
 		D201A1BE214C533B009D14BC /* ColoredPyramidGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPyramidGrid.swift; sourceTree = "<group>"; };
 		D201A1C0214C60DB009D14BC /* PyramidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyramidCell.swift; sourceTree = "<group>"; };
 		D21DA623212BADAB0007FF2D /* PolarGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PolarGrid.swift; sourceTree = "<group>"; };
+		D22B3F9921508AA800E8FB06 /* Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		D22B3F9B21509C9500E8FB06 /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
+		D22B3F9D2150A08200E8FB06 /* MazeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeHelper.swift; sourceTree = "<group>"; };
+		D22B3F9F2150A0AD00E8FB06 /* CircularMazeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularMazeHelper.swift; sourceTree = "<group>"; };
+		D22B3FA12150A0DA00E8FB06 /* HexagonalMazeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonalMazeHelper.swift; sourceTree = "<group>"; };
+		D22B3FA32150A10000E8FB06 /* TriangularMazeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangularMazeHelper.swift; sourceTree = "<group>"; };
+		D22B3FA52150A11D00E8FB06 /* PyramidMazeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyramidMazeHelper.swift; sourceTree = "<group>"; };
 		D238C7F02103CD9600909855 /* Mazes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mazes; sourceTree = BUILT_PRODUCTS_DIR; };
 		D238C7F32103CD9600909855 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D27238932143733C006BF452 /* ColoredPolarGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPolarGrid.swift; sourceTree = "<group>"; };
@@ -120,6 +134,11 @@
 			isa = PBXGroup;
 			children = (
 				D238C7F32103CD9600909855 /* main.swift */,
+				D22B3F9D2150A08200E8FB06 /* MazeHelper.swift */,
+				D22B3F9F2150A0AD00E8FB06 /* CircularMazeHelper.swift */,
+				D22B3FA12150A0DA00E8FB06 /* HexagonalMazeHelper.swift */,
+				D22B3FA32150A10000E8FB06 /* TriangularMazeHelper.swift */,
+				D22B3FA52150A11D00E8FB06 /* PyramidMazeHelper.swift */,
 				D2DA180C2106DA8800EA5EBE /* Cell.swift */,
 				D2B345722144C3BE0034E71A /* RectCell.swift */,
 				D2759DD9213F79ED00C7FB65 /* PolarCell.swift */,
@@ -129,6 +148,8 @@
 				D201A1B2214B3133009D14BC /* CGContextExtensions.swift */,
 				D2DA180921050F5800EA5EBE /* Image.swift */,
 				D201A1AE214B08A2009D14BC /* RenderingMode.swift */,
+				D22B3F9921508AA800E8FB06 /* Random.swift */,
+				D22B3F9B21509C9500E8FB06 /* CollectionExtension.swift */,
 				D2DA180D2106DA8800EA5EBE /* Grid.swift */,
 				D28CA6222108182900D466BC /* DistanceGrid.swift */,
 				D2FC7B20210967C700E40F7A /* ColoredGrid.swift */,
@@ -220,6 +241,8 @@
 				D201A1C1214C60DB009D14BC /* PyramidCell.swift in Sources */,
 				D201A1B1214B1AFE009D14BC /* ColoredHexGrid.swift in Sources */,
 				D2FC7B1F210959DC00E40F7A /* MazeGenerator.swift in Sources */,
+				D22B3F9C21509C9500E8FB06 /* CollectionExtension.swift in Sources */,
+				D22B3FA62150A11D00E8FB06 /* PyramidMazeHelper.swift in Sources */,
 				D201A1B7214B4B22009D14BC /* TriangleCell.swift in Sources */,
 				D238C7F42103CD9600909855 /* main.swift in Sources */,
 				D201A1AF214B08A2009D14BC /* RenderingMode.swift in Sources */,
@@ -232,11 +255,14 @@
 				D2DA180A21050F5800EA5EBE /* Image.swift in Sources */,
 				290D3C6F211BDC300032DA6D /* MaskedGrid.swift in Sources */,
 				D28CA62121080D2E00D466BC /* Distances.swift in Sources */,
+				D22B3F9E2150A08200E8FB06 /* MazeHelper.swift in Sources */,
+				D22B3FA22150A0DA00E8FB06 /* HexagonalMazeHelper.swift in Sources */,
 				D2759DDA213F79ED00C7FB65 /* PolarCell.swift in Sources */,
 				D2C7FB6A210AC2DA00386F74 /* Wilsons.swift in Sources */,
 				D2B345732144C3BE0034E71A /* RectCell.swift in Sources */,
 				D201A1BB214B4F9D009D14BC /* ColoredTriangleGrid.swift in Sources */,
 				D21DA624212BADAB0007FF2D /* PolarGrid.swift in Sources */,
+				D22B3FA02150A0AD00E8FB06 /* CircularMazeHelper.swift in Sources */,
 				D201A1AD214B0227009D14BC /* HexGrid.swift in Sources */,
 				D28AA1EE210E301300898B17 /* RecursiveBacktracker.swift in Sources */,
 				D2DA18112106DA8800EA5EBE /* Grid.swift in Sources */,
@@ -247,6 +273,8 @@
 				D28AA1EC210C035400898B17 /* HuntAndKill.swift in Sources */,
 				D2DA18122106DA8800EA5EBE /* Sidewinder.swift in Sources */,
 				29810C15211A9BEF004AD81C /* Mask.swift in Sources */,
+				D22B3F9A21508AA800E8FB06 /* Random.swift in Sources */,
+				D22B3FA42150A10000E8FB06 /* TriangularMazeHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

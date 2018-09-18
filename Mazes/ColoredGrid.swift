@@ -47,16 +47,10 @@ protocol ColoredGrid {
     var maximum : Int { get set}
     var distances : Distances? {get set}
     
-    func background( ) -> Bool
     func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat)
 }
 
 extension ColoredGrid {
-    
-    // protocol for Image callback to grid to see if we want to color the backgrounds.
-    public func background( ) -> Bool {
-        return true
-    }
     
     // protocol for Image callback to grid for the background color
     public func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat) {
@@ -98,39 +92,4 @@ public class ColoredRectGrid : DistanceGrid, ColoredGrid {
             }
         }
     }
-//
-//    // protocol for Image callback to grid to see if we want to color the backgrounds.
-//    override public func background( ) -> Bool {
-//        return true
-//    }
-//
-//    // protocol for Image callback to grid for the background color
-//    override public func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat) {
-//        var result = (CGFloat(1.0), CGFloat(1.0), CGFloat(1.0))
-//        if let distances = distances {
-//            if let distance = distances[cell] {
-//                let intensity = CGFloat(maximum - distance)/CGFloat(maximum)
-//                let dark = CGFloat(1.0 * intensity)
-//                let bright = CGFloat(0.5 + (0.5*intensity))
-//                switch mode {
-//                case .red:
-//                    result = (bright, dark, dark)
-//                case .green:
-//                    result = (dark, bright, dark)
-//                case .blue:
-//                    result = (dark, dark, bright)
-//                case .yellow:
-//                    result = (bright, bright, dark)
-//                case .cyan:
-//                    result = (dark, bright, bright)
-//                case .magenta:
-//                    result = (bright, dark, bright)
-//                case .gray:
-//                    result = (bright, bright, bright)
-//                }
-//            }
-//        }
-//        return result
-//    }
-//
 }

@@ -30,6 +30,7 @@ let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipl
 
 public extension Image {
     
+    /// Draws a rectangular maze based on the maze passed in.
     public static func cgImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
@@ -120,6 +121,7 @@ public extension Image {
         return result;
     }
 
+    /// Draws a hexagonal maze based on the maze passed in.
     public static func cgHexImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
@@ -238,6 +240,7 @@ public extension Image {
         return result;
     }
 
+    /// Draws a circular maze based on the maze passed in.
     public static func cgPolarImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
@@ -384,7 +387,8 @@ public extension Image {
         
         return result;
     }
-   
+    
+    /// Draws a maze based on triangular cells.
     public static func cgTriangleImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
@@ -490,7 +494,8 @@ public extension Image {
         
         return result;
     }
-
+    
+    /// Draws a triangle maze built out of triangle cells.
     public static func cgPyramidImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil

@@ -62,13 +62,15 @@ static var allCases : [Mazes]  {
     /// Maze algorithms that are not relyant on a particular cell type.
     static var agnosticMazes : [Mazes] {
         get{
-            var rectOnlyMazes = allCases
-            if let index = rectOnlyMazes.index(of: sidewinder) {
-                rectOnlyMazes.remove(at: index)
-            }
-            return rectOnlyMazes
+//            var rectOnlyMazes = allCases
+//            if let index = rectOnlyMazes.index(of: sidewinder) {
+//                rectOnlyMazes.remove(at: index)
+//            }
+//            return rectOnlyMazes
+            return allCases.filter { $0 != .sidewinder }
         }
     }
+    
     static func deadends(_ tries:Int = 100) {
         let size = 20
         let algorithms:[Mazes] = Mazes.allCases
@@ -114,7 +116,6 @@ static var allCases : [Mazes]  {
     }
 
 }
-
 
 public protocol MazeGenerator {
     // Create this method, and implement your maze generation algorithm!
