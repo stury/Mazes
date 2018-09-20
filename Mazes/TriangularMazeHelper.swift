@@ -8,22 +8,22 @@
 
 import Foundation
 
-class TriangularMazeHelper : MazeHelper {
+public class TriangularMazeHelper : MazeHelper {
     
-    override init() {
+    public override init() {
         super.init()
         imageNamePrefix = "triangle_"
     }
     
-    override func getGrid( _ size: (Int, Int)) -> Grid {
+    public override func getGrid( _ size: (Int, Int)) -> Grid {
         return TriangleGrid(rows: size.0, columns: size.1)
     }
     
-    override func getColoredGrid( _ size: (Int, Int)) -> Grid {
+    public override func getColoredGrid( _ size: (Int, Int)) -> Grid {
         return ColoredTriangleGrid(rows: size.0, columns: size.1)
     }
     
-    override var mazes:[Mazes] {
+    public override var mazes:[Mazes] {
         get {
             var mazes = Mazes.agnosticMazes
             if let index = mazes.index(of: .binaryTree) {

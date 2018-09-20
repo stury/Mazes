@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>type</key>
+		<string>Rectangular</string>
+		<key>image</key>
+		<string>rectangular</string>
+	</dict>
+	<dict>
+		<key>type</key>
+		<string>Circular</string>
+		<key>image</key>
+		<string>circular</string>
+	</dict>
+	<dict>
+		<key>type</key>
+		<string>Hexagonal</string>
+		<key>image</key>
+		<string>hexagonal</string>
+	</dict>
+	<dict>
+		<key>type</key>
+		<string>Triangular</string>
+		<key>image</key>
+		<string>triangle</string>
+	</dict>
+	<dict>
+		<key>type</key>
+		<string>Pyramid</string>
+		<key>image</key>
+		<string>pyramid</string>
+	</dict>
+</array>
+</plist>

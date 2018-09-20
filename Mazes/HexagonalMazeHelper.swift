@@ -8,22 +8,22 @@
 
 import Foundation
 
-class HexagonalMazeHelper : MazeHelper {
+public class HexagonalMazeHelper : MazeHelper {
     
-    override init() {
+    public override init() {
         super.init()
         imageNamePrefix = "hex_"
     }
     
-    override func getGrid( _ size: (Int, Int)) -> Grid {
+    public override func getGrid( _ size: (Int, Int)) -> Grid {
         return HexGrid(rows: size.0, columns: size.1)
     }
     
-    override func getColoredGrid( _ size: (Int, Int)) -> Grid {
+    public override func getColoredGrid( _ size: (Int, Int)) -> Grid {
         return ColoredHexGrid(rows: size.0, columns: size.1)
     }
     
-    override var mazes:[Mazes] {
+    public override var mazes:[Mazes] {
         get {
             return Mazes.agnosticMazes
         }

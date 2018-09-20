@@ -8,26 +8,26 @@
 
 import Foundation
 
-class CircularMazeHelper : MazeHelper {
+public class CircularMazeHelper : MazeHelper {
     
-    override init() {
+    public override init() {
         super.init()
         imageNamePrefix = "circular_"
     }
     
-    override func getGrid( _ size: (Int, Int)) -> Grid {
+    public override func getGrid( _ size: (Int, Int)) -> Grid {
         return PolarGrid(size.0)
     }
     
-    override func getColoredGrid( _ size: (Int, Int)) -> Grid {
+    public override func getColoredGrid( _ size: (Int, Int)) -> Grid {
         return ColoredPolarGrid(size.0)
     }
     
-    override func startCell( _ grid: Grid ) -> Cell? {
+    public override func startCell( _ grid: Grid ) -> Cell? {
         return grid[(0,0)]
     }
     
-    override var mazes:[Mazes] {
+    public override var mazes:[Mazes] {
         get {
             var mazes = Mazes.agnosticMazes
             // .aldousBroder mazes don't seem to work for circular mazes...

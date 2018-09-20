@@ -1,5 +1,5 @@
 //
-//  RenderingMode.swift
+//  MazeRenderingMode.swift
 //  Mazes
 //
 //  Created by Scott Tury on 9/13/18.
@@ -9,21 +9,21 @@
 import Foundation
 
 #if swift(>=4.2)
-public enum RenderingMode : String, CaseIterable {
+public enum MazeRenderingMode : String, CaseIterable {
     case backgrounds
     case walls
 }
 #else
-public enum RenderingMode : String {
+public enum MazeRenderingMode : String {
     case backgrounds
     case walls
 }
 #endif
 
-extension RenderingMode {
+extension MazeRenderingMode {
     #if swift(>=4.2)
     #else
-    static var allCases : [RenderingMode]  {
+    static var allCases : [MazeRenderingMode]  {
         get {
             return [.backgrounds, .walls]
         }

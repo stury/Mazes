@@ -9,7 +9,7 @@
 import Foundation
 
 #if swift(>=4.2)
-enum Mazes : String, CaseIterable {
+public enum Mazes : String, CaseIterable {
     case binaryTree
     case sidewinder
     case aldousBroder
@@ -18,7 +18,7 @@ enum Mazes : String, CaseIterable {
     case recursiveBacktracker
 }
 #else
-enum Mazes : String {
+public enum Mazes : String {
     case binaryTree
     case sidewinder
     case aldousBroder
@@ -28,8 +28,8 @@ enum Mazes : String {
 }
 #endif
 
-extension Mazes {
-    static func factory(_ maze:Mazes, grid: Grid) {
+public extension Mazes {
+    public static func factory(_ maze:Mazes, grid: Grid) {
         
         switch maze {
         case .binaryTree:
@@ -52,7 +52,7 @@ extension Mazes {
 //static var allCases: Self.AllCases
 #if swift(>=4.2)
 #else
-static var allCases : [Mazes]  {
+public static var allCases : [Mazes]  {
         get {
             return [.binaryTree, .sidewinder, .aldousBroder, .wilsons, .huntAndKill, .recursiveBacktracker]
         }
@@ -60,7 +60,7 @@ static var allCases : [Mazes]  {
 #endif
 
     /// Maze algorithms that are not relyant on a particular cell type.
-    static var agnosticMazes : [Mazes] {
+    public static var agnosticMazes : [Mazes] {
         get{
 //            var rectOnlyMazes = allCases
 //            if let index = rectOnlyMazes.index(of: sidewinder) {
@@ -71,7 +71,7 @@ static var allCases : [Mazes]  {
         }
     }
     
-    static func deadends(_ tries:Int = 100) {
+    public static func deadends(_ tries:Int = 100) {
         let size = 20
         let algorithms:[Mazes] = Mazes.allCases
         var averages:[Int] = [Int].init(repeating: 0, count: algorithms.count)

@@ -23,6 +23,17 @@
 #if os(iOS)
     import UIKit
     public typealias Image = UIImage
+
+extension UIImage {
+    
+    /// Mimicking the NSImage convienience initializer for iOS!
+    public convenience init?(contentsOf url: URL) {
+        guard let data = try? Data(contentsOf: url) else {
+            return nil
+        }
+        self.init(data: data)
+    }
+}
 #endif
 
 let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
@@ -55,7 +66,7 @@ public extension Image {
             context.scaleBy(x: 1.0, y: -1.0)
             
             // fill in each cell
-            for mode in RenderingMode.allCases {
+            for mode in MazeRenderingMode.allCases {
                 maze.eachCell({ (cell) in
                     if let cell = cell as? RectCell {
                         let x1 = cell.column * cellSize
@@ -154,7 +165,7 @@ public extension Image {
             context.scaleBy(x: 1.0, y: -1.0)
             context.setLineWidth(2.0)
             
-            for mode in RenderingMode.allCases {
+            for mode in MazeRenderingMode.allCases {
                 maze.eachCell { (cell) -> Bool in
 
                     if let cell = cell as? HexCell {
@@ -271,7 +282,7 @@ public extension Image {
             let center = Int(Double(imageSize) / 2.0)
             let centerPoint = CGPoint(x: center, y: center)
             
-            for mode in RenderingMode.allCases {
+            for mode in MazeRenderingMode.allCases {
                 maze.eachCell { (cell) in
                     if let cell = cell as? PolarCell {
                         if cell.row > 0 {
@@ -420,7 +431,7 @@ public extension Image {
             context.scaleBy(x: 1.0, y: -1.0)
             context.setLineWidth(2.0)
             
-            for mode in RenderingMode.allCases {
+            for mode in MazeRenderingMode.allCases {
                 maze.eachCell { (cell) -> Bool in
                     
                     if let cell = cell as? TriangleCell {
@@ -527,7 +538,7 @@ public extension Image {
             context.scaleBy(x: 1.0, y: -1.0)
             context.setLineWidth(2.0)
             
-            for mode in RenderingMode.allCases {
+            for mode in MazeRenderingMode.allCases {
                 maze.eachCell { (cell) -> Bool in
                     
                     if let cell = cell as? TriangleCell {

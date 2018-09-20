@@ -154,9 +154,16 @@ func generateMazes(_ helpers:[MazeHelper]) {
 // generateMazes(MazeGeneratorHelper.allHelpers)
 
 // Now generate all of the mazes, and make the mazes braided!
-let helpers = MazeHelper.allHelpers { (helper) in
-    helper.braided = true
-    helper.mazeSize = 20
-}
-generateMazes(helpers)
+//let helpers = MazeHelper.allHelpers { (helper) in
+//    helper.braided = true
+//    helper.mazeSize = 20
+//}
+//generateMazes(helpers)
 
+let helpers = MazeHelper.allHelpers { (helper) in
+//    helper.braided = true
+    helper.mazeSize = 5
+}
+for mazeHelper in helpers {
+    mazeHelper.generateMazes(mazeHelper.mazes, maxes: [1])
+}

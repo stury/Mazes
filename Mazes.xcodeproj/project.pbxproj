@@ -7,46 +7,104 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		290D3C6F211BDC300032DA6D /* MaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290D3C6E211BDC300032DA6D /* MaskedGrid.swift */; };
-		29810C15211A9BEF004AD81C /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29810C14211A9BEF004AD81C /* Mask.swift */; };
-		D201A1AB214B003A009D14BC /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AA214B003A009D14BC /* HexCell.swift */; };
-		D201A1AD214B0227009D14BC /* HexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AC214B0227009D14BC /* HexGrid.swift */; };
-		D201A1AF214B08A2009D14BC /* RenderingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AE214B08A2009D14BC /* RenderingMode.swift */; };
-		D201A1B1214B1AFE009D14BC /* ColoredHexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B0214B1AFE009D14BC /* ColoredHexGrid.swift */; };
-		D201A1B3214B3133009D14BC /* CGContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B2214B3133009D14BC /* CGContextExtensions.swift */; };
-		D201A1B5214B31B5009D14BC /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B4214B31B5009D14BC /* IntExtensions.swift */; };
-		D201A1B7214B4B22009D14BC /* TriangleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B6214B4B22009D14BC /* TriangleCell.swift */; };
-		D201A1B9214B4D6A009D14BC /* TriangleGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B8214B4D6A009D14BC /* TriangleGrid.swift */; };
-		D201A1BB214B4F9D009D14BC /* ColoredTriangleGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BA214B4F9D009D14BC /* ColoredTriangleGrid.swift */; };
-		D201A1BD214C4DF8009D14BC /* PyramidGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BC214C4DF8009D14BC /* PyramidGrid.swift */; };
-		D201A1BF214C533B009D14BC /* ColoredPyramidGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BE214C533B009D14BC /* ColoredPyramidGrid.swift */; };
-		D201A1C1214C60DB009D14BC /* PyramidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1C0214C60DB009D14BC /* PyramidCell.swift */; };
-		D21DA624212BADAB0007FF2D /* PolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21DA623212BADAB0007FF2D /* PolarGrid.swift */; };
-		D22B3F9A21508AA800E8FB06 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9921508AA800E8FB06 /* Random.swift */; };
-		D22B3F9C21509C9500E8FB06 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9B21509C9500E8FB06 /* CollectionExtension.swift */; };
-		D22B3F9E2150A08200E8FB06 /* MazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9D2150A08200E8FB06 /* MazeHelper.swift */; };
-		D22B3FA02150A0AD00E8FB06 /* CircularMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9F2150A0AD00E8FB06 /* CircularMazeHelper.swift */; };
-		D22B3FA22150A0DA00E8FB06 /* HexagonalMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA12150A0DA00E8FB06 /* HexagonalMazeHelper.swift */; };
-		D22B3FA42150A10000E8FB06 /* TriangularMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA32150A10000E8FB06 /* TriangularMazeHelper.swift */; };
-		D22B3FA62150A11D00E8FB06 /* PyramidMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA52150A11D00E8FB06 /* PyramidMazeHelper.swift */; };
+		D22B3FB12151E79800E8FB06 /* maze.h in Headers */ = {isa = PBXBuildFile; fileRef = D22B3FAF2151E79800E8FB06 /* maze.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D22B3FBC2151E7D400E8FB06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FBB2151E7D400E8FB06 /* AppDelegate.swift */; };
+		D22B3FBE2151E7D400E8FB06 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FBD2151E7D400E8FB06 /* MasterViewController.swift */; };
+		D22B3FC02151E7D400E8FB06 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FBF2151E7D400E8FB06 /* DetailViewController.swift */; };
+		D22B3FC32151E7D400E8FB06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22B3FC12151E7D400E8FB06 /* Main.storyboard */; };
+		D22B3FC52151E7D800E8FB06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22B3FC42151E7D800E8FB06 /* Assets.xcassets */; };
+		D22B3FC82151E7D800E8FB06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22B3FC62151E7D800E8FB06 /* LaunchScreen.storyboard */; };
+		D22B3FF62151EC5000E8FB06 /* Maze.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22B3FAD2151E79700E8FB06 /* Maze.framework */; };
+		D22B3FF92151ECB900E8FB06 /* MazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9D2150A08200E8FB06 /* MazeHelper.swift */; };
+		D22B3FFA2151ECB900E8FB06 /* Sidewinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180E2106DA8800EA5EBE /* Sidewinder.swift */; };
+		D22B3FFB2151ECB900E8FB06 /* CircularMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9F2150A0AD00E8FB06 /* CircularMazeHelper.swift */; };
+		D22B3FFC2151ECB900E8FB06 /* MazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC7B1E210959DC00E40F7A /* MazeGenerator.swift */; };
+		D22B3FFD2151ECB900E8FB06 /* PolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21DA623212BADAB0007FF2D /* PolarGrid.swift */; };
+		D22B3FFE2151ECB900E8FB06 /* ColoredTriangleGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BA214B4F9D009D14BC /* ColoredTriangleGrid.swift */; };
+		D22B3FFF2151ECB900E8FB06 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180D2106DA8800EA5EBE /* Grid.swift */; };
+		D22B40002151ECB900E8FB06 /* PyramidGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BC214C4DF8009D14BC /* PyramidGrid.swift */; };
+		D22B40012151ECB900E8FB06 /* TriangleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B6214B4B22009D14BC /* TriangleCell.swift */; };
+		D22B40022151ECB900E8FB06 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9921508AA800E8FB06 /* Random.swift */; };
+		D22B40032151ECB900E8FB06 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9B21509C9500E8FB06 /* CollectionExtension.swift */; };
+		D22B40042151ECB900E8FB06 /* HexagonalMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA12150A0DA00E8FB06 /* HexagonalMazeHelper.swift */; };
+		D22B40052151ECB900E8FB06 /* ColoredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC7B20210967C700E40F7A /* ColoredGrid.swift */; };
+		D22B40062151ECB900E8FB06 /* AldousBroder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7FB67210ABCE500386F74 /* AldousBroder.swift */; };
+		D22B40072151ECB900E8FB06 /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AA214B003A009D14BC /* HexCell.swift */; };
+		D22B40082151ECB900E8FB06 /* PyramidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1C0214C60DB009D14BC /* PyramidCell.swift */; };
+		D22B40092151ECB900E8FB06 /* PolarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2759DD9213F79ED00C7FB65 /* PolarCell.swift */; };
+		D22B400A2151ECB900E8FB06 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180921050F5800EA5EBE /* Image.swift */; };
+		D22B400B2151ECB900E8FB06 /* PyramidMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA52150A11D00E8FB06 /* PyramidMazeHelper.swift */; };
+		D22B400C2151ECB900E8FB06 /* HexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AC214B0227009D14BC /* HexGrid.swift */; };
+		D22B400D2151ECB900E8FB06 /* Wilsons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7FB69210AC2DA00386F74 /* Wilsons.swift */; };
+		D22B400E2151ECB900E8FB06 /* ColoredPolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27238932143733C006BF452 /* ColoredPolarGrid.swift */; };
+		D22B400F2151ECB900E8FB06 /* MaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290D3C6E211BDC300032DA6D /* MaskedGrid.swift */; };
+		D22B40102151ECB900E8FB06 /* CGContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B2214B3133009D14BC /* CGContextExtensions.swift */; };
+		D22B40112151ECB900E8FB06 /* TriangleGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B8214B4D6A009D14BC /* TriangleGrid.swift */; };
+		D22B40122151ECB900E8FB06 /* HuntAndKill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1EB210C035400898B17 /* HuntAndKill.swift */; };
+		D22B40132151ECB900E8FB06 /* ColoredHexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B0214B1AFE009D14BC /* ColoredHexGrid.swift */; };
+		D22B40142151ECB900E8FB06 /* ColoredPyramidGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BE214C533B009D14BC /* ColoredPyramidGrid.swift */; };
+		D22B40152151ECB900E8FB06 /* RenderingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AE214B08A2009D14BC /* RenderingMode.swift */; };
+		D22B40162151ECB900E8FB06 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B4214B31B5009D14BC /* IntExtensions.swift */; };
+		D22B40172151ECB900E8FB06 /* Distances.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA62021080D2E00D466BC /* Distances.swift */; };
+		D22B40182151ECB900E8FB06 /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29810C14211A9BEF004AD81C /* Mask.swift */; };
+		D22B40192151ECB900E8FB06 /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180B2106DA8800EA5EBE /* BinaryTree.swift */; };
+		D22B401A2151ECB900E8FB06 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180C2106DA8800EA5EBE /* Cell.swift */; };
+		D22B401B2151ECB900E8FB06 /* DistanceGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA6222108182900D466BC /* DistanceGrid.swift */; };
+		D22B401C2151ECB900E8FB06 /* RecursiveBacktracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */; };
+		D22B401D2151ECB900E8FB06 /* RectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B345722144C3BE0034E71A /* RectCell.swift */; };
+		D22B401E2151ECB900E8FB06 /* TriangularMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA32150A10000E8FB06 /* TriangularMazeHelper.swift */; };
+		D22B40202151F04400E8FB06 /* Mazes.plist in Resources */ = {isa = PBXBuildFile; fileRef = D22B401F2151F04400E8FB06 /* Mazes.plist */; };
+		D22B40212151F80900E8FB06 /* MazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9D2150A08200E8FB06 /* MazeHelper.swift */; };
+		D22B40222151F80900E8FB06 /* CircularMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9F2150A0AD00E8FB06 /* CircularMazeHelper.swift */; };
+		D22B40232151F80900E8FB06 /* HexagonalMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA12150A0DA00E8FB06 /* HexagonalMazeHelper.swift */; };
+		D22B40242151F80900E8FB06 /* TriangularMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA32150A10000E8FB06 /* TriangularMazeHelper.swift */; };
+		D22B40252151F80900E8FB06 /* PyramidMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA52150A11D00E8FB06 /* PyramidMazeHelper.swift */; };
+		D22B40262151F80900E8FB06 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180C2106DA8800EA5EBE /* Cell.swift */; };
+		D22B40272151F80900E8FB06 /* RectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B345722144C3BE0034E71A /* RectCell.swift */; };
+		D22B40282151F80900E8FB06 /* PolarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2759DD9213F79ED00C7FB65 /* PolarCell.swift */; };
+		D22B40292151F80900E8FB06 /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AA214B003A009D14BC /* HexCell.swift */; };
+		D22B402A2151F80900E8FB06 /* TriangleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B6214B4B22009D14BC /* TriangleCell.swift */; };
+		D22B402B2151F80900E8FB06 /* PyramidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1C0214C60DB009D14BC /* PyramidCell.swift */; };
+		D22B402C2151F80900E8FB06 /* CGContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B2214B3133009D14BC /* CGContextExtensions.swift */; };
+		D22B402D2151F80900E8FB06 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180921050F5800EA5EBE /* Image.swift */; };
+		D22B402E2151F80900E8FB06 /* RenderingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AE214B08A2009D14BC /* RenderingMode.swift */; };
+		D22B402F2151F80900E8FB06 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9921508AA800E8FB06 /* Random.swift */; };
+		D22B40302151F80900E8FB06 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9B21509C9500E8FB06 /* CollectionExtension.swift */; };
+		D22B40312151F80900E8FB06 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180D2106DA8800EA5EBE /* Grid.swift */; };
+		D22B40322151F80900E8FB06 /* DistanceGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA6222108182900D466BC /* DistanceGrid.swift */; };
+		D22B40332151F80900E8FB06 /* ColoredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC7B20210967C700E40F7A /* ColoredGrid.swift */; };
+		D22B40342151F80900E8FB06 /* MaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290D3C6E211BDC300032DA6D /* MaskedGrid.swift */; };
+		D22B40352151F80900E8FB06 /* PolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21DA623212BADAB0007FF2D /* PolarGrid.swift */; };
+		D22B40362151F80900E8FB06 /* ColoredPolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27238932143733C006BF452 /* ColoredPolarGrid.swift */; };
+		D22B40372151F80900E8FB06 /* HexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AC214B0227009D14BC /* HexGrid.swift */; };
+		D22B40382151F80900E8FB06 /* ColoredHexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B0214B1AFE009D14BC /* ColoredHexGrid.swift */; };
+		D22B40392151F80900E8FB06 /* TriangleGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B8214B4D6A009D14BC /* TriangleGrid.swift */; };
+		D22B403A2151F80900E8FB06 /* ColoredTriangleGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BA214B4F9D009D14BC /* ColoredTriangleGrid.swift */; };
+		D22B403B2151F80900E8FB06 /* PyramidGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BC214C4DF8009D14BC /* PyramidGrid.swift */; };
+		D22B403C2151F80900E8FB06 /* ColoredPyramidGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BE214C533B009D14BC /* ColoredPyramidGrid.swift */; };
+		D22B403D2151F80900E8FB06 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B4214B31B5009D14BC /* IntExtensions.swift */; };
+		D22B403E2151F80900E8FB06 /* Distances.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA62021080D2E00D466BC /* Distances.swift */; };
+		D22B403F2151F80900E8FB06 /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29810C14211A9BEF004AD81C /* Mask.swift */; };
+		D22B40402151F80900E8FB06 /* MazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC7B1E210959DC00E40F7A /* MazeGenerator.swift */; };
+		D22B40412151F80900E8FB06 /* Sidewinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180E2106DA8800EA5EBE /* Sidewinder.swift */; };
+		D22B40422151F80900E8FB06 /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180B2106DA8800EA5EBE /* BinaryTree.swift */; };
+		D22B40432151F80900E8FB06 /* AldousBroder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7FB67210ABCE500386F74 /* AldousBroder.swift */; };
+		D22B40442151F80900E8FB06 /* Wilsons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7FB69210AC2DA00386F74 /* Wilsons.swift */; };
+		D22B40452151F80900E8FB06 /* HuntAndKill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1EB210C035400898B17 /* HuntAndKill.swift */; };
+		D22B40462151F80900E8FB06 /* RecursiveBacktracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */; };
 		D238C7F42103CD9600909855 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238C7F32103CD9600909855 /* main.swift */; };
-		D27238942143733C006BF452 /* ColoredPolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27238932143733C006BF452 /* ColoredPolarGrid.swift */; };
-		D2759DDA213F79ED00C7FB65 /* PolarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2759DD9213F79ED00C7FB65 /* PolarCell.swift */; };
-		D28AA1EC210C035400898B17 /* HuntAndKill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1EB210C035400898B17 /* HuntAndKill.swift */; };
-		D28AA1EE210E301300898B17 /* RecursiveBacktracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */; };
-		D28CA62121080D2E00D466BC /* Distances.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA62021080D2E00D466BC /* Distances.swift */; };
-		D28CA6232108182900D466BC /* DistanceGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA6222108182900D466BC /* DistanceGrid.swift */; };
-		D2B345732144C3BE0034E71A /* RectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B345722144C3BE0034E71A /* RectCell.swift */; };
-		D2C7FB68210ABCE500386F74 /* AldousBroder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7FB67210ABCE500386F74 /* AldousBroder.swift */; };
-		D2C7FB6A210AC2DA00386F74 /* Wilsons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7FB69210AC2DA00386F74 /* Wilsons.swift */; };
-		D2DA180A21050F5800EA5EBE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180921050F5800EA5EBE /* Image.swift */; };
-		D2DA180F2106DA8800EA5EBE /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180B2106DA8800EA5EBE /* BinaryTree.swift */; };
-		D2DA18102106DA8800EA5EBE /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180C2106DA8800EA5EBE /* Cell.swift */; };
-		D2DA18112106DA8800EA5EBE /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180D2106DA8800EA5EBE /* Grid.swift */; };
-		D2DA18122106DA8800EA5EBE /* Sidewinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180E2106DA8800EA5EBE /* Sidewinder.swift */; };
-		D2FC7B1F210959DC00E40F7A /* MazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC7B1E210959DC00E40F7A /* MazeGenerator.swift */; };
-		D2FC7B21210967C700E40F7A /* ColoredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC7B20210967C700E40F7A /* ColoredGrid.swift */; };
+		D2D642382153369600949CB5 /* ChooseMazeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D642372153369600949CB5 /* ChooseMazeCell.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D22B3FF32151EC4100E8FB06 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D238C7E82103CD9500909855 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D22B3FAC2151E79700E8FB06;
+			remoteInfo = maze;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		D238C7EE2103CD9500909855 /* CopyFiles */ = {
@@ -83,6 +141,18 @@
 		D22B3FA12150A0DA00E8FB06 /* HexagonalMazeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HexagonalMazeHelper.swift; sourceTree = "<group>"; };
 		D22B3FA32150A10000E8FB06 /* TriangularMazeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriangularMazeHelper.swift; sourceTree = "<group>"; };
 		D22B3FA52150A11D00E8FB06 /* PyramidMazeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PyramidMazeHelper.swift; sourceTree = "<group>"; };
+		D22B3FAD2151E79700E8FB06 /* Maze.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Maze.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D22B3FAF2151E79800E8FB06 /* maze.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = maze.h; sourceTree = "<group>"; };
+		D22B3FB02151E79800E8FB06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D22B3FB92151E7D400E8FB06 /* Amaze.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Amaze.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D22B3FBB2151E7D400E8FB06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D22B3FBD2151E7D400E8FB06 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		D22B3FBF2151E7D400E8FB06 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D22B3FC22151E7D400E8FB06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D22B3FC42151E7D800E8FB06 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D22B3FC72151E7D800E8FB06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D22B3FC92151E7D800E8FB06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D22B401F2151F04400E8FB06 /* Mazes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Mazes.plist; sourceTree = "<group>"; };
 		D238C7F02103CD9600909855 /* Mazes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mazes; sourceTree = BUILT_PRODUCTS_DIR; };
 		D238C7F32103CD9600909855 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D27238932143733C006BF452 /* ColoredPolarGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPolarGrid.swift; sourceTree = "<group>"; };
@@ -94,6 +164,7 @@
 		D2B345722144C3BE0034E71A /* RectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectCell.swift; sourceTree = "<group>"; };
 		D2C7FB67210ABCE500386F74 /* AldousBroder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AldousBroder.swift; sourceTree = "<group>"; };
 		D2C7FB69210AC2DA00386F74 /* Wilsons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wilsons.swift; sourceTree = "<group>"; };
+		D2D642372153369600949CB5 /* ChooseMazeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMazeCell.swift; sourceTree = "<group>"; };
 		D2DA180921050F5800EA5EBE /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		D2DA180B2106DA8800EA5EBE /* BinaryTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
 		D2DA180C2106DA8800EA5EBE /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
@@ -104,6 +175,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D22B3FA92151E79700E8FB06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D22B3FB62151E7D400E8FB06 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D22B3FF62151EC5000E8FB06 /* Maze.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D238C7ED2103CD9500909855 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -114,11 +200,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D22B3FAE2151E79800E8FB06 /* maze */ = {
+			isa = PBXGroup;
+			children = (
+				D22B3FAF2151E79800E8FB06 /* maze.h */,
+				D22B3FB02151E79800E8FB06 /* Info.plist */,
+			);
+			path = maze;
+			sourceTree = "<group>";
+		};
+		D22B3FBA2151E7D400E8FB06 /* Amaze */ = {
+			isa = PBXGroup;
+			children = (
+				D22B3FBB2151E7D400E8FB06 /* AppDelegate.swift */,
+				D2D642372153369600949CB5 /* ChooseMazeCell.swift */,
+				D22B3FBD2151E7D400E8FB06 /* MasterViewController.swift */,
+				D22B3FBF2151E7D400E8FB06 /* DetailViewController.swift */,
+				D22B3FC12151E7D400E8FB06 /* Main.storyboard */,
+				D22B3FC42151E7D800E8FB06 /* Assets.xcassets */,
+				D22B3FC62151E7D800E8FB06 /* LaunchScreen.storyboard */,
+				D22B3FC92151E7D800E8FB06 /* Info.plist */,
+				D22B401F2151F04400E8FB06 /* Mazes.plist */,
+			);
+			path = Amaze;
+			sourceTree = "<group>";
+		};
+		D22B3FF52151EC5000E8FB06 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		D238C7E72103CD9500909855 = {
 			isa = PBXGroup;
 			children = (
 				D238C7F22103CD9600909855 /* Mazes */,
+				D22B3FAE2151E79800E8FB06 /* maze */,
+				D22B3FBA2151E7D400E8FB06 /* Amaze */,
 				D238C7F12103CD9600909855 /* Products */,
+				D22B3FF52151EC5000E8FB06 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -126,6 +247,8 @@
 			isa = PBXGroup;
 			children = (
 				D238C7F02103CD9600909855 /* Mazes */,
+				D22B3FAD2151E79700E8FB06 /* Maze.framework */,
+				D22B3FB92151E7D400E8FB06 /* Amaze.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,7 +301,54 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		D22B3FAA2151E79700E8FB06 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D22B3FB12151E79800E8FB06 /* maze.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		D22B3FAC2151E79700E8FB06 /* Maze */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D22B3FB22151E79800E8FB06 /* Build configuration list for PBXNativeTarget "Maze" */;
+			buildPhases = (
+				D22B3FA82151E79700E8FB06 /* Sources */,
+				D22B3FA92151E79700E8FB06 /* Frameworks */,
+				D22B3FAA2151E79700E8FB06 /* Headers */,
+				D22B3FAB2151E79700E8FB06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Maze;
+			productName = maze;
+			productReference = D22B3FAD2151E79700E8FB06 /* Maze.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		D22B3FB82151E7D400E8FB06 /* Amaze */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D22B3FCA2151E7D800E8FB06 /* Build configuration list for PBXNativeTarget "Amaze" */;
+			buildPhases = (
+				D22B3FB52151E7D400E8FB06 /* Sources */,
+				D22B3FB62151E7D400E8FB06 /* Frameworks */,
+				D22B3FB72151E7D400E8FB06 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D22B3FF42151EC4100E8FB06 /* PBXTargetDependency */,
+			);
+			name = Amaze;
+			productName = Amaze;
+			productReference = D22B3FB92151E7D400E8FB06 /* Amaze.app */;
+			productType = "com.apple.product-type.application";
+		};
 		D238C7EF2103CD9500909855 /* Mazes */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D238C7F72103CD9600909855 /* Build configuration list for PBXNativeTarget "Mazes" */;
@@ -202,10 +372,19 @@
 		D238C7E82103CD9500909855 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0820;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = self;
 				TargetAttributes = {
+					D22B3FAC2151E79700E8FB06 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+					};
+					D22B3FB82151E7D400E8FB06 = {
+						CreatedOnToolsVersion = 9.4.1;
+						DevelopmentTeam = U5K2PCXQE4;
+						ProvisioningStyle = Automatic;
+					};
 					D238C7EF2103CD9500909855 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = U5K2PCXQE4;
@@ -220,6 +399,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = D238C7E72103CD9500909855;
 			productRefGroup = D238C7F12103CD9600909855 /* Products */;
@@ -227,60 +407,278 @@
 			projectRoot = "";
 			targets = (
 				D238C7EF2103CD9500909855 /* Mazes */,
+				D22B3FAC2151E79700E8FB06 /* Maze */,
+				D22B3FB82151E7D400E8FB06 /* Amaze */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		D22B3FAB2151E79700E8FB06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D22B3FB72151E7D400E8FB06 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D22B3FC82151E7D800E8FB06 /* LaunchScreen.storyboard in Resources */,
+				D22B40202151F04400E8FB06 /* Mazes.plist in Resources */,
+				D22B3FC52151E7D800E8FB06 /* Assets.xcassets in Resources */,
+				D22B3FC32151E7D400E8FB06 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		D22B3FA82151E79700E8FB06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D22B40422151F80900E8FB06 /* BinaryTree.swift in Sources */,
+				D22B40282151F80900E8FB06 /* PolarCell.swift in Sources */,
+				D22B402B2151F80900E8FB06 /* PyramidCell.swift in Sources */,
+				D22B40402151F80900E8FB06 /* MazeGenerator.swift in Sources */,
+				D22B40382151F80900E8FB06 /* ColoredHexGrid.swift in Sources */,
+				D22B402F2151F80900E8FB06 /* Random.swift in Sources */,
+				D22B40462151F80900E8FB06 /* RecursiveBacktracker.swift in Sources */,
+				D22B403A2151F80900E8FB06 /* ColoredTriangleGrid.swift in Sources */,
+				D22B40432151F80900E8FB06 /* AldousBroder.swift in Sources */,
+				D22B40212151F80900E8FB06 /* MazeHelper.swift in Sources */,
+				D22B40252151F80900E8FB06 /* PyramidMazeHelper.swift in Sources */,
+				D22B40412151F80900E8FB06 /* Sidewinder.swift in Sources */,
+				D22B403C2151F80900E8FB06 /* ColoredPyramidGrid.swift in Sources */,
+				D22B40272151F80900E8FB06 /* RectCell.swift in Sources */,
+				D22B40342151F80900E8FB06 /* MaskedGrid.swift in Sources */,
+				D22B40292151F80900E8FB06 /* HexCell.swift in Sources */,
+				D22B403F2151F80900E8FB06 /* Mask.swift in Sources */,
+				D22B402D2151F80900E8FB06 /* Image.swift in Sources */,
+				D22B403D2151F80900E8FB06 /* IntExtensions.swift in Sources */,
+				D22B402E2151F80900E8FB06 /* RenderingMode.swift in Sources */,
+				D22B403E2151F80900E8FB06 /* Distances.swift in Sources */,
+				D22B402A2151F80900E8FB06 /* TriangleCell.swift in Sources */,
+				D22B40332151F80900E8FB06 /* ColoredGrid.swift in Sources */,
+				D22B40312151F80900E8FB06 /* Grid.swift in Sources */,
+				D22B40452151F80900E8FB06 /* HuntAndKill.swift in Sources */,
+				D22B402C2151F80900E8FB06 /* CGContextExtensions.swift in Sources */,
+				D22B40232151F80900E8FB06 /* HexagonalMazeHelper.swift in Sources */,
+				D22B40352151F80900E8FB06 /* PolarGrid.swift in Sources */,
+				D22B40222151F80900E8FB06 /* CircularMazeHelper.swift in Sources */,
+				D22B40392151F80900E8FB06 /* TriangleGrid.swift in Sources */,
+				D22B403B2151F80900E8FB06 /* PyramidGrid.swift in Sources */,
+				D22B40322151F80900E8FB06 /* DistanceGrid.swift in Sources */,
+				D22B40302151F80900E8FB06 /* CollectionExtension.swift in Sources */,
+				D22B40442151F80900E8FB06 /* Wilsons.swift in Sources */,
+				D22B40362151F80900E8FB06 /* ColoredPolarGrid.swift in Sources */,
+				D22B40242151F80900E8FB06 /* TriangularMazeHelper.swift in Sources */,
+				D22B40262151F80900E8FB06 /* Cell.swift in Sources */,
+				D22B40372151F80900E8FB06 /* HexGrid.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D22B3FB52151E7D400E8FB06 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D22B3FC02151E7D400E8FB06 /* DetailViewController.swift in Sources */,
+				D22B3FBE2151E7D400E8FB06 /* MasterViewController.swift in Sources */,
+				D2D642382153369600949CB5 /* ChooseMazeCell.swift in Sources */,
+				D22B3FBC2151E7D400E8FB06 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D238C7EC2103CD9500909855 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2C7FB68210ABCE500386F74 /* AldousBroder.swift in Sources */,
-				D2FC7B21210967C700E40F7A /* ColoredGrid.swift in Sources */,
-				D201A1C1214C60DB009D14BC /* PyramidCell.swift in Sources */,
-				D201A1B1214B1AFE009D14BC /* ColoredHexGrid.swift in Sources */,
-				D2FC7B1F210959DC00E40F7A /* MazeGenerator.swift in Sources */,
-				D22B3F9C21509C9500E8FB06 /* CollectionExtension.swift in Sources */,
-				D22B3FA62150A11D00E8FB06 /* PyramidMazeHelper.swift in Sources */,
-				D201A1B7214B4B22009D14BC /* TriangleCell.swift in Sources */,
+				D22B40192151ECB900E8FB06 /* BinaryTree.swift in Sources */,
+				D22B401E2151ECB900E8FB06 /* TriangularMazeHelper.swift in Sources */,
+				D22B3FFD2151ECB900E8FB06 /* PolarGrid.swift in Sources */,
+				D22B401A2151ECB900E8FB06 /* Cell.swift in Sources */,
+				D22B400B2151ECB900E8FB06 /* PyramidMazeHelper.swift in Sources */,
+				D22B3FF92151ECB900E8FB06 /* MazeHelper.swift in Sources */,
+				D22B40002151ECB900E8FB06 /* PyramidGrid.swift in Sources */,
+				D22B3FFE2151ECB900E8FB06 /* ColoredTriangleGrid.swift in Sources */,
+				D22B3FFF2151ECB900E8FB06 /* Grid.swift in Sources */,
+				D22B40102151ECB900E8FB06 /* CGContextExtensions.swift in Sources */,
+				D22B401D2151ECB900E8FB06 /* RectCell.swift in Sources */,
+				D22B40032151ECB900E8FB06 /* CollectionExtension.swift in Sources */,
+				D22B40172151ECB900E8FB06 /* Distances.swift in Sources */,
+				D22B40042151ECB900E8FB06 /* HexagonalMazeHelper.swift in Sources */,
+				D22B40062151ECB900E8FB06 /* AldousBroder.swift in Sources */,
+				D22B40122151ECB900E8FB06 /* HuntAndKill.swift in Sources */,
+				D22B401B2151ECB900E8FB06 /* DistanceGrid.swift in Sources */,
+				D22B40092151ECB900E8FB06 /* PolarCell.swift in Sources */,
+				D22B40082151ECB900E8FB06 /* PyramidCell.swift in Sources */,
+				D22B40162151ECB900E8FB06 /* IntExtensions.swift in Sources */,
+				D22B40152151ECB900E8FB06 /* RenderingMode.swift in Sources */,
+				D22B40012151ECB900E8FB06 /* TriangleCell.swift in Sources */,
+				D22B3FFB2151ECB900E8FB06 /* CircularMazeHelper.swift in Sources */,
+				D22B400D2151ECB900E8FB06 /* Wilsons.swift in Sources */,
+				D22B400F2151ECB900E8FB06 /* MaskedGrid.swift in Sources */,
+				D22B3FFC2151ECB900E8FB06 /* MazeGenerator.swift in Sources */,
+				D22B40132151ECB900E8FB06 /* ColoredHexGrid.swift in Sources */,
+				D22B401C2151ECB900E8FB06 /* RecursiveBacktracker.swift in Sources */,
+				D22B400E2151ECB900E8FB06 /* ColoredPolarGrid.swift in Sources */,
+				D22B40182151ECB900E8FB06 /* Mask.swift in Sources */,
+				D22B400A2151ECB900E8FB06 /* Image.swift in Sources */,
+				D22B40112151ECB900E8FB06 /* TriangleGrid.swift in Sources */,
+				D22B40052151ECB900E8FB06 /* ColoredGrid.swift in Sources */,
 				D238C7F42103CD9600909855 /* main.swift in Sources */,
-				D201A1AF214B08A2009D14BC /* RenderingMode.swift in Sources */,
-				D201A1B3214B3133009D14BC /* CGContextExtensions.swift in Sources */,
-				D201A1B5214B31B5009D14BC /* IntExtensions.swift in Sources */,
-				D201A1BF214C533B009D14BC /* ColoredPyramidGrid.swift in Sources */,
-				D201A1B9214B4D6A009D14BC /* TriangleGrid.swift in Sources */,
-				D2DA18102106DA8800EA5EBE /* Cell.swift in Sources */,
-				D27238942143733C006BF452 /* ColoredPolarGrid.swift in Sources */,
-				D2DA180A21050F5800EA5EBE /* Image.swift in Sources */,
-				290D3C6F211BDC300032DA6D /* MaskedGrid.swift in Sources */,
-				D28CA62121080D2E00D466BC /* Distances.swift in Sources */,
-				D22B3F9E2150A08200E8FB06 /* MazeHelper.swift in Sources */,
-				D22B3FA22150A0DA00E8FB06 /* HexagonalMazeHelper.swift in Sources */,
-				D2759DDA213F79ED00C7FB65 /* PolarCell.swift in Sources */,
-				D2C7FB6A210AC2DA00386F74 /* Wilsons.swift in Sources */,
-				D2B345732144C3BE0034E71A /* RectCell.swift in Sources */,
-				D201A1BB214B4F9D009D14BC /* ColoredTriangleGrid.swift in Sources */,
-				D21DA624212BADAB0007FF2D /* PolarGrid.swift in Sources */,
-				D22B3FA02150A0AD00E8FB06 /* CircularMazeHelper.swift in Sources */,
-				D201A1AD214B0227009D14BC /* HexGrid.swift in Sources */,
-				D28AA1EE210E301300898B17 /* RecursiveBacktracker.swift in Sources */,
-				D2DA18112106DA8800EA5EBE /* Grid.swift in Sources */,
-				D2DA180F2106DA8800EA5EBE /* BinaryTree.swift in Sources */,
-				D201A1AB214B003A009D14BC /* HexCell.swift in Sources */,
-				D28CA6232108182900D466BC /* DistanceGrid.swift in Sources */,
-				D201A1BD214C4DF8009D14BC /* PyramidGrid.swift in Sources */,
-				D28AA1EC210C035400898B17 /* HuntAndKill.swift in Sources */,
-				D2DA18122106DA8800EA5EBE /* Sidewinder.swift in Sources */,
-				29810C15211A9BEF004AD81C /* Mask.swift in Sources */,
-				D22B3F9A21508AA800E8FB06 /* Random.swift in Sources */,
-				D22B3FA42150A10000E8FB06 /* TriangularMazeHelper.swift in Sources */,
+				D22B400C2151ECB900E8FB06 /* HexGrid.swift in Sources */,
+				D22B40072151ECB900E8FB06 /* HexCell.swift in Sources */,
+				D22B3FFA2151ECB900E8FB06 /* Sidewinder.swift in Sources */,
+				D22B40142151ECB900E8FB06 /* ColoredPyramidGrid.swift in Sources */,
+				D22B40022151ECB900E8FB06 /* Random.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D22B3FF42151EC4100E8FB06 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D22B3FAC2151E79700E8FB06 /* Maze */;
+			targetProxy = D22B3FF32151EC4100E8FB06 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D22B3FC12151E7D400E8FB06 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D22B3FC22151E7D400E8FB06 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D22B3FC62151E7D800E8FB06 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D22B3FC72151E7D800E8FB06 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		D22B3FB32151E79800E8FB06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = maze/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tury.shared.Maze;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		D22B3FB42151E79800E8FB06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = maze/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tury.shared.Maze;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D22B3FCB2151E7D800E8FB06 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U5K2PCXQE4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Amaze/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tury.Amaze;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D22B3FCC2151E7D800E8FB06 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U5K2PCXQE4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Amaze/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tury.Amaze;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		D238C7F52103CD9600909855 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -391,11 +789,12 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = U5K2PCXQE4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				SYMROOT = ./build;
 			};
 			name = Debug;
 		};
@@ -404,17 +803,36 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = U5K2PCXQE4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				SYMROOT = ./build;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D22B3FB22151E79800E8FB06 /* Build configuration list for PBXNativeTarget "Maze" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D22B3FB32151E79800E8FB06 /* Debug */,
+				D22B3FB42151E79800E8FB06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D22B3FCA2151E7D800E8FB06 /* Build configuration list for PBXNativeTarget "Amaze" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D22B3FCB2151E7D800E8FB06 /* Debug */,
+				D22B3FCC2151E7D800E8FB06 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D238C7EB2103CD9500909855 /* Build configuration list for PBXProject "Mazes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

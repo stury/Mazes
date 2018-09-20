@@ -8,22 +8,22 @@
 
 import Foundation
 
-class PyramidMazeHelper : MazeHelper {
+public class PyramidMazeHelper : MazeHelper {
     
-    override init() {
+    public override init() {
         super.init()
         imageNamePrefix = "pyramid_"
     }
     
-    override func getGrid( _ size: (Int, Int)) -> Grid {
+    public override func getGrid( _ size: (Int, Int)) -> Grid {
         return PyramidGrid(rows: size.0, columns: size.1)
     }
     
-    override func getColoredGrid( _ size: (Int, Int)) -> Grid {
+    public override func getColoredGrid( _ size: (Int, Int)) -> Grid {
         return ColoredPyramidGrid(rows: size.0, columns: size.1)
     }
     
-    override func startCell( _ grid: Grid ) -> Cell? {
+    public override func startCell( _ grid: Grid ) -> Cell? {
         // For a pyramid, this should be the middle of the pyramid.  rows/2. col = rows
         let row = grid.rows/2
         let cells = grid.grid[row]
@@ -31,7 +31,7 @@ class PyramidMazeHelper : MazeHelper {
         return grid[(row,col)]
     }
     
-    override var mazes:[Mazes] {
+    public override var mazes:[Mazes] {
         get {
             var mazes = Mazes.agnosticMazes
             if let index = mazes.index(of: .binaryTree) {

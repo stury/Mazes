@@ -222,7 +222,6 @@ public extension Mask {
                 result = Mask.from(image)
             }
         }
-
         return result
     }
 

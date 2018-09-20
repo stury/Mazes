@@ -34,7 +34,7 @@ extension ColoredGridMode {
     //static var allCases: Self.AllCases
     #if swift(>=4.2)
     #else
-    static var allCases : [ColoredGridMode]  {
+    public static var allCases : [ColoredGridMode]  {
         get {
             return [.red, .green, .blue, .yellow, .cyan, .magenta, .gray]
         }
