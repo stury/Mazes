@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Maze
+import MazeKit
 
 class DetailViewController: UIViewController {
 
@@ -54,7 +54,19 @@ class DetailViewController: UIViewController {
 
     @IBAction func onAction(_ sender: UIBarButtonItem) {
         // Open up the Action sheet, with the Image in the list of what you want to share.
+        let activityVC = UIActivityViewController(activityItems: [imageView.image], applicationActivities: nil)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            //On iPad, you must present the view controller in a popover.
+            activityVC.modalPresentationStyle = .popover
+        }
+        else if UIDevice.current.userInterfaceIdiom == .phone {
+            // On iPhone and iPod touch, you must present it modally.
+            activityVC.modalPresentationStyle = .formSheet //.currentContext
+        }
         
+        self.present(activityVC, animated: true) {
+            print("Presented VC!")
+        }
     }
     
     @IBAction func onRefresh(_ sender: UIBarButtonItem) {

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 #if swift(>=4.2)
 public enum ColoredGridMode : String, CaseIterable {

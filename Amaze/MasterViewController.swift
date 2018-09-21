@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Maze
+import MazeKit
 
 struct AvailableMaze : Codable {
     let type : String
