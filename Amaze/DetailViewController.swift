@@ -61,7 +61,7 @@ class DetailViewController: UIViewController {
         }
         else if UIDevice.current.userInterfaceIdiom == .phone {
             // On iPhone and iPod touch, you must present it modally.
-            activityVC.modalPresentationStyle = .formSheet //.currentContext
+            activityVC.modalPresentationStyle = .overCurrentContext //.currentContext
         }
         
         self.present(activityVC, animated: true) {
