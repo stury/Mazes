@@ -9,9 +9,9 @@
 import Foundation
 
 public class ColoredPolarGrid : PolarGrid, ColoredGrid {
-    var mode : ColoredGridMode = .green
-    var maximum : Int = 0
-    var distances : Distances? {
+    public var mode : ColoredGridMode = .green
+    public var maximum : Int = 0
+    public var distances : Distances? {
         didSet {
             if let distances = distances {
                 (_, distance: maximum) = distances.max()

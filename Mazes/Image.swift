@@ -180,15 +180,15 @@ public extension Image {
                         
                         // f/n = far/near
                         // n/s/e/w = north/south/east/west
-                        let x_fw = Int(cx - size)
-                        let x_nw = Int(cx - aSize)
-                        let x_ne = Int(cx + aSize)
-                        let x_fe = Int(cx + size)
+                        let x_fw = CGFloat(cx - size)
+                        let x_nw = CGFloat(cx - aSize)
+                        let x_ne = CGFloat(cx + aSize)
+                        let x_fe = CGFloat(cx + size)
                         
                         // m = middle
-                        let y_n = Int(cy - bSize)
-                        let y_m = Int(cy)
-                        let y_s = Int(cy + bSize)
+                        let y_n = CGFloat(cy - bSize)
+                        let y_m = CGFloat(cy)
+                        let y_s = CGFloat(cy + bSize)
                         
                         switch( mode ) {
                             
@@ -442,19 +442,19 @@ public extension Image {
                         let cx = halfWidth + col * halfWidth
                         let cy = halfHeight + row * height
                         
-                        let west_x = Int(cx - halfWidth)
-                        let mid_x = Int(cx)
-                        let east_x = Int(cx + halfWidth)
+                        let west_x = CGFloat(cx - halfWidth)
+                        let mid_x = CGFloat(cx)
+                        let east_x = CGFloat(cx + halfWidth)
                         
-                        var apex_y : Int
-                        var base_y : Int
+                        var apex_y : CGFloat
+                        var base_y : CGFloat
                         if cell.upright {
-                            apex_y = Int(cy - halfHeight)
-                            base_y = Int(cy + halfHeight)
+                            apex_y = CGFloat(cy - halfHeight)
+                            base_y = CGFloat(cy + halfHeight)
                         }
                         else {
-                            apex_y = Int(cy + halfHeight)
-                            base_y = Int(cy - halfHeight)
+                            apex_y = CGFloat(cy + halfHeight)
+                            base_y = CGFloat(cy - halfHeight)
                         }
                         
                         switch( mode ) {

@@ -94,6 +94,9 @@
 		D22B40462151F80900E8FB06 /* RecursiveBacktracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */; };
 		D22C730321549478007CB6B4 /* MazeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D22B3FAD2151E79700E8FB06 /* MazeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D238C7F42103CD9600909855 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238C7F32103CD9600909855 /* main.swift */; };
+		D23933E62157FA7300920688 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23933E52157FA7300920688 /* SettingsViewController.swift */; };
+		D27CE56D215B21D10029514A /* MazeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27CE56C215B21D10029514A /* MazeSettings.swift */; };
+		D27CE56F215B227B0029514A /* ColoredPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27CE56E215B227B0029514A /* ColoredPickerDataSource.swift */; };
 		D2D642382153369600949CB5 /* ChooseMazeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D642372153369600949CB5 /* ChooseMazeCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -167,8 +170,11 @@
 		D22B401F2151F04400E8FB06 /* Mazes.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Mazes.plist; sourceTree = "<group>"; };
 		D238C7F02103CD9600909855 /* Mazes */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Mazes; sourceTree = BUILT_PRODUCTS_DIR; };
 		D238C7F32103CD9600909855 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		D23933E52157FA7300920688 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D27238932143733C006BF452 /* ColoredPolarGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPolarGrid.swift; sourceTree = "<group>"; };
 		D2759DD9213F79ED00C7FB65 /* PolarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarCell.swift; sourceTree = "<group>"; };
+		D27CE56C215B21D10029514A /* MazeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeSettings.swift; sourceTree = "<group>"; };
+		D27CE56E215B227B0029514A /* ColoredPickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPickerDataSource.swift; sourceTree = "<group>"; };
 		D28AA1EB210C035400898B17 /* HuntAndKill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntAndKill.swift; sourceTree = "<group>"; };
 		D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveBacktracker.swift; sourceTree = "<group>"; };
 		D28CA62021080D2E00D466BC /* Distances.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distances.swift; sourceTree = "<group>"; };
@@ -228,6 +234,9 @@
 				D2D642372153369600949CB5 /* ChooseMazeCell.swift */,
 				D22B3FBD2151E7D400E8FB06 /* MasterViewController.swift */,
 				D22B3FBF2151E7D400E8FB06 /* DetailViewController.swift */,
+				D27CE56C215B21D10029514A /* MazeSettings.swift */,
+				D27CE56E215B227B0029514A /* ColoredPickerDataSource.swift */,
+				D23933E52157FA7300920688 /* SettingsViewController.swift */,
 				D22B3FC12151E7D400E8FB06 /* Main.storyboard */,
 				D22B3FC42151E7D800E8FB06 /* Assets.xcassets */,
 				D22B3FC62151E7D800E8FB06 /* LaunchScreen.storyboard */,
@@ -501,7 +510,10 @@
 				D22B3FC02151E7D400E8FB06 /* DetailViewController.swift in Sources */,
 				D22B3FBE2151E7D400E8FB06 /* MasterViewController.swift in Sources */,
 				D2D642382153369600949CB5 /* ChooseMazeCell.swift in Sources */,
+				D23933E62157FA7300920688 /* SettingsViewController.swift in Sources */,
+				D27CE56F215B227B0029514A /* ColoredPickerDataSource.swift in Sources */,
 				D22B3FBC2151E7D400E8FB06 /* AppDelegate.swift in Sources */,
+				D27CE56D215B21D10029514A /* MazeSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -664,6 +676,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tury.Amaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 4.0;
@@ -689,6 +702,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tury.Amaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 4.0;

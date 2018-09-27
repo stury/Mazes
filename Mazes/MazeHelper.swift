@@ -86,14 +86,14 @@ public class MazeHelper {
     }
     
     /// generates a quick maze using hte RecursizeBacktracker algorithm.
-    public func generateMaze(_ size: Int ) -> Image? {
+    public func generateMaze(_ size: Int ) -> Grid? {
         let grid = getColoredGrid(size)
         RecursiveBacktracker.on(grid: grid)
         
         var coloredGrid = grid as? ColoredGrid
-//        if coloredGrid != nil {
-//            coloredGrid?.mode = color[index%color.count]
-//        }
+        //        if coloredGrid != nil {
+        //            coloredGrid?.mode = color[index%color.count]
+        //        }
         
         if let startCell = startCell( grid ) {
             if coloredGrid != nil {
@@ -101,8 +101,19 @@ public class MazeHelper {
             }
         }
         
-        return image( for: grid)
+        return grid
     }
+
+    /// generates a quick maze using hte RecursizeBacktracker algorithm.
+    public func generateMaze(_ size: Int ) -> Image? {
+        var result : Image? = nil
+        let grid = generateMaze(size) as Grid?
+        if let grid = grid {
+            result = image( for: grid)
+        }
+        return result
+    }
+
 
     /// generates a quick maze using hte RecursizeBacktracker algorithm.
     public func generateMaze(_ size: Int, name: String ) {

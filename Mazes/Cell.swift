@@ -54,7 +54,7 @@ public class Cell : Equatable, CustomStringConvertible, Hashable {
         return [Cell]()
     }
     
-    func distances() -> Distances {
+    public func distances() -> Distances {
         let result = Distances(root: self)
         
         var frontier : [Cell] = [self]

@@ -43,7 +43,7 @@ extension ColoredGridMode {
     #endif
 }
 
-protocol ColoredGrid {
+public protocol ColoredGrid {
     var mode : ColoredGridMode { get set}
     var maximum : Int { get set}
     var distances : Distances? {get set}
@@ -84,9 +84,9 @@ extension ColoredGrid {
 }
 
 public class ColoredRectGrid : DistanceGrid, ColoredGrid {
-    var mode : ColoredGridMode = .green
-    var maximum : Int = 0
-    override var distances : Distances? {
+    public var mode : ColoredGridMode = .green
+    public var maximum : Int = 0
+    public override var distances : Distances? {
         didSet {
             if let distances = distances {
                 (_, distance: maximum) = distances.max()
