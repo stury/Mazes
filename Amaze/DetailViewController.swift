@@ -9,7 +9,7 @@
 import UIKit
 import MazeKit
 
-class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsViewControllerDelegate {
+class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsViewControllerDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var refresh : UIBarButtonItem!
     @IBOutlet weak var action : UIBarButtonItem!
@@ -17,6 +17,8 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var scrollView : UIScrollView!
 
+    var rotationRecognizer : UIRotationGestureRecognizer?
+    
     var settings : MazeSettings = MazeSettings()
     
     /// Store a MazeHelper object, which allows us to generate the type of mazes the user selected.
@@ -95,6 +97,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
         // Do any additional setup after loading the view, typically from a nib.
 //        scrollView.delegate = self
         scrollView.autoresizesSubviews = true
+        imageView.translatesAutoresizingMaskIntoConstraints = true
+        rotationRecognizer = UIRotationGestureRecognizer(target: self, action: #selector(DetailViewController.handleRotate(_:)))
+        if let rotationRecognizer = rotationRecognizer {
+            rotationRecognizer.delegate = self
+            scrollView.addGestureRecognizer(rotationRecognizer)
+        }
+        
         configureView()
     }
 
@@ -147,19 +156,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-    
-//    func scrollViewDidZoom(_ scrollView: UIScrollView) {
-////        print( "scrollView = \(scrollView), zoomScale = \(scrollView.zoomScale)" )
-////        if let imageView = imageView {
-////            if let image = imageView.image {
-////                let zoom = scrollView.zoomScale
-//////                imageView.frame = CGRect(x: 0, y: 0, width: image.size.width*zoom, height: image.size.height*zoom)
-////
-////            }
-////        }
-//
-//    }
-    
+        
     func updatedSettings(_ settings: MazeSettings) {
         // Need to comparte the settings given to me with what I have already.
         // If they've changed a lot, I need to re-render the image.
@@ -186,5 +183,16 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
 
     }
 
+    // MARK: Rotation support
+    
+    @IBAction @objc func handleRotate(_ recognizer : UIRotationGestureRecognizer ) {
+        recognizer.view?.transform = CGAffineTransform.init(rotationAngle: recognizer.rotation)
+        //recognizer.rotation = 0
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+    
 }
 
