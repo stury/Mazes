@@ -61,7 +61,8 @@ public struct MazeSettings : Equatable, Codable {
             lhs.cols == rhs.cols &&
             lhs.braided == rhs.braided &&
             lhs.useColor == rhs.useColor &&
-            lhs.showSolution == rhs.showSolution {
+            lhs.showSolution == rhs.showSolution &&
+            lhs.algorithm == rhs.algorithm {
             result = true
         }
         
