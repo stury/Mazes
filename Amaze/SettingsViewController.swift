@@ -24,7 +24,10 @@ class SettingsViewController : UIViewController {
     @IBOutlet var showSolution : UISwitch!
     @IBOutlet var colorPicker : UIPickerView!
     
+    @IBOutlet var algorithmPicker : UIPickerView!
+    
     let colorPickerDataSource : ColorPickerDataSource = ColorPickerDataSource()
+    let algorithmPickerDataSource : AlgorithmPickerDataSource = AlgorithmPickerDataSource()
     
     var settings : MazeSettings?
     var delegate : SettingsViewControllerDelegate?
@@ -35,6 +38,10 @@ class SettingsViewController : UIViewController {
         // setup the colorPicker!
         colorPicker.dataSource = colorPickerDataSource
         colorPicker.delegate = colorPickerDataSource
+        
+        // setup algorithmDataPicker
+        algorithmPicker.dataSource = algorithmPickerDataSource
+        algorithmPicker.delegate = algorithmPickerDataSource
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,10 +61,22 @@ class SettingsViewController : UIViewController {
         }
     }
     
+    func sizeLabelText() -> String {
+        var result = ""
+        
+        if settings?.supportColumns ?? true {
+            result = "\(Int(height.value))x\(Int(width.value))"
+        }
+        else {
+            result = "\(Int(height.value))"
+        }
+        return result
+    }
+    
     @IBAction func sliderChangedValue() {
         // Slider changed value, so update the text to display!
         if let sizeLabel = sizeLabel {
-            sizeLabel.text = "\(Int(height.value))x\(Int(width.value))"
+            sizeLabel.text = sizeLabelText()
         }
     }
     
@@ -77,6 +96,7 @@ class SettingsViewController : UIViewController {
             result.showSolution = showSolution.isOn
         }
         result.color = selectedColor()
+        result.algorithm = selectedAlgorithm()
         
         return result
     }
@@ -90,9 +110,12 @@ class SettingsViewController : UIViewController {
         }
         if let width = width {
             width.setValue(Float(settings.cols), animated: true)
+            if settings.supportColumns == false {
+                width.isEnabled = false
+            }
         }
         if let sizeLabel = sizeLabel {
-            sizeLabel.text = "\(Int(height.value))x\(Int(width.value))"
+            sizeLabel.text = sizeLabelText()
         }
         if let useColor = useColor {
             useColor.isOn = settings.useColor
@@ -101,6 +124,7 @@ class SettingsViewController : UIViewController {
             showSolution.isOn = settings.showSolution
         }
         selectColor(settings.color)
+        selectAlgorithm(settings.algorithm)
     }
     
     func selectColor(_ color: String ) {
@@ -132,6 +156,36 @@ class SettingsViewController : UIViewController {
         
         return result
     }
+
+    func selectAlgorithm(_ algorithm: String ) {
+        if let algorithmPicker = algorithmPicker {
+            
+            let maxRows = algorithmPicker.numberOfRows(inComponent: 0)
+            var row = 0
+            var found = false
+            while !found && row < maxRows {
+                let foundString = algorithmPickerDataSource.pickerView(algorithmPicker, titleForRow: row, forComponent: 0)
+                if foundString == algorithm {
+                    found = true
+                    algorithmPicker.selectRow(row, inComponent: 0, animated: true)
+                }
+                row = row+1
+            }
+        }
+    }
     
+    func selectedAlgorithm( ) -> String {
+        var result = ""
+        
+        if let algorithmPicker = algorithmPicker {
+            let selectedRow = algorithmPicker.selectedRow(inComponent: 0)
+            if let title = algorithmPickerDataSource.pickerView(algorithmPicker, titleForRow: selectedRow, forComponent: 0) {
+                result = title
+            }
+        }
+        
+        return result
+    }
+
 }
 

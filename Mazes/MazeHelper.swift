@@ -17,6 +17,12 @@ public class MazeHelper {
     
     public var braided: Bool = false
     
+    public var supportsColumns : Bool {
+        get {
+            return true
+        }
+    }
+    
     public init() {
     }
     
@@ -85,10 +91,10 @@ public class MazeHelper {
         image( for: grid, name: name)
     }
     
-    /// generates a quick maze using hte RecursizeBacktracker algorithm.
-    public func generateMaze(_ size: Int ) -> Grid? {
+    /// generates a quick maze using the specified Mazes algorithm specified.
+    public func generateMaze(_ maze: Mazes, _ size: (Int, Int) ) -> Grid? {
         let grid = getColoredGrid(size)
-        RecursiveBacktracker.on(grid: grid)
+        Mazes.factory(maze, grid: grid)
         
         var coloredGrid = grid as? ColoredGrid
         //        if coloredGrid != nil {
@@ -102,6 +108,11 @@ public class MazeHelper {
         }
         
         return grid
+    }
+
+    /// generates a quick maze using the RecursizeBacktracker algorithm.
+    public func generateMaze(_ size: Int ) -> Grid? {
+        return generateMaze(.recursiveBacktracker, (size, size))
     }
 
     /// generates a quick maze using hte RecursizeBacktracker algorithm.

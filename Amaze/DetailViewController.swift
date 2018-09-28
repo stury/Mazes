@@ -17,6 +17,8 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var scrollView : UIScrollView!
 
+    @IBOutlet weak var activityIndicator : UIActivityIndicatorView!
+    
     var rotationRecognizer : UIRotationGestureRecognizer?
     
     var settings : MazeSettings = MazeSettings()
@@ -78,16 +80,19 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
             coloredGrid?.distances = nil
         }
         if let image = helper?.image(for: grid) {
-            showImage(image)
+            DispatchQueue.main.async { [weak self] in
+                if let activityIndicator = self?.activityIndicator {
+                    activityIndicator.stopAnimating()
+                }
+                self?.showImage(image)
+            }
         }
     }
     
     func configureView() {
         if let helper = helper {
-            grid = helper.generateMaze(settings.rows) as Grid?
-            if let grid = grid {
-                showImage(grid)
-            }
+            settings.supportColumns = helper.supportsColumns
+            asyncGenerateMaze()
         }
         
     }
@@ -156,20 +161,35 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
-        
+    
+    func asyncGenerateMaze() {
+        if let activityIndicator = activityIndicator {
+            activityIndicator.startAnimating()
+        }
+        if let imageView = imageView {
+            imageView.image = nil
+        }
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            if let strongSelf = self, let helper = strongSelf.helper  {
+                strongSelf.grid = helper.generateMaze(strongSelf.settings.algorithmMaze(), (strongSelf.settings.rows, strongSelf.settings.cols))
+                if let grid = strongSelf.grid {
+                    strongSelf.showImage(grid)
+                }
+            }
+        }
+    }
+    
     func updatedSettings(_ settings: MazeSettings) {
         // Need to comparte the settings given to me with what I have already.
         // If they've changed a lot, I need to re-render the image.
         
         print( "updatedSettings(\(settings))" )
         
-        if let gridRows = grid?.rows, let helper = helper {
-            if settings.rows != gridRows {
+        if let gridRows = grid?.rows {
+            if settings.rows != gridRows ||
+                settings.algorithm != self.settings.algorithm {
                 self.settings = settings
-                grid = helper.generateMaze(settings.rows) as Grid?
-                if let grid = grid {
-                    showImage(grid)
-                }
+                asyncGenerateMaze()
             }
             else {
                 self.settings = settings

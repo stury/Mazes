@@ -17,6 +17,12 @@ public struct MazeSettings : Equatable, Codable {
     public var cols : Int
     public var showSolution : Bool
     public var braided : Bool
+
+    /// human readable algorithm to use when generating the maze.
+    public var algorithm : String
+
+    // Setting to say if a type of maze supports a designated Column variable
+    public var supportColumns: Bool
     
     /// Method to translate the underlying String into a ColoredGridMode value.
     func colorMode() -> ColoredGridMode {
@@ -27,13 +33,23 @@ public struct MazeSettings : Equatable, Codable {
         return result
     }
     
+    func algorithmMaze() -> Mazes {
+        var result : Mazes = .recursiveBacktracker
+        if let mode = Mazes(rawValue: algorithm) {
+            result = mode
+        }
+        return result
+    }
+    
     init() {
         useColor = true
-        color = "green"
+        color = ColoredGridMode.green.rawValue
         rows = 20
         cols = 20
         showSolution = false
         braided = false
+        algorithm = Mazes.recursiveBacktracker.rawValue
+        supportColumns = true
     }
     
     // MARK:  Equatable
