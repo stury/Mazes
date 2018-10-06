@@ -97,6 +97,8 @@
 		D23933E62157FA7300920688 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23933E52157FA7300920688 /* SettingsViewController.swift */; };
 		D27CE56D215B21D10029514A /* MazeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27CE56C215B21D10029514A /* MazeSettings.swift */; };
 		D2A66C5E216847D400EA8DFC /* SimplePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5D216847D400EA8DFC /* SimplePickerDataSource.swift */; };
+		D2A66C602168560800EA8DFC /* ColoredMaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5F2168560800EA8DFC /* ColoredMaskedGrid.swift */; };
+		D2A66C612168592A00EA8DFC /* ColoredMaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5F2168560800EA8DFC /* ColoredMaskedGrid.swift */; };
 		D2D642382153369600949CB5 /* ChooseMazeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D642372153369600949CB5 /* ChooseMazeCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +181,7 @@
 		D28CA62021080D2E00D466BC /* Distances.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distances.swift; sourceTree = "<group>"; };
 		D28CA6222108182900D466BC /* DistanceGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceGrid.swift; sourceTree = "<group>"; };
 		D2A66C5D216847D400EA8DFC /* SimplePickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePickerDataSource.swift; sourceTree = "<group>"; };
+		D2A66C5F2168560800EA8DFC /* ColoredMaskedGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredMaskedGrid.swift; sourceTree = "<group>"; };
 		D2B345722144C3BE0034E71A /* RectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectCell.swift; sourceTree = "<group>"; };
 		D2C7FB67210ABCE500386F74 /* AldousBroder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AldousBroder.swift; sourceTree = "<group>"; };
 		D2C7FB69210AC2DA00386F74 /* Wilsons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wilsons.swift; sourceTree = "<group>"; };
@@ -298,6 +301,7 @@
 				D28CA6222108182900D466BC /* DistanceGrid.swift */,
 				D2FC7B20210967C700E40F7A /* ColoredGrid.swift */,
 				290D3C6E211BDC300032DA6D /* MaskedGrid.swift */,
+				D2A66C5F2168560800EA8DFC /* ColoredMaskedGrid.swift */,
 				D21DA623212BADAB0007FF2D /* PolarGrid.swift */,
 				D27238932143733C006BF452 /* ColoredPolarGrid.swift */,
 				D201A1AC214B0227009D14BC /* HexGrid.swift */,
@@ -479,6 +483,7 @@
 				D22B403C2151F80900E8FB06 /* ColoredPyramidGrid.swift in Sources */,
 				D22B40272151F80900E8FB06 /* RectCell.swift in Sources */,
 				D22B40342151F80900E8FB06 /* MaskedGrid.swift in Sources */,
+				D2A66C612168592A00EA8DFC /* ColoredMaskedGrid.swift in Sources */,
 				D22B40292151F80900E8FB06 /* HexCell.swift in Sources */,
 				D22B403F2151F80900E8FB06 /* Mask.swift in Sources */,
 				D22B402D2151F80900E8FB06 /* Image.swift in Sources */,
@@ -552,6 +557,7 @@
 				D22B40132151ECB900E8FB06 /* ColoredHexGrid.swift in Sources */,
 				D22B401C2151ECB900E8FB06 /* RecursiveBacktracker.swift in Sources */,
 				D22B400E2151ECB900E8FB06 /* ColoredPolarGrid.swift in Sources */,
+				D2A66C602168560800EA8DFC /* ColoredMaskedGrid.swift in Sources */,
 				D22B40182151ECB900E8FB06 /* Mask.swift in Sources */,
 				D22B400A2151ECB900E8FB06 /* Image.swift in Sources */,
 				D22B40112151ECB900E8FB06 /* TriangleGrid.swift in Sources */,

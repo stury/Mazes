@@ -25,6 +25,12 @@ public class Mask {
         self.bits = [[Bool]].init(repeating: row, count: rows)
     }
 
+    public func maskCells( _ locations: [(Int, Int)] ) {
+        for item in locations {
+            self[item] = false
+        }
+    }
+    
     public subscript(_ location: (Int, Int)) -> Bool {
         get {
             var result : Bool = false

@@ -9,8 +9,8 @@
 import Foundation
 
 
-func image( for grid: Grid, name: String = "maze" ) {
-    if let image = grid.image(cellSize: 40) {
+func image( for grid: Grid, name: String = "maze", cellSize : Int = 40 ) {
+    if let image = grid.image(cellSize: cellSize) {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
             image.output(documentURL)
@@ -148,7 +148,44 @@ func generateMazes(_ helpers:[MazeHelper]) {
         mazeHelper.generateMazesSolutions(mazeHelper.mazes, maxes: [6])
     }
 }
+// 20 for smaller cells.  12 for cellsSize  80
+func appIcon(_ max: Int = 12) {
+    let mask = Mask(rows: max, columns: max)
+   
+    // remove all corners
+    if max > 2 {
+        if max <= 5 {
+            mask.maskCells([(0,0), (0,max-1), (max-1,max-1), (max-1,0)])
+        }
+        else { //if max <= 10 {
+            mask.maskCells([(0,0), (0,max-1), (max-1,max-1), (max-1,0),
+                            (0,1), (1, 0),
+                            (0,max-2), (1,max-1),
+                            (max-2,max-1), (max-1,max-2),
+                            (max-1,1), (max-2,0) ])
+        }
+    }
+    
+    let grid = ColoredMaskedGrid(mask)
+    RecursiveBacktracker.on(grid: grid)
+    
+    if let startCell = grid[(max/2, max/2)] {
+        grid.distances = startCell.distances()
+    }
+    
+    print( grid )
+    image(for: grid, name: "appIcon", cellSize: 80 )
+}
 
+func tableViewMazeIcons() {
+    let helpers = MazeHelper.allHelpers { (helper) in
+        //    helper.braided = true
+        helper.mazeSize = 5
+    }
+    for mazeHelper in helpers {
+        mazeHelper.generateMazes(mazeHelper.mazes, maxes: [1])
+    }
+}
 
 // Generate ALL Mazes!
 // generateMazes(MazeGeneratorHelper.allHelpers)
@@ -160,10 +197,13 @@ func generateMazes(_ helpers:[MazeHelper]) {
 //}
 //generateMazes(helpers)
 
-let helpers = MazeHelper.allHelpers { (helper) in
-//    helper.braided = true
-    helper.mazeSize = 5
-}
-for mazeHelper in helpers {
-    mazeHelper.generateMazes(mazeHelper.mazes, maxes: [1])
-}
+//let helpers = MazeHelper.allHelpers { (helper) in
+//    //    helper.braided = true
+//    helper.mazeSize = 5
+//}
+//for mazeHelper in helpers {
+//    mazeHelper.generateMazes(mazeHelper.mazes, maxes: [1])
+//}
+
+appIcon(12)
+
