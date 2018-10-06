@@ -59,6 +59,31 @@ public static var allCases : [Mazes]  {
     }
 #endif
 
+    public static var rawArray : [String] {
+        get {
+            var result = [String]()
+            
+            for item in allCases {
+                result.append(item.rawValue)
+            }
+            
+            return result
+        }
+    }
+
+    public static var loclizedRawArray : [String] {
+        get {
+            var result = [String]()
+            
+            for item in rawArray {
+                result.append(NSLocalizedString(item, comment: ""))
+            }
+            
+            return result
+        }
+    }
+
+    
     /// Maze algorithms that are not relyant on a particular cell type.
     public static var agnosticMazes : [Mazes] {
         get{

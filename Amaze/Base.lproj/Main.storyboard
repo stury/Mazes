@@ -111,7 +111,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="2" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="15F-cs-vv0">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="5" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="15F-cs-vv0">
                                 <rect key="frame" x="83" y="150" width="278" height="32"/>
                                 <connections>
                                     <action selector="sliderChangedValue" destination="1As-jD-5UG" eventType="valueChanged" id="d0E-dR-nkB"/>
@@ -129,7 +129,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="2" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="zPn-p7-aWw">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="5" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zPn-p7-aWw">
                                 <rect key="frame" x="78" y="194" width="283" height="31"/>
                                 <connections>
                                     <action selector="sliderChangedValue" destination="1As-jD-5UG" eventType="valueChanged" id="QJE-bG-ZTK"/>
@@ -261,6 +261,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="viB-s9-cwe">
+                            <rect key="frame" x="0.0" y="148" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="Cell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="120" id="kef-JQ-oa8" userLabel="Cell" customClass="ChooseMazeCell" customModule="Amaze" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>

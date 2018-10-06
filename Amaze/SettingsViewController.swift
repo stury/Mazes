@@ -26,11 +26,18 @@ class SettingsViewController : UIViewController {
     
     @IBOutlet var algorithmPicker : UIPickerView!
     
-    let colorPickerDataSource : ColorPickerDataSource = ColorPickerDataSource()
-    let algorithmPickerDataSource : AlgorithmPickerDataSource = AlgorithmPickerDataSource()
+    let colorPickerDataSource : SimplePickerDataSource<String>
+    let algorithmPickerDataSource : SimplePickerDataSource<String>
     
     var settings : MazeSettings?
     var delegate : SettingsViewControllerDelegate?
+        
+    required init?(coder aDecoder: NSCoder) {
+        colorPickerDataSource = SimplePickerDataSource<String>(ColoredGridMode.rawArray)
+        algorithmPickerDataSource = SimplePickerDataSource<String>(Mazes.rawArray)
+        
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

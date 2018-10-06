@@ -96,8 +96,7 @@
 		D238C7F42103CD9600909855 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238C7F32103CD9600909855 /* main.swift */; };
 		D23933E62157FA7300920688 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23933E52157FA7300920688 /* SettingsViewController.swift */; };
 		D27CE56D215B21D10029514A /* MazeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27CE56C215B21D10029514A /* MazeSettings.swift */; };
-		D27CE56F215B227B0029514A /* ColoredPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27CE56E215B227B0029514A /* ColoredPickerDataSource.swift */; };
-		D2CB7455215DCC640028B9BF /* AlgorithmPickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CB7454215DCC640028B9BF /* AlgorithmPickerDataSource.swift */; };
+		D2A66C5E216847D400EA8DFC /* SimplePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5D216847D400EA8DFC /* SimplePickerDataSource.swift */; };
 		D2D642382153369600949CB5 /* ChooseMazeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D642372153369600949CB5 /* ChooseMazeCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -175,15 +174,14 @@
 		D27238932143733C006BF452 /* ColoredPolarGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPolarGrid.swift; sourceTree = "<group>"; };
 		D2759DD9213F79ED00C7FB65 /* PolarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarCell.swift; sourceTree = "<group>"; };
 		D27CE56C215B21D10029514A /* MazeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeSettings.swift; sourceTree = "<group>"; };
-		D27CE56E215B227B0029514A /* ColoredPickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPickerDataSource.swift; sourceTree = "<group>"; };
 		D28AA1EB210C035400898B17 /* HuntAndKill.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HuntAndKill.swift; sourceTree = "<group>"; };
 		D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecursiveBacktracker.swift; sourceTree = "<group>"; };
 		D28CA62021080D2E00D466BC /* Distances.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Distances.swift; sourceTree = "<group>"; };
 		D28CA6222108182900D466BC /* DistanceGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DistanceGrid.swift; sourceTree = "<group>"; };
+		D2A66C5D216847D400EA8DFC /* SimplePickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimplePickerDataSource.swift; sourceTree = "<group>"; };
 		D2B345722144C3BE0034E71A /* RectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectCell.swift; sourceTree = "<group>"; };
 		D2C7FB67210ABCE500386F74 /* AldousBroder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AldousBroder.swift; sourceTree = "<group>"; };
 		D2C7FB69210AC2DA00386F74 /* Wilsons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wilsons.swift; sourceTree = "<group>"; };
-		D2CB7454215DCC640028B9BF /* AlgorithmPickerDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgorithmPickerDataSource.swift; sourceTree = "<group>"; };
 		D2D642372153369600949CB5 /* ChooseMazeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMazeCell.swift; sourceTree = "<group>"; };
 		D2DA180921050F5800EA5EBE /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		D2DA180B2106DA8800EA5EBE /* BinaryTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
@@ -237,8 +235,7 @@
 				D22B3FBD2151E7D400E8FB06 /* MasterViewController.swift */,
 				D22B3FBF2151E7D400E8FB06 /* DetailViewController.swift */,
 				D27CE56C215B21D10029514A /* MazeSettings.swift */,
-				D27CE56E215B227B0029514A /* ColoredPickerDataSource.swift */,
-				D2CB7454215DCC640028B9BF /* AlgorithmPickerDataSource.swift */,
+				D2A66C5D216847D400EA8DFC /* SimplePickerDataSource.swift */,
 				D23933E52157FA7300920688 /* SettingsViewController.swift */,
 				D22B3FC12151E7D400E8FB06 /* Main.storyboard */,
 				D22B3FC42151E7D800E8FB06 /* Assets.xcassets */,
@@ -514,10 +511,9 @@
 			files = (
 				D22B3FC02151E7D400E8FB06 /* DetailViewController.swift in Sources */,
 				D22B3FBE2151E7D400E8FB06 /* MasterViewController.swift in Sources */,
-				D2CB7455215DCC640028B9BF /* AlgorithmPickerDataSource.swift in Sources */,
+				D2A66C5E216847D400EA8DFC /* SimplePickerDataSource.swift in Sources */,
 				D2D642382153369600949CB5 /* ChooseMazeCell.swift in Sources */,
 				D23933E62157FA7300920688 /* SettingsViewController.swift in Sources */,
-				D27CE56F215B227B0029514A /* ColoredPickerDataSource.swift in Sources */,
 				D22B3FBC2151E7D400E8FB06 /* AppDelegate.swift in Sources */,
 				D27CE56D215B21D10029514A /* MazeSettings.swift in Sources */,
 			);
