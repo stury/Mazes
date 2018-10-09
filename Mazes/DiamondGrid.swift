@@ -23,19 +23,22 @@ public class DiamondGrid : Grid {
     
     override public init( rows: Int, columns: Int) {
         // maxCalculatedColumns in this case is actually the maximum possible columns in a row...
-        let maxCalculatedColumns : Int
+        
         var correctedRows : Int = rows
-        if rows <= 1 {
+        
+        let maxCalculatedColumns : Int
+        if correctedRows <= 1 {
             maxCalculatedColumns = 1
             correctedRows = 2
         }
         else {
-            maxCalculatedColumns = rows-1
+            if correctedRows.odd {
+                correctedRows += 1
+            }
+            maxCalculatedColumns = correctedRows-1
         }
+        
         // For a diamond maze you MUST have an even number of rows!
-        if correctedRows.odd {
-            correctedRows += 1
-        }
         super.init( rows: correctedRows, columns: maxCalculatedColumns )
     }
     

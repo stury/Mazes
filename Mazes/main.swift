@@ -197,17 +197,21 @@ func tableViewMazeIcons() {
 //}
 //generateMazes(helpers)
 
-//let helpers = MazeHelper.allHelpers { (helper) in
-//    //    helper.braided = true
-//    helper.mazeSize = 5
-//}
-//for mazeHelper in helpers {
-//    mazeHelper.generateMazes(mazeHelper.mazes, maxes: [1])
-//}
+func generateiOSTableViewSamples() {
+    let helpers = MazeHelper.allHelpers { (helper) in
+        //    helper.braided = true
+        helper.mazeSize = 5
+    }
+    for mazeHelper in helpers {
+        mazeHelper.generateMazes(mazeHelper.mazes, maxes: [1])
+    }
+}
 
 //appIcon(8)
 
-generateMazes( [DiamondMazeHelper()] )
+// generateMazes( [DiamondMazeHelper()] )
 //let mazeHelper = DiamondMazeHelper()
 //mazeHelper.generateGrid(20, name: "\(mazeHelper.imageNamePrefix)grid")
 //mazeHelper.generateMaze(20, name: "\(mazeHelper.imageNamePrefix)maze")
+
+generateiOSTableViewSamples()
