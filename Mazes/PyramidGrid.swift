@@ -10,10 +10,10 @@ import Foundation
 
 public class PyramidGrid : Grid {
     
-    override public func image( cellSize: Int ) -> Image? {
+    override public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
         var result : Image? = nil
         
-        let cgImage = Image.cgPyramidImage(for: self, cellSize: cellSize)
+        let cgImage = Image.cgPyramidImage(for: self, cellSize: cellSize, strokeSize: strokeSize)
         if let cgImage = cgImage {
             result = Image.init(cgImage: cgImage)
         }
@@ -71,25 +71,5 @@ public class PyramidGrid : Grid {
             return false
         }
     }
-
-    override public func randomCell() -> Cell? {
-        var result : Cell? = nil
-        
-        let row = random(rows)
-        let cellsInRow = grid[row]
-        let col = random(cellsInRow.count)
-        result = cellsInRow[col]
-        return result
-    }
     
-//    public func randomLocation() -> [Int] {
-//        while true {
-//            let row = random(rows)
-//            let col = random(columns)
-//            if bits[row][col] {
-//                return [row, col]
-//            }
-//        }
-//    }
-
 }

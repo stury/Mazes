@@ -221,7 +221,7 @@ extension MazeHelper {
     /// Static variable where you can get all of the different MazeHelper classes as an array that you can iterate through.
     public static var allHelpers : [MazeHelper] {
         get {
-            return [MazeHelper(), CircularMazeHelper(), HexagonalMazeHelper(), TriangularMazeHelper(), PyramidMazeHelper()]
+            return [MazeHelper(), CircularMazeHelper(), HexagonalMazeHelper(), TriangularMazeHelper(), PyramidMazeHelper(), DiamondMazeHelper()]
         }
     }
     

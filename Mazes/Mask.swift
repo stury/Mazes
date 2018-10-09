@@ -64,12 +64,12 @@ public class Mask {
         }
     }
     
-    public func randomLocation() -> [Int] {
+    public func randomLocation() -> (Int, Int) {
         while true {
             let row = random(rows)
             let col = random(columns)
             if bits[row][col] {
-                return [row, col]
+                return (row, col)
             }
         }
     }

@@ -69,13 +69,16 @@ public class Grid : CustomStringConvertible {
         }
     }
 
-    
     public func randomCell() -> Cell? {
+        var result : Cell? = nil
+        
         let row = random(rows)
-        let col = random(columns)
-        return self[(row, col)]
+        let cellsInRow = grid[row]
+        let col = random(cellsInRow.count)
+        result = cellsInRow[col]
+        return result
     }
-    
+
     public func size() -> Int {
         return rows * columns
     }
@@ -120,10 +123,10 @@ public class Grid : CustomStringConvertible {
         return " "
     }
         
-    public func image( cellSize: Int ) -> Image? {
+    public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
         var result : Image? = nil
         
-        let cgImage = Image.cgImage(for: self, cellSize: cellSize)
+        let cgImage = Image.cgImage(for: self, cellSize: cellSize, strokeSize: strokeSize)
         if let cgImage = cgImage {
             result = Image.init(cgImage: cgImage)
         }

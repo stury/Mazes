@@ -10,10 +10,10 @@ import Foundation
 
 public class TriangleGrid : Grid {
     
-    override public func image( cellSize: Int ) -> Image? {
+    override public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
         var result : Image? = nil
         
-        let cgImage = Image.cgTriangleImage(for: self, cellSize: cellSize)
+        let cgImage = Image.cgTriangleImage(for: self, cellSize: cellSize, strokeSize: strokeSize)
         if let cgImage = cgImage {
             result = Image.init(cgImage: cgImage)
         }

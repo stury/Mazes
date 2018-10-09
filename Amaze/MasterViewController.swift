@@ -77,6 +77,8 @@ class MasterViewController: UITableViewController {
             result = PyramidMazeHelper()
         case "Hexagonal":
             result = HexagonalMazeHelper()
+        case "Diamond":
+            result = DiamondMazeHelper()
         //case "Rectangular":
         default:
             result = MazeHelper()

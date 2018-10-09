@@ -42,7 +42,7 @@ let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipl
 public extension Image {
     
     /// Draws a rectangular maze based on the maze passed in.
-    public static func cgImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+    public static func cgImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -89,8 +89,8 @@ public extension Image {
                             }
                         }
                         else {
-                        
-                            context.setLineWidth(2.0)
+                            
+                            context.setLineWidth(CGFloat(strokeSize))
                             context.setFillColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
                             
                             if cell.north == nil {
@@ -133,7 +133,7 @@ public extension Image {
     }
 
     /// Draws a hexagonal maze based on the maze passed in.
-    public static func cgHexImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+    public static func cgHexImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -163,7 +163,7 @@ public extension Image {
             context.saveGState()
             context.translateBy(x: 0, y: CGFloat(imgHeight))
             context.scaleBy(x: 1.0, y: -1.0)
-            context.setLineWidth(2.0)
+            context.setLineWidth(CGFloat(strokeSize))
             
             for mode in MazeRenderingMode.allCases {
                 maze.eachCell { (cell) -> Bool in
@@ -198,6 +198,7 @@ public extension Image {
                             if let coloredMaze = maze as? ColoredGrid {
                                 (red, green, blue) = coloredMaze.backgroundColor(for: cell)
                             }
+                            
                             context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
                             context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
     
@@ -252,7 +253,7 @@ public extension Image {
     }
 
     /// Draws a circular maze based on the maze passed in.
-    public static func cgPolarImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+    public static func cgPolarImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -265,6 +266,7 @@ public extension Image {
             
             // Draw ...
             // the background color...
+            context.setLineWidth(CGFloat(strokeSize))
             context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
             //context.addRect( CGRect(x: 0, y: 0, width: width, height: height) )
             context.fill(CGRect(x: 0, y: 0, width: imageSize, height: imageSize))
@@ -311,7 +313,7 @@ public extension Image {
                                 }
                                 context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
                                 context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
-                                context.setLineWidth(1.0)
+                                //context.setLineWidth(1.0)
                                 
                                 // Add in code here to fill in the area for this cell.
                                 context.beginPath()
@@ -334,7 +336,7 @@ public extension Image {
                                 
                             case .walls:
                                 context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-                                context.setLineWidth(2.0)
+                                //context.setLineWidth(CGFloat(strokeSize))
                                 
                                 if let inward = cell.inward {
                                     if !cell.linked(inward) {
@@ -366,7 +368,7 @@ public extension Image {
                                 }
                                 context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
                                 context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
-                                context.setLineWidth(1.0)
+                                //context.setLineWidth(1.0)
                                 
                                 context.beginPath()
                                 let origin = CGPoint(x: centerPoint.x-CGFloat(outerRadius), y: centerPoint.x-CGFloat(outerRadius))
@@ -383,7 +385,7 @@ public extension Image {
                 
                 // redraw the outside wall
                 context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-                context.setLineWidth(2.0)
+                //context.setLineWidth(CGFloat(strokeSize))
                 
                 context.addEllipse(in: CGRect(x: 0, y: 0, width: imageSize, height: imageSize))
                 context.drawPath(using: .stroke)
@@ -400,7 +402,7 @@ public extension Image {
     }
     
     /// Draws a maze based on triangular cells.
-    public static func cgTriangleImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+    public static func cgTriangleImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -418,6 +420,7 @@ public extension Image {
         if let context = CGContext(data: nil, width: imgWidth+1, height: imgHeight+1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
             
             // Draw the background transparent...
+            context.setLineWidth(CGFloat(strokeSize))
             context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
             context.fill(CGRect(x: 0, y: 0, width: imgWidth+1, height: imgHeight+1))
             
@@ -429,7 +432,6 @@ public extension Image {
             context.saveGState()
             context.translateBy(x: 0, y: CGFloat(imgHeight))
             context.scaleBy(x: 1.0, y: -1.0)
-            context.setLineWidth(2.0)
             
             for mode in MazeRenderingMode.allCases {
                 maze.eachCell { (cell) -> Bool in
@@ -507,7 +509,7 @@ public extension Image {
     }
     
     /// Draws a triangle maze built out of triangle cells.
-    public static func cgPyramidImage(for maze: Grid, cellSize: Int, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+    public static func cgPyramidImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -525,6 +527,7 @@ public extension Image {
         if let context = CGContext(data: nil, width: imgWidth+1, height: imgHeight+1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
             
             // Draw the background transparent...
+            context.setLineWidth(CGFloat(strokeSize))
             context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
             context.fill(CGRect(x: 0, y: 0, width: imgWidth+1, height: imgHeight+1))
             
@@ -536,7 +539,6 @@ public extension Image {
             context.saveGState()
             context.translateBy(x: 0, y: CGFloat(imgHeight))
             context.scaleBy(x: 1.0, y: -1.0)
-            context.setLineWidth(2.0)
             
             for mode in MazeRenderingMode.allCases {
                 maze.eachCell { (cell) -> Bool in
@@ -618,6 +620,119 @@ public extension Image {
         return result;
     }
 
+    /// Draws a triangle maze built out of triangle cells.
+    public static func cgDiamondImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+        
+        var result : CGImage? = nil
+        
+        let size = Double(cellSize)
+        let halfWidth = size / 2.0
+        let height = size * Double(3.0).squareRoot() / 2.0
+        let halfHeight = height / 2.0
+        
+        let imgWidth = Int(size * Double(maze.columns+1)/2.0)
+        let imgHeight = Int(height * Double(maze.rows))
+        
+        // Create a bitmap graphics context of the given size
+        //
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        if let context = CGContext(data: nil, width: imgWidth+1, height: imgHeight+1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
+            
+            // Draw the background transparent...
+            context.setLineWidth(CGFloat(strokeSize))
+            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
+            context.fill(CGRect(x: 0, y: 0, width: imgWidth+1, height: imgHeight+1))
+            
+            // Setup the basic fill and stroke colors...
+            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+            context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            
+            // Flip the drawing coordinates so I can draw this top to bottom as it is in the ascii maze...
+            context.saveGState()
+            context.translateBy(x: 0, y: CGFloat(imgHeight))
+            context.scaleBy(x: 1.0, y: -1.0)
+            
+            for mode in MazeRenderingMode.allCases {
+                maze.eachCell { (cell) -> Bool in
+                    
+                    if let cell = cell as? DiamondCell {
+                        
+                        let row = Double(cell.row)
+                        let col = Double(cell.column)
+                        
+                        let currentCellsInRow = maze.grid[cell.row].count
+                        let baseCellsInRow = maze.columns // Unlike the Pyramid maze, the maze.columns should specify the base cells // maze.grid[maze.rows-1].count
+                        let padding = Double(baseCellsInRow - currentCellsInRow)/2.0
+                        
+                        let cx = halfWidth + ((col+padding)*halfWidth)
+                        let cy = halfHeight + row * height
+                        
+                        let west_x = Int(cx - halfWidth)
+                        let mid_x = Int(cx)
+                        let east_x = Int(cx + halfWidth)
+                        
+                        var apex_y : Int
+                        var base_y : Int
+                        
+                        if cell.upright {
+                            apex_y = Int(cy - halfHeight)
+                            base_y = Int(cy + halfHeight)
+                        }
+                        else {
+                            apex_y = Int(cy + halfHeight)
+                            base_y = Int(cy - halfHeight)
+                        }
+                        
+                        switch( mode ) {
+                            
+                        case .backgrounds:
+                            var red, green, blue : CGFloat
+                            (red, green, blue) = (1.0, 1.0, 1.0)
+                            if let coloredMaze = maze as? ColoredGrid {
+                                (red, green, blue) = coloredMaze.backgroundColor(for: cell)
+                            }
+                            context.setFillColor(red: red, green: green, blue: blue, alpha: 1.0)
+                            context.setStrokeColor(red: red, green: green, blue: blue, alpha: 1.0)
+                            
+                            context.drawPolygon(points: [(west_x,base_y), (mid_x, apex_y), (east_x, base_y)])
+                            
+                        case .walls:
+                            context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+                            if cell.west == nil {
+                                context.drawLineSegment(points: [(west_x, base_y), (mid_x, apex_y)])
+                            }
+                            
+                            if cell.east == nil {
+                                context.drawLineSegment(points: [(east_x, base_y), (mid_x,apex_y)])
+                            }
+                            else if let east = cell.east, !cell.linked(east) {
+                                context.drawLineSegment(points: [(east_x, base_y), (mid_x,apex_y)])
+                            }
+                            
+                            let no_south = cell.upright && cell.south == nil
+                            let not_linked = !cell.upright && !cell.linked(cell.north)
+                            
+                            if no_south || not_linked {
+                                context.drawLineSegment(points: [(east_x,base_y), (west_x,base_y)])
+                            }
+                        }
+                    }
+                    
+                    return false
+                }
+            }
+            
+            context.restoreGState()
+            
+            // Get your image
+            //
+            result = context.makeImage()
+        }
+        
+        return result;
+    }
+
+    
     /// A simple method for outputting the image as a PNG image.
     public func output(_ url: URL) {
         let image = self

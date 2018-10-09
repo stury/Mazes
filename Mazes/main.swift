@@ -9,8 +9,8 @@
 import Foundation
 
 
-func image( for grid: Grid, name: String = "maze", cellSize : Int = 40 ) {
-    if let image = grid.image(cellSize: cellSize) {
+func image( for grid: Grid, name: String = "maze", cellSize : Int = 40 , strokeSize: Int = 2) {
+    if let image = grid.image(cellSize: cellSize, strokeSize: strokeSize) {
         let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
         if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
             image.output(documentURL)
@@ -174,7 +174,7 @@ func appIcon(_ max: Int = 12) {
     }
     
     print( grid )
-    image(for: grid, name: "appIcon", cellSize: 80 )
+    image(for: grid, name: "appIcon", cellSize: 120, strokeSize: 40 )
 }
 
 func tableViewMazeIcons() {
@@ -205,5 +205,9 @@ func tableViewMazeIcons() {
 //    mazeHelper.generateMazes(mazeHelper.mazes, maxes: [1])
 //}
 
-appIcon(12)
+//appIcon(8)
 
+generateMazes( [DiamondMazeHelper()] )
+//let mazeHelper = DiamondMazeHelper()
+//mazeHelper.generateGrid(20, name: "\(mazeHelper.imageNamePrefix)grid")
+//mazeHelper.generateMaze(20, name: "\(mazeHelper.imageNamePrefix)maze")

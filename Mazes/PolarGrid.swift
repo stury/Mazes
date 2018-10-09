@@ -10,10 +10,10 @@ import Foundation
 
 public class PolarGrid : Grid {
 
-    override public func image( cellSize: Int ) -> Image? {
+    override public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
         var result : Image? = nil
         
-        let cgImage = Image.cgPolarImage(for: self, cellSize: cellSize)
+        let cgImage = Image.cgPolarImage(for: self, cellSize: cellSize, strokeSize: strokeSize)
         if let cgImage = cgImage {
             result = Image.init(cgImage: cgImage)
         }

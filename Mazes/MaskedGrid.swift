@@ -38,9 +38,7 @@ public class MaskedGrid : Grid {
     }
     
     override public func randomCell() -> Cell? {
-        let location = mask.randomLocation()
-        let row = location[0]
-        let col = location[1]
+        let (row, col) = mask.randomLocation()
         return self[(row, col)]
     }
     

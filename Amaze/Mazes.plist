@@ -32,5 +32,11 @@
 		<key>image</key>
 		<string>pyramid</string>
 	</dict>
+	<dict>
+		<key>type</key>
+		<string>Diamond</string>
+		<key>image</key>
+		<string>diamond</string>
+	</dict>
 </array>
 </plist>
