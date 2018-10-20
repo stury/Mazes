@@ -207,11 +207,11 @@ func generateiOSTableViewSamples() {
     }
 }
 
-//appIcon(8)
+appIcon(8)
 
 // generateMazes( [DiamondMazeHelper()] )
 //let mazeHelper = DiamondMazeHelper()
 //mazeHelper.generateGrid(20, name: "\(mazeHelper.imageNamePrefix)grid")
 //mazeHelper.generateMaze(20, name: "\(mazeHelper.imageNamePrefix)maze")
 
-generateiOSTableViewSamples()
+//generateiOSTableViewSamples()

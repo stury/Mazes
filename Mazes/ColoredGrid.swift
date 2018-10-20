@@ -83,6 +83,7 @@ extension ColoredGrid {
         var result = (CGFloat(1.0), CGFloat(1.0), CGFloat(1.0))
         if let distances = distances {
             if let distance = distances[cell] {
+                // Intensity is between 0.0 to 1.0
                 let intensity = CGFloat(maximum - distance)/CGFloat(maximum)
                 let dark = CGFloat(1.0 * intensity)
                 let bright = CGFloat(0.5 + (0.5*intensity))
