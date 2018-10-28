@@ -90,7 +90,16 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
     }
     
     func configureView() {
-        if self.isViewLoaded {
+        var process = false
+        switch (UIDevice.current.userInterfaceIdiom) {
+        case .phone:
+            process = self.isViewLoaded
+        case .pad:
+            process = true
+        default:
+            process = true
+        }
+        if process {
             if let helper = helper {
                 settings.supportColumns = helper.supportsColumns
                 asyncGenerateMaze()
