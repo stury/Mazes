@@ -90,11 +90,12 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
     }
     
     func configureView() {
-        if let helper = helper {
-            settings.supportColumns = helper.supportsColumns
-            asyncGenerateMaze()
+        if self.isViewLoaded {
+            if let helper = helper {
+                settings.supportColumns = helper.supportsColumns
+                asyncGenerateMaze()
+            }
         }
-        
     }
 
     override func viewDidLoad() {
