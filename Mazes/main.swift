@@ -8,14 +8,22 @@
 
 import Foundation
 
+func image(with image: Image, name: String = "maze") -> Image? {
 
-func image( for grid: Grid, name: String = "maze", cellSize : Int = 40 , strokeSize: Int = 2) {
-    if let image = grid.image(cellSize: cellSize, strokeSize: strokeSize) {
-        let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-        if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
-            image.output(documentURL)
-        }
+    let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+    if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
+        image.output(documentURL)
     }
+
+    return image
+}
+
+func image( for grid: Grid, name: String = "maze", cellSize : Int = 40 , strokeSize: Int = 2) -> Image? {
+    var result : Image? = nil
+    if let rasterImage = grid.image(cellSize: cellSize, strokeSize: strokeSize) {
+        result = image(with: rasterImage, name: name)
+    }
+    return result
 }
 
 func maze(_ grid: Grid ) {
@@ -65,7 +73,7 @@ func distanceGrid() {
     let pathLength = longestPath(grid)
     print( "longest path length:  \(pathLength)" )
     
-    image(for: grid, name: "maze" )
+    _ = image(for: grid, name: "maze" )
 }
 
 
@@ -106,7 +114,7 @@ func killingCells_v1() {
     RecursiveBacktracker.on(grid: grid, at: grid[(1, 1)])
     
     print( grid )
-    image(for: grid, name: "killingCells" )
+    _ = image(for: grid, name: "killingCells" )
 }
 
 func killingCells_v2() {
@@ -119,7 +127,7 @@ func killingCells_v2() {
     RecursiveBacktracker.on(grid: grid)
     
     print( grid )
-    image(for: grid, name: "killingCells" )
+    _ = image(for: grid, name: "killingCells" )
 }
 
 /// This method works for Text and Image file data for the mask.
@@ -129,7 +137,7 @@ func killingCells(_ path: String, name: String = "killingCells") {
         let grid = MaskedGrid.init(mask)
         RecursiveBacktracker.on(grid: grid)
         print( grid )
-        image(for: grid, name: name )
+        _ = image(for: grid, name: name )
     }
     else {
         print( "File \(url) did not exist!" )
@@ -148,6 +156,16 @@ func generateMazes(_ helpers:[MazeHelper]) {
         mazeHelper.generateMazesSolutions(mazeHelper.mazes, maxes: [6])
     }
 }
+
+func appIconImages(from appIcon: Image, name: String) {
+    let sizes = [180, 167, 152, 120, 87, 80, 76, 60, 58, 40, 29, 20]
+    for size in sizes {
+        if let resized = appIcon.resize(size: (size, size)) {
+            _ = image(with: resized, name: "\(name)\(size)")
+        }
+    }
+}
+
 // 20 for smaller cells.  12 for cellsSize  80
 func appIcon(_ max: Int = 12) {
     let mask = Mask(rows: max, columns: max)
@@ -174,7 +192,14 @@ func appIcon(_ max: Int = 12) {
     }
     
     print( grid )
-    image(for: grid, name: "appIcon", cellSize: 120, strokeSize: 40 )
+    if let baseImage = image(for: grid, name: "appIcon", cellSize: 120, strokeSize: 40 ) {
+        // Generate the 1024x1024 application icon image
+        if let image1024 = Image.appIconImage(with: baseImage) {
+            _ = image(with: image1024, name: "appIcon_1024")
+            
+            appIconImages(from: image1024, name: "appIcon_" )
+        }
+    }
 }
 
 func tableViewMazeIcons() {

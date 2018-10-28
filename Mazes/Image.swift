@@ -16,6 +16,15 @@
             self.init(cgImage: cgImage, size: CGSize(width: cgImage.width, height: cgImage.height))
         }
         
+        public var cgImage : CGImage? {
+            get {
+                var result : CGImage?
+                if let cgImage = self.cgImage(forProposedRect: nil, context: nil, hints: nil) {
+                    result = cgImage
+                }
+                return result
+            }
+        }
     }
     
 #endif
@@ -40,6 +49,61 @@ let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
 let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedFirst.rawValue)
 
 public extension Image {
+    
+    /// Simple method for generating a CGContext, filled in with a particular background color.
+    public static func context( size: (Int, Int), color:(CGFloat, CGFloat, CGFloat, CGFloat)) -> CGContext? {
+        var result: CGContext?
+        
+        // Create a bitmap graphics context of the given size
+        //
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        if let context = CGContext(data: nil, width: size.0, height: size.1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
+            
+            // Draw the background color...
+            context.setFillColor(red: color.0, green: color.1, blue: color.2, alpha: color.3)
+            context.fill(CGRect(x: 0, y: 0, width: size.0, height: size.1))
+            
+            result = context
+        }
+        
+        return result
+    }
+    
+    public static func appIconImage(with image: Image ) -> Image? {
+        var result : Image? = nil
+        
+        if let cgImage = image.cgImage {
+            if let context = Image.context(size: (1024, 1024), color: (1.0, 1.0, 1.0, 1.0)) {
+                let width = image.size.width
+                let height = image.size.height
+                let x = (1024 - width) / 2.0
+                let y = (1024 - height) / 2.0
+                
+                context.draw(cgImage, in: CGRect(x: x, y: y, width: width, height: height))
+                
+                if let cgImage = context.makeImage() {
+                    result = Image(cgImage: cgImage)
+                }
+            }
+        }
+        return result
+    }
+
+    /// Simple method for resizing a given image to a specific size...
+    public func resize(size: (Int, Int) ) -> Image? {
+        var result : Image? = nil
+        
+        if let cgImage = self.cgImage {
+            if let context = Image.context(size: size, color: (1.0, 1.0, 1.0, 1.0)) {
+                context.draw(cgImage, in: CGRect(x: 0, y: 0, width: size.0, height: size.1))
+                
+                if let cgImage = context.makeImage() {
+                    result = Image(cgImage: cgImage)
+                }
+            }
+        }
+        return result
+    }
     
     /// Draws a rectangular maze based on the maze passed in.
     public static func cgImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
