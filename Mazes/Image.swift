@@ -56,7 +56,7 @@ public extension Image {
         
         // Create a bitmap graphics context of the given size
         //
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let colorSpace = rgbColorSpace // CGColorSpaceCreateDeviceRGB()
         if let context = CGContext(data: nil, width: size.0, height: size.1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
             
             // Draw the background color...
@@ -115,15 +115,7 @@ public extension Image {
         
         // Create a bitmap graphics context of the given size
         //
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        if let context = CGContext(data: nil, width: Int(imageWidth /** imageScale*/)+1, height: Int(imageHeight /** imageScale*/)+1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
-            
-            // Draw ...
-            // the background color...
-            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
-            //context.addRect( CGRect(x: 0, y: 0, width: width, height: height) )
-            context.fill(CGRect(x: 0, y: 0, width: imageWidth, height: imageHeight))
-            
+        if let context = Image.context( size: (imageWidth+1, imageHeight+1), color: (1.0, 1.0, 1.0, 0.0)) {
             // Flip the drawing coordinates so I can draw this top to bottom as it is in the ascii maze...
             context.saveGState()
             context.translateBy(x: 0, y: CGFloat(imageHeight))
@@ -155,6 +147,7 @@ public extension Image {
                         else {
                             
                             context.setLineWidth(CGFloat(strokeSize))
+                            context.setLineJoin(CGLineJoin.round)
                             context.setFillColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
                             
                             if cell.north == nil {
@@ -212,12 +205,7 @@ public extension Image {
 
         // Create a bitmap graphics context of the given size
         //
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        if let context = CGContext(data: nil, width: imgWidth+1, height: imgHeight+1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
-            
-            // Draw the background transparent...
-            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
-            context.fill(CGRect(x: 0, y: 0, width: imgWidth+1, height: imgHeight+1))
+        if let context = Image.context( size: (imgWidth+1, imgHeight+1), color: (1.0, 1.0, 1.0, 0.0)) {
 
             // Setup the basic fill and stroke colors...
             context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -228,6 +216,7 @@ public extension Image {
             context.translateBy(x: 0, y: CGFloat(imgHeight))
             context.scaleBy(x: 1.0, y: -1.0)
             context.setLineWidth(CGFloat(strokeSize))
+            context.setLineJoin(CGLineJoin.round)
             
             for mode in MazeRenderingMode.allCases {
                 maze.eachCell { (cell) -> Bool in
@@ -325,15 +314,12 @@ public extension Image {
         
         // Create a bitmap graphics context of the given size
         //
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        if let context = CGContext(data: nil, width: Int(imageSize)+1, height: Int(imageSize)+1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
-            
+        if let context = Image.context( size: (imageSize, imageSize), color: (1.0, 1.0, 1.0, 0.0)) {
+
             // Draw ...
             // the background color...
             context.setLineWidth(CGFloat(strokeSize))
-            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
-            //context.addRect( CGRect(x: 0, y: 0, width: width, height: height) )
-            context.fill(CGRect(x: 0, y: 0, width: imageSize, height: imageSize))
+            context.setLineJoin(CGLineJoin.round)
             
             context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
             context.setStrokeColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
@@ -480,13 +466,11 @@ public extension Image {
         
         // Create a bitmap graphics context of the given size
         //
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        if let context = CGContext(data: nil, width: imgWidth+1, height: imgHeight+1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
-            
+        if let context = Image.context( size: (imgWidth+1, imgHeight+1), color: (1.0, 1.0, 1.0, 0.0)) {
+
             // Draw the background transparent...
             context.setLineWidth(CGFloat(strokeSize))
-            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
-            context.fill(CGRect(x: 0, y: 0, width: imgWidth+1, height: imgHeight+1))
+            context.setLineJoin(CGLineJoin.round)
             
             // Setup the basic fill and stroke colors...
             context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -587,13 +571,10 @@ public extension Image {
         
         // Create a bitmap graphics context of the given size
         //
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        if let context = CGContext(data: nil, width: imgWidth+1, height: imgHeight+1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
-            
+        if let context = Image.context(size: (imgWidth+1, imgHeight+1), color: (1.0, 1.0, 1.0, 0.0)) {
             // Draw the background transparent...
             context.setLineWidth(CGFloat(strokeSize))
-            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
-            context.fill(CGRect(x: 0, y: 0, width: imgWidth+1, height: imgHeight+1))
+            context.setLineJoin(CGLineJoin.round)
             
             // Setup the basic fill and stroke colors...
             context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
@@ -699,13 +680,11 @@ public extension Image {
         
         // Create a bitmap graphics context of the given size
         //
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        if let context = CGContext(data: nil, width: imgWidth+1, height: imgHeight+1, bitsPerComponent: 8, bytesPerRow: 0, space: colorSpace, bitmapInfo: bitmapInfo.rawValue ) {
-            
+        if let context = Image.context(size: (imgWidth+1, imgHeight+1), color: (1.0, 1.0, 1.0, 0.0)) {
+
             // Draw the background transparent...
             context.setLineWidth(CGFloat(strokeSize))
-            context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.0)
-            context.fill(CGRect(x: 0, y: 0, width: imgWidth+1, height: imgHeight+1))
+            context.setLineJoin(CGLineJoin.round)
             
             // Setup the basic fill and stroke colors...
             context.setFillColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)

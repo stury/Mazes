@@ -166,8 +166,8 @@ func appIconImages(from appIcon: Image, name: String) {
     }
 }
 
-// 20 for smaller cells.  12 for cellsSize  80
-func appIcon(_ max: Int = 12) {
+// 20 for smaller cells.  12 for cellsSize  120
+func appIcon(_ max: Int = 8) {
     let mask = Mask(rows: max, columns: max)
    
     // remove all corners

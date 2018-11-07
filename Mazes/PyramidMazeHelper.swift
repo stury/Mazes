@@ -10,6 +10,12 @@ import Foundation
 
 public class PyramidMazeHelper : MazeHelper {
     
+    public override var supportsColumns : Bool {
+        get {
+            return false
+        }
+    }
+
     public override init() {
         super.init()
         imageNamePrefix = "pyramid_"

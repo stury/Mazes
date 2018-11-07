@@ -26,6 +26,8 @@ class SettingsViewController : UIViewController {
     
     @IBOutlet var algorithmPicker : UIPickerView!
     
+    @IBOutlet var scrollView : UIScrollView!
+    
     let colorPickerDataSource : SimplePickerDataSource<String>
     let algorithmPickerDataSource : SimplePickerDataSource<String>
     
@@ -53,6 +55,10 @@ class SettingsViewController : UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // Set the scrollView to only scroll up and down...
+//        scrollView?.setContentOffset(CGPoint(x: 0, y: scrollView.contentOffset.y), animated: true)
+//        scrollView?.isDirectionalLockEnabled = true
         
         // setup all of the settings correctly.
         if let settings = settings {

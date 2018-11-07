@@ -195,8 +195,8 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
         
         print( "updatedSettings(\(settings))" )
         
-        if let gridRows = grid?.rows {
-            if settings.rows != gridRows ||
+        if let gridRows = grid?.rows, let gridColumns = grid?.columns {
+            if settings.rows != gridRows || settings.cols != gridColumns ||
                 settings.algorithm != self.settings.algorithm {
                 self.settings = settings
                 asyncGenerateMaze()
@@ -208,9 +208,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
                     showImage(grid)
                 }
             }
-
         }
-
     }
 
     // MARK: Rotation support

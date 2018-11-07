@@ -12,8 +12,10 @@ public class MazeHelper {
     
     /// The size of the maze
     public var mazeSize: Int = 40
-    // the number of pixels to use for drawing the cell in the maze
+    /// the number of pixels to use for drawing the cell in the maze
     public var cellSize: Int = 40
+    /// thickness of the stroke being used to generate the walls of the maze.
+    public var strokeSize: Int = 2
     
     public var braided: Bool = false
     
@@ -69,7 +71,7 @@ public class MazeHelper {
     /// MARK:
     
     public func image( for grid: Grid, name: String = "maze" ) {
-        if let image = grid.image(cellSize: cellSize) {
+        if let image = grid.image(cellSize: cellSize, strokeSize: strokeSize) {
             let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
             if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
                 image.output(documentURL)
@@ -79,7 +81,7 @@ public class MazeHelper {
 
     public func image( for grid: Grid ) -> Image? {
         var result : Image? = nil
-        if let image = grid.image(cellSize: cellSize) {
+        if let image = grid.image(cellSize: cellSize, strokeSize: strokeSize) {
             result = image
         }
         return result
