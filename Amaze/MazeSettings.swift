@@ -23,6 +23,9 @@ public struct MazeSettings : Equatable, Codable {
 
     // Setting to say if a type of maze supports a designated Column variable
     public var supportColumns: Bool
+
+    public var cellSize : Int
+    public var strokeSize : Int
     
     /// Method to translate the underlying String into a ColoredGridMode value.
     func colorMode() -> ColoredGridMode {
@@ -50,7 +53,20 @@ public struct MazeSettings : Equatable, Codable {
         braided = false
         algorithm = Mazes.recursiveBacktracker.rawValue
         supportColumns = true
+        cellSize = 40
+        strokeSize = 2
     }
+    
+    mutating public func update( with helper: MazeHelper ) {
+        supportColumns  = helper.supportsColumns
+        cellSize        = helper.cellSize
+        strokeSize      = helper.strokeSize
+    }
+    
+//    convenience init(_ helper: MazeHelper) {
+//        self.init()
+//        color = helper.
+//    }
     
     // MARK:  Equatable
     static public func == (lhs: MazeSettings, rhs: MazeSettings) -> Bool {
@@ -62,7 +78,9 @@ public struct MazeSettings : Equatable, Codable {
             lhs.braided == rhs.braided &&
             lhs.useColor == rhs.useColor &&
             lhs.showSolution == rhs.showSolution &&
-            lhs.algorithm == rhs.algorithm {
+            lhs.algorithm == rhs.algorithm &&
+            lhs.cellSize == rhs.cellSize &&
+            lhs.strokeSize ==  rhs.strokeSize {
             result = true
         }
         

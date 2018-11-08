@@ -9,6 +9,15 @@
 import UIKit
 import MazeKit
 
+extension MazeHelper {
+    
+    func update(with settings:MazeSettings ) {
+        cellSize = settings.cellSize
+        strokeSize = settings.strokeSize
+        //self.mazeSize
+    }
+}
+
 class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsViewControllerDelegate, UIGestureRecognizerDelegate {
 
     @IBOutlet weak var refresh : UIBarButtonItem!
@@ -21,7 +30,14 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
     
     var rotationRecognizer : UIRotationGestureRecognizer?
     
-    var settings : MazeSettings = MazeSettings()
+    var settings : MazeSettings = MazeSettings() {
+        didSet {
+            if let helper = helper {
+                // update the helper with the info from the Settings!
+                helper.update(with: settings)
+            }
+        }
+    }
     
     /// Store a MazeHelper object, which allows us to generate the type of mazes the user selected.
     var helper: MazeHelper? {
@@ -101,7 +117,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
         }
         if process {
             if let helper = helper {
-                settings.supportColumns = helper.supportsColumns
+                settings.update(with: helper)
                 asyncGenerateMaze()
             }
         }

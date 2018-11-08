@@ -28,6 +28,10 @@ class SettingsViewController : UIViewController {
     
     @IBOutlet var scrollView : UIScrollView!
     
+    @IBOutlet var cellSize : UISlider!
+    @IBOutlet var wallSize : UISlider!
+    @IBOutlet var cellLabel: UILabel!
+    
     let colorPickerDataSource : SimplePickerDataSource<String>
     let algorithmPickerDataSource : SimplePickerDataSource<String>
     
@@ -93,6 +97,18 @@ class SettingsViewController : UIViewController {
         }
     }
     
+    func cellLabelText() -> String {
+        var result = "\(Int(cellSize.value)), \(Int(wallSize.value))"
+        return result
+    }
+
+    @IBAction func cellSliderChangedValue() {
+        // Slider changed value, so update the text to display!
+        if let cellLabel = cellLabel {
+            cellLabel.text = cellLabelText()
+        }
+    }
+    
     func currentSettings() -> MazeSettings {
         var result : MazeSettings = MazeSettings()
         
@@ -107,6 +123,12 @@ class SettingsViewController : UIViewController {
         }
         if let showSolution = showSolution {
             result.showSolution = showSolution.isOn
+        }
+        if let cellSize = cellSize {
+            result.cellSize = Int(cellSize.value)
+        }
+        if let wallSize = wallSize {
+            result.strokeSize = Int(wallSize.value)
         }
         result.color = selectedColor()
         result.algorithm = selectedAlgorithm()
@@ -136,6 +158,13 @@ class SettingsViewController : UIViewController {
         if let showSolution = showSolution {
             showSolution.isOn = settings.showSolution
         }
+        if let cellSize = cellSize {
+            cellSize.setValue(Float(settings.cellSize), animated: true)
+        }
+        if let strokeSize = wallSize {
+            strokeSize.setValue(Float(settings.strokeSize), animated: true)
+        }
+
         selectColor(settings.color)
         selectAlgorithm(settings.algorithm)
     }
