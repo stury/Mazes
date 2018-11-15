@@ -12,7 +12,7 @@ import CoreGraphics
 public extension CGContext {
     
     /// Simple method for drawing a Polygon using abn array of (x, y) points.
-    public func drawPolygon( points: [(Int, Int)], fill: Bool = true, stroke: Bool = true ) {
+    public func drawPolygon( points: [(Int, Int)], using: CGPathDrawingMode = .fillStroke ) {
         
         if points.count > 0 {
             for (index, point) in points.enumerated() {
@@ -25,17 +25,12 @@ public extension CGContext {
             }
             addLine(to: CGPoint(x:points[0].0, y:points[0].1))
             
-            if fill {
-                fillPath()
-            }
-            if stroke {
-                strokePath()
-            }
+            self.drawPath(using: using)
         }
     }
    
     /// Simple method for drawing a Polygon using abn array of (x, y) points.
-    public func drawPolygon( points: [(CGFloat, CGFloat)], fill: Bool = true, stroke: Bool = true ) {
+    public func drawPolygon( points: [(CGFloat, CGFloat)], using: CGPathDrawingMode = .fillStroke ) {
         
         if points.count > 0 {
             for (index, point) in points.enumerated() {
@@ -48,12 +43,7 @@ public extension CGContext {
             }
             addLine(to: CGPoint(x:points[0].0, y:points[0].1))
             
-            if fill {
-                fillPath()
-            }
-            if stroke {
-                strokePath()
-            }
+            self.drawPath(using: using)
         }
     }
 

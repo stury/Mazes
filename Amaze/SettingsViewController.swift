@@ -98,7 +98,7 @@ class SettingsViewController : UIViewController {
     }
     
     func cellLabelText() -> String {
-        var result = "\(Int(cellSize.value)), \(Int(wallSize.value))"
+        let result = "\(Int(cellSize.value)), \(Int(wallSize.value))"
         return result
     }
 
