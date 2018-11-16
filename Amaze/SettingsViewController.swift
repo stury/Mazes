@@ -32,6 +32,10 @@ class SettingsViewController : UIViewController {
     @IBOutlet var wallSize : UISlider!
     @IBOutlet var cellLabel: UILabel!
     
+    @IBOutlet var useBraiding : UISwitch!
+    @IBOutlet var braidValue : UISlider!
+    @IBOutlet var braidLabel : UILabel!
+    
     let colorPickerDataSource : SimplePickerDataSource<String>
     let algorithmPickerDataSource : SimplePickerDataSource<String>
     
@@ -108,7 +112,14 @@ class SettingsViewController : UIViewController {
             cellLabel.text = cellLabelText()
         }
     }
-    
+
+    @IBAction func braidSliderChangedValue() {
+        // Slider changed value, so update the text to display!
+        if let label = braidLabel, let slider = braidValue {
+            label.text = "\(slider.value)"
+        }
+    }
+
     func currentSettings() -> MazeSettings {
         var result : MazeSettings = MazeSettings()
         
@@ -130,8 +141,20 @@ class SettingsViewController : UIViewController {
         if let wallSize = wallSize {
             result.strokeSize = Int(wallSize.value)
         }
+        if let useBraiding = useBraiding {
+            result.braided = useBraiding.isOn
+        }
+        if let braidValue = braidValue {
+            result.braidValue = Double(braidValue.value)
+        }
+        
         result.color = selectedColor()
         result.algorithm = selectedAlgorithm()
+
+        // Don't forget to maintain the settings that stay with the class... Like supportColumns...
+        if let settings = settings {
+            result.supportColumns = settings.supportColumns
+        }
         
         return result
     }
@@ -163,6 +186,13 @@ class SettingsViewController : UIViewController {
         }
         if let strokeSize = wallSize {
             strokeSize.setValue(Float(settings.strokeSize), animated: true)
+        }
+        if let useBraiding = useBraiding {
+            useBraiding.isOn = settings.braided
+        }
+        if let braidValue = braidValue {
+            braidValue.setValue(Float(settings.braidValue), animated: true)
+            braidSliderChangedValue()
         }
 
         selectColor(settings.color)

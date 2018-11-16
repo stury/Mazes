@@ -17,7 +17,8 @@ public struct MazeSettings : Equatable, Codable {
     public var cols : Int
     public var showSolution : Bool
     public var braided : Bool
-
+    public var braidValue : Double
+    
     /// human readable algorithm to use when generating the maze.
     public var algorithm : String
 
@@ -51,6 +52,7 @@ public struct MazeSettings : Equatable, Codable {
         cols = 20
         showSolution = false
         braided = false
+        braidValue = 0.5
         algorithm = Mazes.recursiveBacktracker.rawValue
         supportColumns = true
         cellSize = 40
@@ -61,6 +63,7 @@ public struct MazeSettings : Equatable, Codable {
         supportColumns  = helper.supportsColumns
         cellSize        = helper.cellSize
         strokeSize      = helper.strokeSize
+        braidValue      = helper.braidValue
     }
     
 //    convenience init(_ helper: MazeHelper) {
@@ -76,6 +79,7 @@ public struct MazeSettings : Equatable, Codable {
             lhs.rows == rhs.rows &&
             lhs.cols == rhs.cols &&
             lhs.braided == rhs.braided &&
+            lhs.braidValue == rhs.braidValue &&
             lhs.useColor == rhs.useColor &&
             lhs.showSolution == rhs.showSolution &&
             lhs.algorithm == rhs.algorithm &&

@@ -25,7 +25,7 @@ public extension CGContext {
             }
             addLine(to: CGPoint(x:points[0].0, y:points[0].1))
             
-            self.drawPath(using: using)
+            drawPath(using: using)
         }
     }
    
@@ -43,7 +43,7 @@ public extension CGContext {
             }
             addLine(to: CGPoint(x:points[0].0, y:points[0].1))
             
-            self.drawPath(using: using)
+            drawPath(using: using)
         }
     }
 

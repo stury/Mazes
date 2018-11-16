@@ -18,6 +18,7 @@ public class MazeHelper {
     public var strokeSize: Int = 2
     
     public var braided: Bool = false
+    public var braidValue : Double = 0.5
     
     public var supportsColumns : Bool {
         get {
@@ -97,7 +98,11 @@ public class MazeHelper {
     public func generateMaze(_ maze: Mazes, _ size: (Int, Int) ) -> Grid? {
         let grid = getColoredGrid(size)
         Mazes.factory(maze, grid: grid)
-        
+
+        if braided {
+            grid.braid(braidValue)
+        }
+
         var coloredGrid = grid as? ColoredGrid
         //        if coloredGrid != nil {
         //            coloredGrid?.mode = color[index%color.count]
@@ -148,7 +153,7 @@ public class MazeHelper {
             print("\(grid.deadends().count) dead-ends in maze")
             
             if braided {
-                grid.braid()
+                grid.braid(braidValue)
             }
             
             if let startCell = startCell( grid ) {
@@ -200,7 +205,7 @@ public class MazeHelper {
             Mazes.factory(maze, grid: grid)
             
             if braided {
-                grid.braid()
+                grid.braid(braidValue)
             }
             
             //print("\(grid.deadends().count) dead-ends in maze")

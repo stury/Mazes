@@ -14,6 +14,9 @@ extension MazeHelper {
     func update(with settings:MazeSettings ) {
         cellSize = settings.cellSize
         strokeSize = settings.strokeSize
+        braided = settings.braided
+        braidValue = settings.braidValue
+        
         //self.mazeSize
     }
 }
@@ -213,7 +216,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
         
         if let gridRows = grid?.rows, let gridColumns = grid?.columns {
             if settings.rows != gridRows || settings.cols != gridColumns ||
-                settings.algorithm != self.settings.algorithm {
+                settings.algorithm != self.settings.algorithm ||
+                settings.braided != self.settings.braided ||
+                settings.braidValue != self.settings.braidValue {
                 self.settings = settings
                 asyncGenerateMaze()
             }
