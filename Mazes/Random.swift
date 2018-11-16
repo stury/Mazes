@@ -19,11 +19,16 @@ public func random(_ maxInt: Int ) -> Int {
     
     return result
 }
-/// returns a value between 0 and 1.0.
-public func rand() -> Double {
-    var result : Double = 0.0
+
+/// return a random value between 0.0 and 1.0
+func rand() -> Double {
+    var result : Double
     
-    result = Double(arc4random())/Double(Int.max)
+    #if swift(>=4.2)
+    result = Double.random(in: ClosedRange<Double>(uncheckedBounds: (lower: 0.0, upper: 1.0)))
+    #else
+    result = Double(arc4random())/Double(UInt32.max)
+    #endif
     
     return result
 }

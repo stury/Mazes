@@ -248,6 +248,9 @@
                                             </label>
                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SHl-Jd-ueu">
                                                 <rect key="frame" x="357" y="663" width="51" height="31"/>
+                                                <connections>
+                                                    <action selector="useBraidingChanged:" destination="dYQ-0C-DIO" eventType="valueChanged" id="iqD-Ab-hfb"/>
+                                                </connections>
                                             </switch>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

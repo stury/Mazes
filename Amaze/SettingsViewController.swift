@@ -113,10 +113,16 @@ class SettingsViewController : UIViewController {
         }
     }
 
+    @IBAction func useBraidingChanged(_ sender: UISwitch) {
+        if let slide = braidValue {
+            slide.isEnabled = sender.isOn
+        }
+    }
+
     @IBAction func braidSliderChangedValue() {
         // Slider changed value, so update the text to display!
         if let label = braidLabel, let slider = braidValue {
-            label.text = "\(slider.value)"
+            label.text = "\(String(format: "%.2f", slider.value))"
         }
     }
 
@@ -143,6 +149,7 @@ class SettingsViewController : UIViewController {
         }
         if let useBraiding = useBraiding {
             result.braided = useBraiding.isOn
+            useBraidingChanged(useBraiding)
         }
         if let braidValue = braidValue {
             result.braidValue = Double(braidValue.value)
