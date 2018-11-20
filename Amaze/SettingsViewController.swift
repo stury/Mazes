@@ -196,10 +196,10 @@ class SettingsViewController : UIViewController {
         }
         if let useBraiding = useBraiding {
             useBraiding.isOn = settings.braided
+            braidSliderChangedValue()
         }
         if let braidValue = braidValue {
             braidValue.setValue(Float(settings.braidValue), animated: true)
-            braidSliderChangedValue()
         }
 
         selectColor(settings.color)

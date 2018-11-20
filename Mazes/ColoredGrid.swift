@@ -82,26 +82,37 @@ extension ColoredGrid {
     public func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat) {
         var result = (CGFloat(1.0), CGFloat(1.0), CGFloat(1.0))
         if let distances = distances {
-            if let distance = distances[cell] {
-                // Intensity is between 0.0 to 1.0
-                let intensity = CGFloat(maximum - distance)/CGFloat(maximum)
-                let dark = CGFloat(1.0 * intensity)
-                let bright = CGFloat(0.5 + (0.5*intensity))
-                switch mode {
-                case .red:
-                    result = (bright, dark, dark)
-                case .green:
-                    result = (dark, bright, dark)
-                case .blue:
-                    result = (dark, dark, bright)
-                case .yellow:
-                    result = (bright, bright, dark)
-                case .cyan:
-                    result = (dark, bright, bright)
-                case .magenta:
-                    result = (bright, dark, bright)
-                case .gray:
-                    result = (bright, bright, bright)
+            
+            var calcColor = true
+            // Handle WeightedCells here....
+            if let weightedCell = cell as? WeightedCell {
+                if weightedCell.weight  > 1 {
+                    result = (CGFloat(1.0), CGFloat(0.0), CGFloat(0.0))
+                    calcColor = false
+                }
+            }
+            if calcColor {
+                if let distance = distances[cell] {
+                    // Intensity is between 0.0 to 1.0
+                    let intensity = CGFloat(maximum - distance)/CGFloat(maximum)
+                    let dark = CGFloat(1.0 * intensity)
+                    let bright = CGFloat(0.5 + (0.5*intensity))
+                    switch mode {
+                    case .red:
+                        result = (bright, dark, dark)
+                    case .green:
+                        result = (dark, bright, dark)
+                    case .blue:
+                        result = (dark, dark, bright)
+                    case .yellow:
+                        result = (bright, bright, dark)
+                    case .cyan:
+                        result = (dark, bright, bright)
+                    case .magenta:
+                        result = (bright, dark, bright)
+                    case .gray:
+                        result = (bright, bright, bright)
+                    }
                 }
             }
         }

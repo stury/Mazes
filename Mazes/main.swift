@@ -201,6 +201,7 @@ func appIcon(_ max: Int = 8) {
         }
     }
 }
+//appIcon(8)
 
 func tableViewMazeIcons() {
     let helpers = MazeHelper.allHelpers { (helper) in
@@ -232,7 +233,28 @@ func generateiOSTableViewSamples() {
     }
 }
 
-appIcon(8)
+
+func weightedGrid() {
+    let grid = WeightedGrid(rows: 10, columns: 10)
+    RecursiveBacktracker.on(grid: grid)
+    grid.braid( 0.5 )
+    print( grid )
+    if let start = grid[(0,0)], let finish = grid[(grid.rows-1, grid.columns-1)] {
+        grid.distances = start.distances().path(to: finish)
+        print( grid )
+        _ = image( for: grid, name: "weightedGridOriginal")
+        //_ = image( for: grid, name: "Original")
+        
+        // Now put some lava in the grid, and reroute the user...
+        if let lava = grid.distances?.knownCells().sample() as? WeightedCell {
+            lava.weight = 50
+            grid.distances = start.distances().path(to: finish)
+            print( grid )
+            _ = image( for: grid, name: "weightedGridRerouted")
+        }
+    }
+
+}
 
 // generateMazes( [DiamondMazeHelper()] )
 //let mazeHelper = DiamondMazeHelper()
@@ -240,3 +262,6 @@ appIcon(8)
 //mazeHelper.generateMaze(20, name: "\(mazeHelper.imageNamePrefix)maze")
 
 //generateiOSTableViewSamples()
+
+weightedGrid()
+

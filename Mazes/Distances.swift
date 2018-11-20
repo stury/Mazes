@@ -62,6 +62,10 @@ public class Distances {
                     }
                 }
             }
+            else {
+                print("Looks like there is a problem in Distances!  I cannot get a currentDistance.")
+                break
+            }
         }
         
         return result
