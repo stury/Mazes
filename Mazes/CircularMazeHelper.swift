@@ -37,7 +37,7 @@ public class CircularMazeHelper : MazeHelper {
         get {
             var mazes = Mazes.agnosticMazes
             // .aldousBroder mazes don't seem to work for circular mazes...
-            if let index = mazes.index(of: .aldousBroder) {
+            if let index = mazes.firstIndex(of: .aldousBroder) {
                 mazes.remove(at: index)
             }
             return mazes

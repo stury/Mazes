@@ -26,7 +26,7 @@ public class TriangularMazeHelper : MazeHelper {
     public override var mazes:[Mazes] {
         get {
             var mazes = Mazes.agnosticMazes
-            if let index = mazes.index(of: .binaryTree) {
+            if let index = mazes.firstIndex(of: .binaryTree) {
                 mazes.remove(at: index)
             }
             return mazes

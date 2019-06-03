@@ -78,7 +78,7 @@ public class Mask {
 
 public extension Mask {
     
-    public static func from(_ text: String ) -> Mask {
+    static func from(_ text: String ) -> Mask {
         // First trim extra whitespace and line feeds form the string.
         let trimmed = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         var lines = trimmed.components(separatedBy: CharacterSet.newlines)
@@ -151,7 +151,7 @@ public extension Mask {
         return result
     }
     
-    public static func from(_ image: Image ) -> Mask {
+    static func from(_ image: Image ) -> Mask {
 
         let rows = Int(image.size.height)
         let columns = Int(image.size.width)
@@ -207,7 +207,7 @@ public extension Mask {
         return mask
     }
     
-    public static func from(_ url: URL ) -> Mask? {
+    static func from(_ url: URL ) -> Mask? {
         var result : Mask? = nil
 
         // The more complicated way...

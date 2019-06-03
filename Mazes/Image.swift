@@ -51,7 +51,7 @@ let bitmapInfo:CGBitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipl
 public extension Image {
     
     /// Simple method for generating a CGContext, filled in with a particular background color.
-    public static func context( size: (Int, Int), color:(CGFloat, CGFloat, CGFloat, CGFloat)) -> CGContext? {
+    static func context( size: (Int, Int), color:(CGFloat, CGFloat, CGFloat, CGFloat)) -> CGContext? {
         var result: CGContext?
         
         // Create a bitmap graphics context of the given size
@@ -69,7 +69,7 @@ public extension Image {
         return result
     }
     
-    public static func appIconImage(with image: Image ) -> Image? {
+    static func appIconImage(with image: Image ) -> Image? {
         var result : Image? = nil
         
         if let cgImage = image.cgImage {
@@ -90,7 +90,7 @@ public extension Image {
     }
 
     /// Simple method for resizing a given image to a specific size...
-    public func resize(size: (Int, Int) ) -> Image? {
+    func resize(size: (Int, Int) ) -> Image? {
         var result : Image? = nil
         
         if let cgImage = self.cgImage {
@@ -106,7 +106,7 @@ public extension Image {
     }
     
     /// Draws a rectangular maze based on the maze passed in.
-    public static func cgImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+    static func cgImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -190,7 +190,7 @@ public extension Image {
     }
 
     /// Draws a hexagonal maze based on the maze passed in.
-    public static func cgHexImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+    static func cgHexImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -306,7 +306,7 @@ public extension Image {
     }
 
     /// Draws a circular maze based on the maze passed in.
-    public static func cgPolarImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+    static func cgPolarImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -452,7 +452,7 @@ public extension Image {
     }
     
     /// Draws a maze based on triangular cells.
-    public static func cgTriangleImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+    static func cgTriangleImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -557,7 +557,7 @@ public extension Image {
     }
     
     /// Draws a triangle maze built out of triangle cells.
-    public static func cgPyramidImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+    static func cgPyramidImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -666,7 +666,7 @@ public extension Image {
     }
 
     /// Draws a triangle maze built out of triangle cells.
-    public static func cgDiamondImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
+    static func cgDiamondImage(for maze: Grid, cellSize: Int, strokeSize: Int = 2, solution: Bool = false, showGrid: Bool = false ) -> CGImage? {
         
         var result : CGImage? = nil
         
@@ -777,7 +777,7 @@ public extension Image {
 
     
     /// A simple method for outputting the image as a PNG image.
-    public func output(_ url: URL) {
+    func output(_ url: URL) {
         let image = self
         #if os(macOS)
             if let cgImage = image.cgImage(forProposedRect: nil, context: nil, hints: nil) {

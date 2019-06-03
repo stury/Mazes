@@ -29,7 +29,7 @@ public enum Mazes : String {
 #endif
 
 public extension Mazes {
-    public static func factory(_ maze:Mazes, grid: Grid) {
+    static func factory(_ maze:Mazes, grid: Grid) {
         
         switch maze {
         case .binaryTree:
@@ -59,7 +59,7 @@ public static var allCases : [Mazes]  {
     }
 #endif
 
-    public static var rawArray : [String] {
+    static var rawArray : [String] {
         get {
             var result = [String]()
             
@@ -71,7 +71,7 @@ public static var allCases : [Mazes]  {
         }
     }
 
-    public static var loclizedRawArray : [String] {
+    static var loclizedRawArray : [String] {
         get {
             var result = [String]()
             
@@ -85,7 +85,7 @@ public static var allCases : [Mazes]  {
 
     
     /// Maze algorithms that are not relyant on a particular cell type.
-    public static var agnosticMazes : [Mazes] {
+    static var agnosticMazes : [Mazes] {
         get{
 //            var rectOnlyMazes = allCases
 //            if let index = rectOnlyMazes.index(of: sidewinder) {
@@ -96,7 +96,7 @@ public static var allCases : [Mazes]  {
         }
     }
     
-    public static func deadends(_ tries:Int = 100) {
+    static func deadends(_ tries:Int = 100) {
         let size = 20
         let algorithms:[Mazes] = Mazes.allCases
         var averages:[Int] = [Int].init(repeating: 0, count: algorithms.count)
@@ -115,7 +115,7 @@ public static var allCases : [Mazes]  {
             for count in deadendCounts {
                 totalDeadends += count
             }
-            if let index = algorithms.index(of: algorithm) {
+            if let index = algorithms.firstIndex(of: algorithm) {
                 averages[index] = totalDeadends / deadendCounts.count
             }
         }
@@ -125,14 +125,14 @@ public static var allCases : [Mazes]  {
         
         let sortedAlgorithms = algorithms.sorted(by: { (lhs, rhs) -> Bool in
             var result = false
-            if let lhsIndex = algorithms.index(of: lhs),
-                let rhsIndex = algorithms.index(of: rhs) {
+            if let lhsIndex = algorithms.firstIndex(of: lhs),
+                let rhsIndex = algorithms.firstIndex(of: rhs) {
                 result = averages[lhsIndex] > averages[rhsIndex]
             }
             return result
         })
         for algorithm in sortedAlgorithms {
-            if let index = algorithms.index(of: algorithm) {
+            if let index = algorithms.firstIndex(of: algorithm) {
                 let percentage = averages[index]*100/(size*size)
                 print("\(algorithm.rawValue) : \(averages[index])/\(totalCells) (\(percentage)%)")
             }

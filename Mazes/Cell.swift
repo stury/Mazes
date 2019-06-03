@@ -6,6 +6,11 @@ public class Cell : Equatable, CustomStringConvertible, Hashable {
         return row.hashValue ^ column.hashValue
     }
     
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(row.hashValue)
+        hasher.combine(column.hashValue)
+    }
+    
     public var description: String {
         return "Cell(\(row), \(column))"
     }

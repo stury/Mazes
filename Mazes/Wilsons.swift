@@ -41,9 +41,9 @@ class Wilsons : MazeGenerator {
                 var path = [Cell]()
                 path.append(cell)
                 
-                while let _ = unvisited.index(of: cell) {
+                while let _ = unvisited.firstIndex(of: cell) {
                     cell = cell.neighbors().sample()
-                    let position = path.index(of: cell)
+                    let position = path.firstIndex(of: cell)
                     if position != nil {
                         path.removeAll()
                     }

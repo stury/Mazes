@@ -2,7 +2,7 @@ import Foundation
 
 public extension Array {
     // To match Ruby's sample() method, we will implement a sample extension to Array in Swift.  This will allow us to choose a random item from the array.
-    public func sample() -> Element {
+    func sample() -> Element {
         return self[random(self.count)]
     }
 }
