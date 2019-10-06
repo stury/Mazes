@@ -7,9 +7,9 @@
 //
 
 import Foundation
+import CoreGraphics
 
 public class TriangleGrid : Grid {
-    
     
     override public func imageSize(_ cellSize: Int) -> CGSize {
         let size = Double(cellSize)

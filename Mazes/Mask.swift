@@ -81,7 +81,7 @@ public extension Mask {
     static func from(_ text: String ) -> Mask {
         // First trim extra whitespace and line feeds form the string.
         let trimmed = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-        var lines = trimmed.components(separatedBy: CharacterSet.newlines)
+        let lines = trimmed.components(separatedBy: CharacterSet.newlines)
         
         let rows = lines.count
         // Need to trim whitespace from each line, in case someone accidentally added extra whitespace.
