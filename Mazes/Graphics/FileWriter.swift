@@ -8,7 +8,7 @@
 
 import Foundation
 
-class FileWriter {
+public class FileWriter {
     let additionalDirectory : String
     private let basicPath : String
     private let computedPath : String

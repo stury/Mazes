@@ -25,8 +25,10 @@ public class MazeHelper {
             return true
         }
     }
+    public var fileHelper: FileWriter?
     
     public init() {
+        fileHelper = try? FileWriter()
     }
     
     /// MARK: Overrideable methods
