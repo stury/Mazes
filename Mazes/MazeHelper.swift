@@ -77,6 +77,9 @@ public class MazeHelper {
         if let image = grid.image(cellSize: cellSize, strokeSize: strokeSize) {
             fileHelper?.export(fileType: "png", name: name, data: image.data())
         }
+        if let image = grid.pdfImage(cellSize: cellSize, strokeSize: strokeSize) {
+            fileHelper?.export(fileType: "pdf", name: name, data: image)
+        }
     }
 
     public func image( for grid: Grid ) -> Image? {

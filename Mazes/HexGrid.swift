@@ -10,17 +10,32 @@ import Foundation
 
 public class HexGrid : Grid {
     
-    override public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
-        var result : Image? = nil
-        
-        let cgImage = Image.cgHexImage(for: self, cellSize: cellSize, strokeSize: strokeSize)
-        if let cgImage = cgImage {
-            result = Image.init(cgImage: cgImage)
-        }
-        
-        return result
+    override public func imageSize(_ cellSize: Int) -> CGSize {
+        let size = Double(cellSize)
+        let aSize = size/2.0
+        let bSize = size * Double(3.0).squareRoot() / 2.0
+        //let width = size*2.0
+        let height = bSize * 2
+
+        let imgWidth = Int(3.0 * aSize * Double(self.columns) + aSize + 0.5)
+        let imgHeight = Int(height * Double(self.rows) + bSize + 0.5)
+        return CGSize(width: imgWidth+1, height: imgHeight+1)
     }
     
+    override public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
+        let result : Image? = renderer.raster(size: imageSize(cellSize)) { (context) in
+            Image.hexMaze(in: context, for: self, cellSize: cellSize, strokeSize: strokeSize)
+        }
+        return result
+    }
+
+    override public func pdfImage( cellSize: Int, strokeSize: Int = 2 ) -> Data? {
+        let result : Data? = renderer.data(mode: .pdf, size: imageSize(cellSize)) { (context) in
+            Image.hexMaze(in:context, for: self, cellSize: cellSize, strokeSize: strokeSize)
+        }
+        return result
+    }
+
     override internal func prepareGrid() -> [[Cell?]] {
         var result = [[Cell?]]()
         for row in 0..<rows {

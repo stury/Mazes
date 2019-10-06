@@ -10,17 +10,31 @@ import Foundation
 
 public class PyramidGrid : Grid {
     
+    override public func imageSize(_ cellSize: Int) -> CGSize {
+        let size = Double(cellSize)
+        //let halfWidth = size / 2.0
+        let height = size * Double(3.0).squareRoot() / 2.0
+        //let halfHeight = height / 2.0
+        
+        let imgWidth = Int(size * Double(self.columns+1)/2.0)
+        let imgHeight = Int(height * Double(self.rows))
+        return CGSize(width: imgWidth+1, height: imgHeight+1)
+    }
+
     override public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
-        var result : Image? = nil
-        
-        let cgImage = Image.cgPyramidImage(for: self, cellSize: cellSize, strokeSize: strokeSize)
-        if let cgImage = cgImage {
-            result = Image.init(cgImage: cgImage)
+        let result : Image? = renderer.raster(size: imageSize(cellSize)) { (context) in
+            Image.pyramidMaze(in: context, for: self, cellSize: cellSize, strokeSize: strokeSize)
         }
-        
         return result
     }
-    
+   
+    override public func pdfImage( cellSize: Int, strokeSize: Int = 2 ) -> Data? {
+        let result : Data? = renderer.data(mode: .pdf, size: imageSize(cellSize)) { (context) in
+            Image.pyramidMaze(in:context, for: self, cellSize: cellSize, strokeSize: strokeSize)
+        }
+        return result
+    }
+
     override public init( rows: Int, columns: Int) {
         let calculatedColumns = rows*2-1
         super.init( rows: rows, columns: calculatedColumns )

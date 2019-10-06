@@ -16,10 +16,12 @@ public class Grid : CustomStringConvertible {
     
     public let rows, columns : Int
     var grid : [[Cell?]]
-    
+    public var renderer : ImageRenderer
+
     public init( rows: Int, columns: Int) {
         self.rows = rows
         self.columns = columns
+        renderer = ImageRenderer((1.0, 1.0, 1.0, 0.0))
         self.grid = [[Cell?]]()
         self.grid = prepareGrid()
         
@@ -123,28 +125,25 @@ public class Grid : CustomStringConvertible {
     public func contentsOfCell(_ cell:Cell) -> String {
         return " "
     }
-    
+        
     /// Simple method for returning the size of the image we need to create for this maze.
     public func imageSize(_ cellSize: Int) -> CGSize {
         let imageWidth = cellSize * self.columns
         let imageHeight = cellSize * self.rows
-        return CGSize(width: imageWidth, height: imageHeight)
+        return CGSize(width: imageWidth+1, height: imageHeight+1)
     }
     
     public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
-        var result : Image? = nil
-        
-        let cgImage = Image.cgImage(for: self, cellSize: cellSize, strokeSize: strokeSize)
-        if let cgImage = cgImage {
-            result = Image.init(cgImage: cgImage)
+        let result : Image? = renderer.raster(size: imageSize(cellSize)) { (context) in
+            Image.gridMaze(in:context, for: self, cellSize: cellSize, strokeSize: strokeSize)
         }
-        
         return result
     }
 
     public func pdfImage( cellSize: Int, strokeSize: Int = 2 ) -> Data? {
-        var result : Data? = nil
-                
+        let result : Data? = renderer.data(mode: .pdf, size: imageSize(cellSize)) { (context) in
+            Image.gridMaze(in:context, for: self, cellSize: cellSize, strokeSize: strokeSize)
+        }
         return result
     }
 

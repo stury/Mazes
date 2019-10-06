@@ -9,18 +9,33 @@
 import Foundation
 
 public class DiamondGrid : Grid {
-    
-    override public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
-        var result : Image? = nil
+
+    override public func imageSize(_ cellSize: Int) -> CGSize {
+        let size = Double(cellSize)
+        //let halfWidth = size / 2.0
+        let height = size * Double(3.0).squareRoot() / 2.0
+        //let halfHeight = height / 2.0
         
-        let cgImage = Image.cgDiamondImage(for: self, cellSize: cellSize, strokeSize: strokeSize)
-        if let cgImage = cgImage {
-            result = Image.init(cgImage: cgImage)
-        }
+        let imgWidth = Int(size * Double(self.columns+1)/2.0)
+        let imgHeight = Int(height * Double(self.rows))
         
-        return result
+        return CGSize(width: imgWidth, height: imgHeight)
     }
+
+     override public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
+         let result : Image? = renderer.raster(size: imageSize(cellSize)) { (context) in
+             Image.diamondMaze(in: context, for: self, cellSize: cellSize, strokeSize: strokeSize)
+         }
+         return result
+     }
     
+     override public func pdfImage( cellSize: Int, strokeSize: Int = 2 ) -> Data? {
+         let result : Data? = renderer.data(mode: .pdf, size: imageSize(cellSize)) { (context) in
+             Image.diamondMaze(in:context, for: self, cellSize: cellSize, strokeSize: strokeSize)
+         }
+         return result
+     }
+
     override public init( rows: Int, columns: Int) {
         // maxCalculatedColumns in this case is actually the maximum possible columns in a row...
         

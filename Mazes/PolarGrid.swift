@@ -10,17 +10,25 @@ import Foundation
 
 public class PolarGrid : Grid {
 
+    override public func imageSize(_ cellSize: Int) -> CGSize {
+        let imageSize = 2*self.rows*cellSize
+        return CGSize(width: imageSize+2, height: imageSize+2)
+    }
+
     override public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
-        var result : Image? = nil
-        
-        let cgImage = Image.cgPolarImage(for: self, cellSize: cellSize, strokeSize: strokeSize)
-        if let cgImage = cgImage {
-            result = Image.init(cgImage: cgImage)
+        let result : Image? = renderer.raster(size: imageSize(cellSize)) { (context) in
+            Image.polarMaze(in:context, for:self, cellSize: cellSize, strokeSize:strokeSize )
         }
-        
         return result
     }
-    
+
+    override public func pdfImage( cellSize: Int, strokeSize: Int = 2 ) -> Data? {
+        let result : Data? = renderer.data(mode: .pdf, size: imageSize(cellSize)) { (context) in
+            Image.polarMaze(in:context, for: self, cellSize: cellSize, strokeSize: strokeSize)
+        }
+        return result
+    }
+
     public init( _ rows: Int ) {
         super.init(rows: rows, columns: 1)
     }
