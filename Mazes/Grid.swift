@@ -122,7 +122,14 @@ public class Grid : CustomStringConvertible {
     public func contentsOfCell(_ cell:Cell) -> String {
         return " "
     }
-        
+    
+    /// Simple method for returning the size of the image we need to create for this maze.
+    public func imageSize(_ cellSize: Int) -> CGSize {
+        let imageWidth = cellSize * self.columns
+        let imageHeight = cellSize * self.rows
+        return CGSize(width: imageWidth, height: imageHeight)
+    }
+    
     public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
         var result : Image? = nil
         
@@ -133,7 +140,13 @@ public class Grid : CustomStringConvertible {
         
         return result
     }
-    
+
+    public func pdfImage( cellSize: Int, strokeSize: Int = 2 ) -> Data? {
+        var result : Data? = nil
+                
+        return result
+    }
+
     public func deadends() -> [Cell] {
         var result = [Cell]()
         

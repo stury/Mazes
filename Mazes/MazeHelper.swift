@@ -73,10 +73,7 @@ public class MazeHelper {
     
     public func image( for grid: Grid, name: String = "maze" ) {
         if let image = grid.image(cellSize: cellSize, strokeSize: strokeSize) {
-            let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-            if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
-                image.output(documentURL)
-            }
+            fileHelper?.export(fileType: "png", name: name, data: image.data())
         }
     }
 

@@ -8,12 +8,11 @@
 
 import Foundation
 
+let fileHelper = try? FileWriter(additionalOutputDirectory: "Mazes")
+
 func image(with image: Image, name: String = "maze") -> Image? {
 
-    let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-    if let documentURL = URL(string: "\(name).png", relativeTo: URL(fileURLWithPath: documentsPath)) {
-        image.output(documentURL)
-    }
+    fileHelper?.export(fileType: "png", name: name, data: image.data())
 
     return image
 }
@@ -256,12 +255,12 @@ func weightedGrid() {
 
 }
 
-// generateMazes( [DiamondMazeHelper()] )
-//let mazeHelper = DiamondMazeHelper()
-//mazeHelper.generateGrid(20, name: "\(mazeHelper.imageNamePrefix)grid")
-//mazeHelper.generateMaze(20, name: "\(mazeHelper.imageNamePrefix)maze")
+ generateMazes( [DiamondMazeHelper()] )
+let mazeHelper = DiamondMazeHelper()
+mazeHelper.generateGrid(20, name: "\(mazeHelper.imageNamePrefix)grid")
+mazeHelper.generateMaze(20, name: "\(mazeHelper.imageNamePrefix)maze")
 
-//generateiOSTableViewSamples()
+generateiOSTableViewSamples()
 
 weightedGrid()
 
