@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreGraphics
 
 extension Image {
     // MARK: - MAZE Specific methods?  Should these be in their own extension?

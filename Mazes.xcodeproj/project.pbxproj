@@ -100,8 +100,6 @@
 		D238C7F42103CD9600909855 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238C7F32103CD9600909855 /* main.swift */; };
 		D23933E62157FA7300920688 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23933E52157FA7300920688 /* SettingsViewController.swift */; };
 		D2478AD623484BB600D57A22 /* MazeImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AD523484BB600D57A22 /* MazeImageExtensions.swift */; };
-		D2478AD723484BB600D57A22 /* MazeImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AD523484BB600D57A22 /* MazeImageExtensions.swift */; };
-		D2478AD823484BB600D57A22 /* MazeImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AD523484BB600D57A22 /* MazeImageExtensions.swift */; };
 		D2478AE423484CC700D57A22 /* FileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478ADF23484CC700D57A22 /* FileWriter.swift */; };
 		D2478AE523484CC700D57A22 /* FileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478ADF23484CC700D57A22 /* FileWriter.swift */; };
 		D2478AE623484CC700D57A22 /* CGContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE023484CC700D57A22 /* CGContextExtensions.swift */; };
@@ -112,6 +110,7 @@
 		D2478AEB23484CC700D57A22 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE223484CC700D57A22 /* Image.swift */; };
 		D2478AEC23484CC700D57A22 /* ImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE323484CC700D57A22 /* ImageRenderer.swift */; };
 		D2478AED23484CC700D57A22 /* ImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE323484CC700D57A22 /* ImageRenderer.swift */; };
+		D2478AEF2349823900D57A22 /* MazeImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AD523484BB600D57A22 /* MazeImageExtensions.swift */; };
 		D27CE56D215B21D10029514A /* MazeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27CE56C215B21D10029514A /* MazeSettings.swift */; };
 		D2A66C5E216847D400EA8DFC /* SimplePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5D216847D400EA8DFC /* SimplePickerDataSource.swift */; };
 		D2A66C602168560800EA8DFC /* ColoredMaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5F2168560800EA8DFC /* ColoredMaskedGrid.swift */; };
@@ -448,7 +447,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = self;
 				TargetAttributes = {
 					D22B3FAC2151E79700E8FB06 = {
@@ -466,7 +465,7 @@
 					D238C7EF2103CD9500909855 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = U5K2PCXQE4;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -524,6 +523,7 @@
 				D22B40402151F80900E8FB06 /* MazeGenerator.swift in Sources */,
 				D22B40382151F80900E8FB06 /* ColoredHexGrid.swift in Sources */,
 				D2F5531C21A25E4B0057C2E6 /* WeightedCell.swift in Sources */,
+				D2478AEF2349823900D57A22 /* MazeImageExtensions.swift in Sources */,
 				D22B402F2151F80900E8FB06 /* Random.swift in Sources */,
 				D22B40462151F80900E8FB06 /* RecursiveBacktracker.swift in Sources */,
 				D2478AE723484CC700D57A22 /* CGContextExtensions.swift in Sources */,
@@ -556,7 +556,6 @@
 				D2478AE923484CC700D57A22 /* CGColorExtensions.swift in Sources */,
 				D22B40392151F80900E8FB06 /* TriangleGrid.swift in Sources */,
 				D22B403B2151F80900E8FB06 /* PyramidGrid.swift in Sources */,
-				D2478AD723484BB600D57A22 /* MazeImageExtensions.swift in Sources */,
 				D22B40322151F80900E8FB06 /* DistanceGrid.swift in Sources */,
 				D22B40302151F80900E8FB06 /* CollectionExtension.swift in Sources */,
 				D22B40442151F80900E8FB06 /* Wilsons.swift in Sources */,
@@ -577,7 +576,6 @@
 				D22B3FBE2151E7D400E8FB06 /* MasterViewController.swift in Sources */,
 				D2A66C5E216847D400EA8DFC /* SimplePickerDataSource.swift in Sources */,
 				D2D642382153369600949CB5 /* ChooseMazeCell.swift in Sources */,
-				D2478AD823484BB600D57A22 /* MazeImageExtensions.swift in Sources */,
 				D23933E62157FA7300920688 /* SettingsViewController.swift in Sources */,
 				D22B3FBC2151E7D400E8FB06 /* AppDelegate.swift in Sources */,
 				D27CE56D215B21D10029514A /* MazeSettings.swift in Sources */,
@@ -695,6 +693,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -727,6 +726,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -902,10 +902,11 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U5K2PCXQE4;
+				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				SYMROOT = ./build;
 			};
 			name = Debug;
@@ -916,10 +917,11 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U5K2PCXQE4;
+				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 				SYMROOT = ./build;
 			};
 			name = Release;

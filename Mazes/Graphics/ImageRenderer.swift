@@ -7,7 +7,7 @@ import CoreServices
 import UIKit
 import MobileCoreServices
 #endif
-#if os(macOS) || os(iOS)
+#if os(macOS)
 import Quartz
 #endif
 
