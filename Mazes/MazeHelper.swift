@@ -90,6 +90,14 @@ public class MazeHelper {
         return result
     }
 
+    public func pdfImage( for grid: Grid ) -> Data? {
+        var result : Data? = nil
+        if let image = grid.pdfImage(cellSize: cellSize, strokeSize: strokeSize) {
+            result = image
+        }
+        return result
+    }
+
     /// Generated a quick grid, without any maze generation.
     public func generateGrid(_ size: Int, name: String  ) {
         let grid = getGrid(size)

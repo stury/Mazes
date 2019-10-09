@@ -52,8 +52,9 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
     
     /// This is a Grid object for the current Maze. From this we can generate a new maze image!
     private var grid: Grid?
+    private var pdfImage : Data? = nil
     
-    func showImage(_ image: Image) {
+    func showImage(_ image: Image, pdf: Data? = nil) {
         if let imageView = imageView {
             // reset scrollView and imageView before modifing updating the image.
             imageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
@@ -81,6 +82,13 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
                 scrollView.zoomScale = scale
             }
         }
+        // Store the PDF version just in case...
+        if let pdf = pdf {
+            pdfImage = pdf
+        }
+        else {
+            pdfImage = nil
+        }
     }
     
     func showImage(_ grid: Grid ) {
@@ -98,12 +106,12 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
             // clear out the distances if the user doesn't want the colors rendered.
             coloredGrid?.distances = nil
         }
-        if let image = helper?.image(for: grid) {
+        if let image = helper?.image(for: grid), let pdf = helper?.pdfImage(for: grid) {
             DispatchQueue.main.async { [weak self] in
                 if let activityIndicator = self?.activityIndicator {
                     activityIndicator.stopAnimating()
                 }
-                self?.showImage(image)
+                self?.showImage(image, pdf: pdf)
             }
         }
     }
@@ -149,7 +157,22 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
 
     @IBAction func onAction(_ sender: UIBarButtonItem) {
         // Open up the Action sheet, with the Image in the list of what you want to share.
-        let activityVC = UIActivityViewController(activityItems: [imageView.image as Any], applicationActivities: nil)
+        var items = [Any]()
+        
+        // Should I send the PDF, or the Bitmap image?
+        // Looking online I see that if you provide a URL to the image, that will give you a basic
+        // filename for the file, and allow you to use the save to Files capabilities.  If you
+        // don't, it'll let ou print the image, but not save it to Photos.
+        // If I include both, I get the option to save the image, as well as Print.  Printing prints
+        // both images.  So you get a PDF printing, and a Raster printing of the image.
+//        if let pdfImage = pdfImage {
+//            items.append(pdfImage as Any)
+//        }
+        if let image = imageView.image {
+            items.append( image )
+        }
+        
+        let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
         if UIDevice.current.userInterfaceIdiom == .pad {
             //On iPad, you must present the view controller in a popover.
             activityVC.modalPresentationStyle = .popover

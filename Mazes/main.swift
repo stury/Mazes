@@ -21,6 +21,9 @@ func image( for grid: Grid, name: String = "maze", cellSize : Int = 40 , strokeS
     var result : Image? = nil
     if let rasterImage = grid.image(cellSize: cellSize, strokeSize: strokeSize) {
         result = image(with: rasterImage, name: name)
+        if let pdf = grid.pdfImage(cellSize: cellSize, strokeSize: strokeSize) {
+            fileHelper?.export(fileType: "pdf", name: name, data: pdf)
+        }
     }
     return result
 }
@@ -143,9 +146,15 @@ func killingCells(_ path: String, name: String = "killingCells") {
     }
 }
 
-//killingCells("../../../../../Examples/MazeMask.txt", name: "killingCells")
-//killingCells("../../../../../Examples/MazeMask.png", name: "killingCells2")
-//killingCells("../../../../../Examples/Scott Maze.png")
+/// Simple routine to run through the full killingCells tests.
+func testKillingCells() {
+    //killingCells("../../../../../Examples/MazeMask.txt", name: "killingCells")
+    killingCells("/Users/scott/Library/Mobile Documents/com~apple~CloudDocs/Development/Mazes/Mask/MazeMask.txt", name: "killingCells")
+    //killingCells("../../../../../Examples/MazeMask.png", name: "killingCells2")
+    killingCells("/Users/scott/Library/Mobile Documents/com~apple~CloudDocs/Development/Mazes/Mask/MazeMask.png", name: "killingCells2")
+    //killingCells("../../../../../Examples/Scott Maze.png")
+    killingCells("/Users/scott/Library/Mobile Documents/com~apple~CloudDocs/Development/Mazes/Mask/Scott Maze.png", name: "killingCellsScript")
+}
 
 func generateMazes(_ helpers:[MazeHelper]) {
     for mazeHelper in helpers {
@@ -209,19 +218,9 @@ func tableViewMazeIcons() {
         helper.fileHelper = fileHelper
     }
     for mazeHelper in helpers {
-        mazeHelper.generateMazes(mazeHelper.mazes, maxes: [1])
+        mazeHelper.generateMazes(mazeHelper.mazes, maxes: [6])
     }
 }
-
-// Generate ALL Mazes!
-// generateMazes(MazeGeneratorHelper.allHelpers)
-
-// Now generate all of the mazes, and make the mazes braided!
-//let helpers = MazeHelper.allHelpers { (helper) in
-//    helper.braided = true
-//    helper.mazeSize = 20
-//}
-//generateMazes(helpers)
 
 func generateiOSTableViewSamples() {
     let helpers = MazeHelper.allHelpers { (helper) in
@@ -257,14 +256,29 @@ func weightedGrid() {
 
 }
 
-let mazeHelper = DiamondMazeHelper()
-mazeHelper.fileHelper = fileHelper
-generateMazes( [mazeHelper] )
+// Generate ALL Mazes!
+generateMazes( MazeHelper.allHelpers { (helper) in
+    helper.fileHelper = fileHelper
+}  )
 
-mazeHelper.generateGrid(20, name: "\(mazeHelper.imageNamePrefix)grid")
-mazeHelper.generateMaze(20, name: "\(mazeHelper.imageNamePrefix)maze")
+// Now generate all of the mazes, and make the mazes braided!
+generateMazes( MazeHelper.allHelpers { (helper) in
+    helper.fileHelper = fileHelper
+    helper.braided = true
+    helper.mazeSize = 20
+} )
+
+// Generate grid and maze images
+let mazeHelpers = MazeHelper.allHelpers { (helper) in
+    helper.fileHelper = fileHelper
+}
+for helper in mazeHelpers {
+    helper.generateGrid(20, name: "\(helper.imageNamePrefix)grid")
+    helper.generateMaze(20, name: "\(helper.imageNamePrefix)maze")
+}
+
+testKillingCells()
 
 generateiOSTableViewSamples()
-
 weightedGrid()
 
