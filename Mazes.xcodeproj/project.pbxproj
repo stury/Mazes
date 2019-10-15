@@ -111,6 +111,7 @@
 		D2478AEC23484CC700D57A22 /* ImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE323484CC700D57A22 /* ImageRenderer.swift */; };
 		D2478AED23484CC700D57A22 /* ImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE323484CC700D57A22 /* ImageRenderer.swift */; };
 		D2478AEF2349823900D57A22 /* MazeImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AD523484BB600D57A22 /* MazeImageExtensions.swift */; };
+		D2570473234EDCB80062447A /* ImageRendererExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570472234EDCB80062447A /* ImageRendererExtensions.swift */; };
 		D27CE56D215B21D10029514A /* MazeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27CE56C215B21D10029514A /* MazeSettings.swift */; };
 		D2A66C5E216847D400EA8DFC /* SimplePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5D216847D400EA8DFC /* SimplePickerDataSource.swift */; };
 		D2A66C602168560800EA8DFC /* ColoredMaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5F2168560800EA8DFC /* ColoredMaskedGrid.swift */; };
@@ -202,6 +203,7 @@
 		D2478AE123484CC700D57A22 /* CGColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGColorExtensions.swift; sourceTree = "<group>"; };
 		D2478AE223484CC700D57A22 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		D2478AE323484CC700D57A22 /* ImageRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRenderer.swift; sourceTree = "<group>"; };
+		D2570472234EDCB80062447A /* ImageRendererExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRendererExtensions.swift; sourceTree = "<group>"; };
 		D27238932143733C006BF452 /* ColoredPolarGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPolarGrid.swift; sourceTree = "<group>"; };
 		D2759DD9213F79ED00C7FB65 /* PolarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarCell.swift; sourceTree = "<group>"; };
 		D27CE56C215B21D10029514A /* MazeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeSettings.swift; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				D28AA1EB210C035400898B17 /* HuntAndKill.swift */,
 				D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */,
 				D2478AD523484BB600D57A22 /* MazeImageExtensions.swift */,
+				D2570472234EDCB80062447A /* ImageRendererExtensions.swift */,
 				D2478ADE23484CC700D57A22 /* Graphics */,
 			);
 			path = Mazes;
@@ -605,6 +608,7 @@
 				D22B40042151ECB900E8FB06 /* HexagonalMazeHelper.swift in Sources */,
 				D22B40062151ECB900E8FB06 /* AldousBroder.swift in Sources */,
 				D2478AE423484CC700D57A22 /* FileWriter.swift in Sources */,
+				D2570473234EDCB80062447A /* ImageRendererExtensions.swift in Sources */,
 				D2F5531E21A269250057C2E6 /* WeightedGrid.swift in Sources */,
 				D22B40122151ECB900E8FB06 /* HuntAndKill.swift in Sources */,
 				D22B401B2151ECB900E8FB06 /* DistanceGrid.swift in Sources */,
