@@ -11,6 +11,7 @@ import CoreGraphics
 
 #if swift(>=4.2)
 public enum ColoredGridMode : String, CaseIterable {
+    case none
     case red
     case green
     case blue
@@ -21,6 +22,7 @@ public enum ColoredGridMode : String, CaseIterable {
 }
 #else
 public enum ColoredGridMode : String {
+    case none
     case red
     case green
     case blue
@@ -31,7 +33,7 @@ public enum ColoredGridMode : String {
 }
 #endif
 
-extension ColoredGridMode {
+public extension ColoredGridMode {
     //static var allCases: Self.AllCases
     #if swift(>=4.2)
     #else
@@ -42,7 +44,7 @@ extension ColoredGridMode {
     }
     #endif
     
-    public static var rawArray : [String] {
+    static var rawArray : [String] {
         get {
             var result = [String]()
             
@@ -54,7 +56,7 @@ extension ColoredGridMode {
         }
     }
     
-    public static var loclizedRawArray : [String] {
+    static var loclizedRawArray : [String] {
         get {
             var result = [String]()
             
@@ -76,10 +78,10 @@ public protocol ColoredGrid {
     func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat)
 }
 
-extension ColoredGrid {
+public extension ColoredGrid {
     
     // protocol for Image callback to grid for the background color
-    public func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat) {
+    func backgroundColor( for cell: Cell ) -> (CGFloat, CGFloat, CGFloat) {
         var result = (CGFloat(1.0), CGFloat(1.0), CGFloat(1.0))
         if let distances = distances {
             
@@ -98,6 +100,8 @@ extension ColoredGrid {
                     let dark = CGFloat(1.0 * intensity)
                     let bright = CGFloat(0.5 + (0.5*intensity))
                     switch mode {
+                    case .none:
+                        result = (1.0, 1.0, 1.0)    // always white for none option.
                     case .red:
                         result = (bright, dark, dark)
                     case .green:

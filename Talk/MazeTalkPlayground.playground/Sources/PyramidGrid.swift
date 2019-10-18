@@ -1,0 +1,90 @@
+//
+//  PyramidGrid.swift
+//  Mazes
+//
+//  Created by Scott Tury on 9/14/18.
+//  Copyright © 2018 self. All rights reserved.
+//
+
+import Foundation
+import CoreGraphics
+
+public class PyramidGrid : Grid {
+    
+    override public func imageSize(_ cellSize: Int) -> CGSize {
+        let size = Double(cellSize)
+        //let halfWidth = size / 2.0
+        let height = size * Double(3.0).squareRoot() / 2.0
+        //let halfHeight = height / 2.0
+        
+        let imgWidth = Int(size * Double(self.columns+1)/2.0)
+        let imgHeight = Int(height * Double(self.rows))
+        return CGSize(width: imgWidth+1, height: imgHeight+1)
+    }
+
+    override public func image( cellSize: Int, strokeSize: Int = 2 ) -> Image? {
+        let result : Image? = renderer.raster(size: imageSize(cellSize)) { (context) in
+            Image.pyramidMaze(in: context, for: self, cellSize: cellSize, strokeSize: strokeSize)
+        }
+        return result
+    }
+   
+    override public func pdfImage( cellSize: Int, strokeSize: Int = 2 ) -> Data? {
+        let result : Data? = renderer.data(mode: .pdf, size: imageSize(cellSize)) { (context) in
+            Image.pyramidMaze(in:context, for: self, cellSize: cellSize, strokeSize: strokeSize)
+        }
+        return result
+    }
+
+    override public init( rows: Int, columns: Int) {
+        let calculatedColumns = rows*2-1
+        super.init( rows: rows, columns: calculatedColumns )
+    }
+    
+    override internal func prepareGrid() -> [[Cell?]] {
+        var result = [[Cell?]]()
+        var numElements = 1
+        for row in 0..<rows {
+            var rowArray = [Cell?]()
+            for column in 0..<numElements {
+                rowArray.append(PyramidCell(row: row, column: column))
+            }
+            result.append(rowArray)
+            numElements += 2
+        }
+        
+        // self.columns == numElements-2, or result[result.count-1].count
+        
+        return result
+    }
+    
+    override public func size() -> Int {
+        var result = 0
+        for column in grid {
+            result += column.count
+        }
+        return result
+    }
+    
+    override internal func configureCells() {
+        eachCell { (cell) -> Bool in
+            
+            if let cell = cell as? TriangleCell {
+                let row = cell.row
+                let col = cell.column
+                
+                cell.west = self[(row,col-1)] as? TriangleCell
+                cell.east = self[(row,col+1)] as? TriangleCell
+                
+                if cell.upright {
+                    cell.south = self[(row+1,col+1)] as? TriangleCell
+                }
+                else {
+                    cell.north = self[(row-1,col-1)] as? TriangleCell
+                }
+            }
+            return false
+        }
+    }
+    
+}

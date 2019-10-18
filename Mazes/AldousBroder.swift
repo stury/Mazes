@@ -8,7 +8,7 @@
 
 import Foundation
 
-class AldousBroder : MazeGenerator {
+public class AldousBroder : MazeGenerator {
     
     public static func on( grid: Grid ) {
         var cell : Cell? = grid.randomCell()

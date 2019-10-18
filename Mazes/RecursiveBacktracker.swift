@@ -8,8 +8,8 @@
 
 import Foundation
 
-class RecursiveBacktracker : MazeGenerator {
-    static func on(grid: Grid) {
+public class RecursiveBacktracker : MazeGenerator {
+    public static func on(grid: Grid) {
         RecursiveBacktracker.on( grid: grid, at: grid.randomCell() )
     }
     

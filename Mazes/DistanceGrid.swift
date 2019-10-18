@@ -10,7 +10,7 @@ import Foundation
 
 public class DistanceGrid : Grid {
     
-    var distances : Distances? = nil
+    public var distances : Distances? = nil
     
     override public func contentsOfCell(_ cell: Cell) -> String {
         var result : String

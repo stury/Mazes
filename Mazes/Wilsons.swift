@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Wilsons : MazeGenerator {
+public class Wilsons : MazeGenerator {
     
     public static func on( grid: Grid ) {
         var unvisited : [Cell] = [Cell]()
