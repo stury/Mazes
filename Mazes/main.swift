@@ -9,6 +9,7 @@
 import Foundation
 
 let fileHelper = try? FileWriter(additionalOutputDirectory: "Mazes")
+let renderer = ImageRenderer((0.0, 1.0, 1.0, 0.0))
 
 func image(with image: Image, name: String = "maze") -> Image? {
 
@@ -19,9 +20,11 @@ func image(with image: Image, name: String = "maze") -> Image? {
 
 func image( for grid: Grid, name: String = "maze", cellSize : Int = 40 , strokeSize: Int = 2) -> Image? {
     var result : Image? = nil
-    if let rasterImage = grid.image(cellSize: cellSize, strokeSize: strokeSize) {
+    if let rasterImage = renderer.mazeImage(grid, cellSize: cellSize, strokeSize: strokeSize) {
+                        //grid.image(cellSize: cellSize, strokeSize: strokeSize) {
         result = image(with: rasterImage, name: name)
-        if let pdf = grid.pdfImage(cellSize: cellSize, strokeSize: strokeSize) {
+        //if let pdf = grid.pdfImage(cellSize: cellSize, strokeSize: strokeSize) {
+        if let pdf = renderer.mazePdfImage(grid, cellSize: cellSize, strokeSize: strokeSize) {
             fileHelper?.export(fileType: "pdf", name: name, data: pdf)
         }
     }
@@ -160,8 +163,8 @@ func generateMazes(_ helpers:[MazeHelper]) {
     for mazeHelper in helpers {
         mazeHelper.generateGrid(20, name: "\(mazeHelper.imageNamePrefix)grid")
         mazeHelper.generateMaze(20, name: "\(mazeHelper.imageNamePrefix)maze")
-        mazeHelper.generateMazes(mazeHelper.mazes, maxes: [6])
-        mazeHelper.generateMazesSolutions(mazeHelper.mazes, maxes: [6])
+        mazeHelper.generateMazes(mazeHelper.mazes, maxes: [8])
+        mazeHelper.generateMazesSolutions(mazeHelper.mazes, maxes: [8])
     }
 }
 
@@ -258,6 +261,7 @@ func weightedGrid() {
 
 // Generate ALL Mazes!
 generateMazes( MazeHelper.allHelpers { (helper) in
+    helper.mazeSize = 20
     helper.fileHelper = fileHelper
 }  )
 
@@ -281,4 +285,8 @@ testKillingCells()
 
 generateiOSTableViewSamples()
 weightedGrid()
+    
+// Draw a small light blue graph  // #87CEFA
+Image.strokeColor = (0x87/255, 0xCE/255, 0xFA/255, 1.0)
+MazeHelper().generateGrid(10, name: "graph_paper")
 

@@ -10,6 +10,8 @@ import Foundation
 import CoreGraphics
 
 extension Image {
+    static var strokeColor = (0.0, 0.0, 0.0, 1.0)
+    
     // MARK: - MAZE Specific methods?  Should these be in their own extension?
         
     /// Draws a rectangular maze based on the maze passed in inside the context provided.
@@ -23,6 +25,8 @@ extension Image {
         context.saveGState()
         context.translateBy(x: 0, y: CGFloat(imageHeight))
         context.scaleBy(x: 1.0, y: -1.0)
+
+        context.setStrokeColor(red: CGFloat(strokeColor.0), green: CGFloat(strokeColor.1), blue: CGFloat(strokeColor.2), alpha: CGFloat(strokeColor.3))
         
         // fill in each cell
         for mode in MazeRenderingMode.allCases {
