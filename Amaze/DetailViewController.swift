@@ -176,6 +176,12 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
         if UIDevice.current.userInterfaceIdiom == .pad {
             //On iPad, you must present the view controller in a popover.
             activityVC.modalPresentationStyle = .popover
+            // Remember to setup the Popover based on where you're activating it from...
+            if let popOver = activityVC.popoverPresentationController {
+              //popOver.sourceView = UIView
+              //popOver.sourceRect =
+              popOver.barButtonItem = sender
+            }
         }
         else if UIDevice.current.userInterfaceIdiom == .phone {
             // On iPhone and iPod touch, you must present it modally.
