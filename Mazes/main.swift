@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ImageRenderer
 
 let fileHelper = try? FileWriter(additionalOutputDirectory: "Mazes")
 let renderer = ImageRenderer((0.0, 1.0, 1.0, 0.0))

@@ -8,6 +8,7 @@
 
 import UIKit
 import MazeKit
+import ImageRenderer
 
 extension MazeHelper {
     

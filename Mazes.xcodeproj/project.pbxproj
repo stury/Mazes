@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,7 +22,6 @@
 		D22B3FC32151E7D400E8FB06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22B3FC12151E7D400E8FB06 /* Main.storyboard */; };
 		D22B3FC52151E7D800E8FB06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D22B3FC42151E7D800E8FB06 /* Assets.xcassets */; };
 		D22B3FC82151E7D800E8FB06 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D22B3FC62151E7D800E8FB06 /* LaunchScreen.storyboard */; };
-		D22B3FF62151EC5000E8FB06 /* MazeKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D22B3FAD2151E79700E8FB06 /* MazeKit.framework */; };
 		D22B3FF92151ECB900E8FB06 /* MazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9D2150A08200E8FB06 /* MazeHelper.swift */; };
 		D22B3FFA2151ECB900E8FB06 /* Sidewinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180E2106DA8800EA5EBE /* Sidewinder.swift */; };
 		D22B3FFB2151ECB900E8FB06 /* CircularMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9F2150A0AD00E8FB06 /* CircularMazeHelper.swift */; };
@@ -96,26 +95,64 @@
 		D22B40442151F80900E8FB06 /* Wilsons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7FB69210AC2DA00386F74 /* Wilsons.swift */; };
 		D22B40452151F80900E8FB06 /* HuntAndKill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1EB210C035400898B17 /* HuntAndKill.swift */; };
 		D22B40462151F80900E8FB06 /* RecursiveBacktracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */; };
-		D22C730321549478007CB6B4 /* MazeKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D22B3FAD2151E79700E8FB06 /* MazeKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D238C7F42103CD9600909855 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = D238C7F32103CD9600909855 /* main.swift */; };
 		D23933E62157FA7300920688 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D23933E52157FA7300920688 /* SettingsViewController.swift */; };
 		D2478AD623484BB600D57A22 /* MazeImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AD523484BB600D57A22 /* MazeImageExtensions.swift */; };
-		D2478AE423484CC700D57A22 /* FileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478ADF23484CC700D57A22 /* FileWriter.swift */; };
-		D2478AE523484CC700D57A22 /* FileWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478ADF23484CC700D57A22 /* FileWriter.swift */; };
-		D2478AE623484CC700D57A22 /* CGContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE023484CC700D57A22 /* CGContextExtensions.swift */; };
-		D2478AE723484CC700D57A22 /* CGContextExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE023484CC700D57A22 /* CGContextExtensions.swift */; };
-		D2478AE823484CC700D57A22 /* CGColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE123484CC700D57A22 /* CGColorExtensions.swift */; };
-		D2478AE923484CC700D57A22 /* CGColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE123484CC700D57A22 /* CGColorExtensions.swift */; };
-		D2478AEA23484CC700D57A22 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE223484CC700D57A22 /* Image.swift */; };
-		D2478AEB23484CC700D57A22 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE223484CC700D57A22 /* Image.swift */; };
-		D2478AEC23484CC700D57A22 /* ImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE323484CC700D57A22 /* ImageRenderer.swift */; };
-		D2478AED23484CC700D57A22 /* ImageRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AE323484CC700D57A22 /* ImageRenderer.swift */; };
 		D2478AEF2349823900D57A22 /* MazeImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AD523484BB600D57A22 /* MazeImageExtensions.swift */; };
 		D2570473234EDCB80062447A /* ImageRendererExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570472234EDCB80062447A /* ImageRendererExtensions.swift */; };
 		D27CE56D215B21D10029514A /* MazeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27CE56C215B21D10029514A /* MazeSettings.swift */; };
+		D28A7FA2244D498600337F65 /* ImageRenderer in Frameworks */ = {isa = PBXBuildFile; productRef = D28A7FA1244D498600337F65 /* ImageRenderer */; };
+		D28A7FA4244D49B300337F65 /* ImageRenderer in Frameworks */ = {isa = PBXBuildFile; productRef = D28A7FA3244D49B300337F65 /* ImageRenderer */; };
+		D28A7FA6244D49C200337F65 /* ImageRenderer in Frameworks */ = {isa = PBXBuildFile; productRef = D28A7FA5244D49C200337F65 /* ImageRenderer */; };
 		D2A66C5E216847D400EA8DFC /* SimplePickerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5D216847D400EA8DFC /* SimplePickerDataSource.swift */; };
 		D2A66C602168560800EA8DFC /* ColoredMaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5F2168560800EA8DFC /* ColoredMaskedGrid.swift */; };
 		D2A66C612168592A00EA8DFC /* ColoredMaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5F2168560800EA8DFC /* ColoredMaskedGrid.swift */; };
+		D2D639C02412006C00DE74E3 /* MazeKitLib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D639BF2412006C00DE74E3 /* MazeKitLib.swift */; };
+		D2D639C4241200C500DE74E3 /* MazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9D2150A08200E8FB06 /* MazeHelper.swift */; };
+		D2D639C5241200C500DE74E3 /* CircularMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9F2150A0AD00E8FB06 /* CircularMazeHelper.swift */; };
+		D2D639C6241200C500DE74E3 /* HexagonalMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA12150A0DA00E8FB06 /* HexagonalMazeHelper.swift */; };
+		D2D639C7241200C500DE74E3 /* TriangularMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA32150A10000E8FB06 /* TriangularMazeHelper.swift */; };
+		D2D639C8241200C500DE74E3 /* PyramidMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3FA52150A11D00E8FB06 /* PyramidMazeHelper.swift */; };
+		D2D639C9241200C500DE74E3 /* DiamondMazeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21955EA216C527E003703C5 /* DiamondMazeHelper.swift */; };
+		D2D639CA241200C500DE74E3 /* Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180C2106DA8800EA5EBE /* Cell.swift */; };
+		D2D639CB241200C500DE74E3 /* WeightedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F5531A21A25E4B0057C2E6 /* WeightedCell.swift */; };
+		D2D639CC241200C500DE74E3 /* RectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B345722144C3BE0034E71A /* RectCell.swift */; };
+		D2D639CD241200C500DE74E3 /* PolarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2759DD9213F79ED00C7FB65 /* PolarCell.swift */; };
+		D2D639CE241200C500DE74E3 /* HexCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AA214B003A009D14BC /* HexCell.swift */; };
+		D2D639CF241200C500DE74E3 /* TriangleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B6214B4B22009D14BC /* TriangleCell.swift */; };
+		D2D639D0241200C500DE74E3 /* PyramidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1C0214C60DB009D14BC /* PyramidCell.swift */; };
+		D2D639D1241200C500DE74E3 /* DiamondCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21955E7216C474E003703C5 /* DiamondCell.swift */; };
+		D2D639D2241200C500DE74E3 /* RenderingMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AE214B08A2009D14BC /* RenderingMode.swift */; };
+		D2D639D3241200C500DE74E3 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9921508AA800E8FB06 /* Random.swift */; };
+		D2D639D4241200C500DE74E3 /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22B3F9B21509C9500E8FB06 /* CollectionExtension.swift */; };
+		D2D639D5241200C500DE74E3 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180D2106DA8800EA5EBE /* Grid.swift */; };
+		D2D639D6241200C500DE74E3 /* WeightedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F5531D21A269250057C2E6 /* WeightedGrid.swift */; };
+		D2D639D7241200C500DE74E3 /* DistanceGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA6222108182900D466BC /* DistanceGrid.swift */; };
+		D2D639D8241200C500DE74E3 /* ColoredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC7B20210967C700E40F7A /* ColoredGrid.swift */; };
+		D2D639D9241200C500DE74E3 /* MaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 290D3C6E211BDC300032DA6D /* MaskedGrid.swift */; };
+		D2D639DA241200C500DE74E3 /* ColoredMaskedGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2A66C5F2168560800EA8DFC /* ColoredMaskedGrid.swift */; };
+		D2D639DB241200C500DE74E3 /* PolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21DA623212BADAB0007FF2D /* PolarGrid.swift */; };
+		D2D639DC241200C500DE74E3 /* ColoredPolarGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27238932143733C006BF452 /* ColoredPolarGrid.swift */; };
+		D2D639DD241200C500DE74E3 /* HexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1AC214B0227009D14BC /* HexGrid.swift */; };
+		D2D639DE241200C500DE74E3 /* ColoredHexGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B0214B1AFE009D14BC /* ColoredHexGrid.swift */; };
+		D2D639DF241200C500DE74E3 /* TriangleGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B8214B4D6A009D14BC /* TriangleGrid.swift */; };
+		D2D639E0241200C500DE74E3 /* ColoredTriangleGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BA214B4F9D009D14BC /* ColoredTriangleGrid.swift */; };
+		D2D639E1241200C500DE74E3 /* PyramidGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BC214C4DF8009D14BC /* PyramidGrid.swift */; };
+		D2D639E2241200C500DE74E3 /* ColoredPyramidGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1BE214C533B009D14BC /* ColoredPyramidGrid.swift */; };
+		D2D639E3241200C500DE74E3 /* DiamondGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21955E1216C4642003703C5 /* DiamondGrid.swift */; };
+		D2D639E4241200C500DE74E3 /* ColoredDiamondGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = D21955E4216C468A003703C5 /* ColoredDiamondGrid.swift */; };
+		D2D639E5241200C500DE74E3 /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D201A1B4214B31B5009D14BC /* IntExtensions.swift */; };
+		D2D639E6241200C500DE74E3 /* Distances.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28CA62021080D2E00D466BC /* Distances.swift */; };
+		D2D639E7241200C500DE74E3 /* Mask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29810C14211A9BEF004AD81C /* Mask.swift */; };
+		D2D639E8241200C500DE74E3 /* MazeGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FC7B1E210959DC00E40F7A /* MazeGenerator.swift */; };
+		D2D639E9241200C500DE74E3 /* Sidewinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180E2106DA8800EA5EBE /* Sidewinder.swift */; };
+		D2D639EA241200C500DE74E3 /* BinaryTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DA180B2106DA8800EA5EBE /* BinaryTree.swift */; };
+		D2D639EB241200C500DE74E3 /* AldousBroder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7FB67210ABCE500386F74 /* AldousBroder.swift */; };
+		D2D639EC241200C500DE74E3 /* Wilsons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2C7FB69210AC2DA00386F74 /* Wilsons.swift */; };
+		D2D639ED241200C500DE74E3 /* HuntAndKill.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1EB210C035400898B17 /* HuntAndKill.swift */; };
+		D2D639EE241200C500DE74E3 /* RecursiveBacktracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */; };
+		D2D639EF241200C500DE74E3 /* MazeImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2478AD523484BB600D57A22 /* MazeImageExtensions.swift */; };
+		D2D639F7241200F700DE74E3 /* libMazeKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2D639BD2412006C00DE74E3 /* libMazeKit.a */; };
 		D2D642382153369600949CB5 /* ChooseMazeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D642372153369600949CB5 /* ChooseMazeCell.swift */; };
 		D2F5531B21A25E4B0057C2E6 /* WeightedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F5531A21A25E4B0057C2E6 /* WeightedCell.swift */; };
 		D2F5531C21A25E4B0057C2E6 /* WeightedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F5531A21A25E4B0057C2E6 /* WeightedCell.swift */; };
@@ -124,27 +161,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		D22B3FF32151EC4100E8FB06 /* PBXContainerItemProxy */ = {
+		D2D639F5241200F100DE74E3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D238C7E82103CD9500909855 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = D22B3FAC2151E79700E8FB06;
-			remoteInfo = maze;
+			remoteGlobalIDString = D2D639BC2412006C00DE74E3;
+			remoteInfo = MazeKitLib;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		D22C730421549479007CB6B4 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				D22C730321549478007CB6B4 /* MazeKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D238C7EE2103CD9500909855 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -153,6 +179,15 @@
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		D2D639BB2412006C00DE74E3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -198,11 +233,6 @@
 		D238C7F32103CD9600909855 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		D23933E52157FA7300920688 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D2478AD523484BB600D57A22 /* MazeImageExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeImageExtensions.swift; sourceTree = "<group>"; };
-		D2478ADF23484CC700D57A22 /* FileWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileWriter.swift; sourceTree = "<group>"; };
-		D2478AE023484CC700D57A22 /* CGContextExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGContextExtensions.swift; sourceTree = "<group>"; };
-		D2478AE123484CC700D57A22 /* CGColorExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CGColorExtensions.swift; sourceTree = "<group>"; };
-		D2478AE223484CC700D57A22 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		D2478AE323484CC700D57A22 /* ImageRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRenderer.swift; sourceTree = "<group>"; };
 		D24ABABB23900AA200752F12 /* Amaze.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Amaze.entitlements; sourceTree = "<group>"; };
 		D2570472234EDCB80062447A /* ImageRendererExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRendererExtensions.swift; sourceTree = "<group>"; };
 		D27238932143733C006BF452 /* ColoredPolarGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredPolarGrid.swift; sourceTree = "<group>"; };
@@ -217,6 +247,8 @@
 		D2B345722144C3BE0034E71A /* RectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectCell.swift; sourceTree = "<group>"; };
 		D2C7FB67210ABCE500386F74 /* AldousBroder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AldousBroder.swift; sourceTree = "<group>"; };
 		D2C7FB69210AC2DA00386F74 /* Wilsons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wilsons.swift; sourceTree = "<group>"; };
+		D2D639BD2412006C00DE74E3 /* libMazeKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMazeKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2D639BF2412006C00DE74E3 /* MazeKitLib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MazeKitLib.swift; sourceTree = "<group>"; };
 		D2D642372153369600949CB5 /* ChooseMazeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMazeCell.swift; sourceTree = "<group>"; };
 		D2DA180B2106DA8800EA5EBE /* BinaryTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinaryTree.swift; sourceTree = "<group>"; };
 		D2DA180C2106DA8800EA5EBE /* Cell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cell.swift; sourceTree = "<group>"; };
@@ -233,6 +265,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28A7FA4244D49B300337F65 /* ImageRenderer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,7 +273,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D22B3FF62151EC5000E8FB06 /* MazeKit.framework in Frameworks */,
+				D2D639F7241200F700DE74E3 /* libMazeKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +281,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D28A7FA2244D498600337F65 /* ImageRenderer in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2D639BA2412006C00DE74E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D28A7FA6244D49C200337F65 /* ImageRenderer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +338,7 @@
 				D238C7F22103CD9600909855 /* Mazes */,
 				D22B3FAE2151E79800E8FB06 /* maze */,
 				D22B3FBA2151E7D400E8FB06 /* Amaze */,
+				D2D639BE2412006C00DE74E3 /* MazeKitLib */,
 				D238C7F12103CD9600909855 /* Products */,
 				D22B3FF52151EC5000E8FB06 /* Frameworks */,
 			);
@@ -307,6 +350,7 @@
 				D238C7F02103CD9600909855 /* Mazes */,
 				D22B3FAD2151E79700E8FB06 /* MazeKit.framework */,
 				D22B3FB92151E7D400E8FB06 /* Amaze.app */,
+				D2D639BD2412006C00DE74E3 /* libMazeKit.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -360,21 +404,16 @@
 				D28AA1ED210E301300898B17 /* RecursiveBacktracker.swift */,
 				D2478AD523484BB600D57A22 /* MazeImageExtensions.swift */,
 				D2570472234EDCB80062447A /* ImageRendererExtensions.swift */,
-				D2478ADE23484CC700D57A22 /* Graphics */,
 			);
 			path = Mazes;
 			sourceTree = "<group>";
 		};
-		D2478ADE23484CC700D57A22 /* Graphics */ = {
+		D2D639BE2412006C00DE74E3 /* MazeKitLib */ = {
 			isa = PBXGroup;
 			children = (
-				D2478ADF23484CC700D57A22 /* FileWriter.swift */,
-				D2478AE023484CC700D57A22 /* CGContextExtensions.swift */,
-				D2478AE123484CC700D57A22 /* CGColorExtensions.swift */,
-				D2478AE223484CC700D57A22 /* Image.swift */,
-				D2478AE323484CC700D57A22 /* ImageRenderer.swift */,
+				D2D639BF2412006C00DE74E3 /* MazeKitLib.swift */,
 			);
-			path = Graphics;
+			path = MazeKitLib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -405,6 +444,9 @@
 			dependencies = (
 			);
 			name = MazeKit;
+			packageProductDependencies = (
+				D28A7FA3244D49B300337F65 /* ImageRenderer */,
+			);
 			productName = maze;
 			productReference = D22B3FAD2151E79700E8FB06 /* MazeKit.framework */;
 			productType = "com.apple.product-type.framework";
@@ -416,12 +458,11 @@
 				D22B3FB52151E7D400E8FB06 /* Sources */,
 				D22B3FB62151E7D400E8FB06 /* Frameworks */,
 				D22B3FB72151E7D400E8FB06 /* Resources */,
-				D22C730421549479007CB6B4 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				D22B3FF42151EC4100E8FB06 /* PBXTargetDependency */,
+				D2D639F6241200F100DE74E3 /* PBXTargetDependency */,
 			);
 			name = Amaze;
 			productName = Amaze;
@@ -441,9 +482,32 @@
 			dependencies = (
 			);
 			name = Mazes;
+			packageProductDependencies = (
+				D28A7FA1244D498600337F65 /* ImageRenderer */,
+			);
 			productName = Mazes;
 			productReference = D238C7F02103CD9600909855 /* Mazes */;
 			productType = "com.apple.product-type.tool";
+		};
+		D2D639BC2412006C00DE74E3 /* MazeKitLib */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2D639C32412006C00DE74E3 /* Build configuration list for PBXNativeTarget "MazeKitLib" */;
+			buildPhases = (
+				D2D639B92412006C00DE74E3 /* Sources */,
+				D2D639BA2412006C00DE74E3 /* Frameworks */,
+				D2D639BB2412006C00DE74E3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MazeKitLib;
+			packageProductDependencies = (
+				D28A7FA5244D49C200337F65 /* ImageRenderer */,
+			);
+			productName = MazeKitLib;
+			productReference = D2D639BD2412006C00DE74E3 /* libMazeKit.a */;
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -451,7 +515,7 @@
 		D238C7E82103CD9500909855 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0940;
+				LastSwiftUpdateCheck = 1120;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = self;
 				TargetAttributes = {
@@ -473,6 +537,11 @@
 						LastSwiftMigration = 1100;
 						ProvisioningStyle = Automatic;
 					};
+					D2D639BC2412006C00DE74E3 = {
+						CreatedOnToolsVersion = 11.2;
+						DevelopmentTeam = U5K2PCXQE4;
+						ProvisioningStyle = Automatic;
+					};
 				};
 			};
 			buildConfigurationList = D238C7EB2103CD9500909855 /* Build configuration list for PBXProject "Mazes" */;
@@ -484,12 +553,16 @@
 				Base,
 			);
 			mainGroup = D238C7E72103CD9500909855;
+			packageReferences = (
+				D28A7FA0244D498600337F65 /* XCRemoteSwiftPackageReference "ImageRenderer" */,
+			);
 			productRefGroup = D238C7F12103CD9600909855 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				D238C7EF2103CD9500909855 /* Mazes */,
 				D22B3FAC2151E79700E8FB06 /* MazeKit */,
+				D2D639BC2412006C00DE74E3 /* MazeKitLib */,
 				D22B3FB82151E7D400E8FB06 /* Amaze */,
 			);
 		};
@@ -531,7 +604,6 @@
 				D2478AEF2349823900D57A22 /* MazeImageExtensions.swift in Sources */,
 				D22B402F2151F80900E8FB06 /* Random.swift in Sources */,
 				D22B40462151F80900E8FB06 /* RecursiveBacktracker.swift in Sources */,
-				D2478AE723484CC700D57A22 /* CGContextExtensions.swift in Sources */,
 				D22B403A2151F80900E8FB06 /* ColoredTriangleGrid.swift in Sources */,
 				D22B40432151F80900E8FB06 /* AldousBroder.swift in Sources */,
 				D22B40212151F80900E8FB06 /* MazeHelper.swift in Sources */,
@@ -547,7 +619,6 @@
 				D22B403D2151F80900E8FB06 /* IntExtensions.swift in Sources */,
 				D22B402E2151F80900E8FB06 /* RenderingMode.swift in Sources */,
 				D22B403E2151F80900E8FB06 /* Distances.swift in Sources */,
-				D2478AEB23484CC700D57A22 /* Image.swift in Sources */,
 				D21955E3216C4642003703C5 /* DiamondGrid.swift in Sources */,
 				D22B402A2151F80900E8FB06 /* TriangleCell.swift in Sources */,
 				D22B40332151F80900E8FB06 /* ColoredGrid.swift in Sources */,
@@ -558,7 +629,6 @@
 				D22B40352151F80900E8FB06 /* PolarGrid.swift in Sources */,
 				D22B40222151F80900E8FB06 /* CircularMazeHelper.swift in Sources */,
 				D2F5531F21A269250057C2E6 /* WeightedGrid.swift in Sources */,
-				D2478AE923484CC700D57A22 /* CGColorExtensions.swift in Sources */,
 				D22B40392151F80900E8FB06 /* TriangleGrid.swift in Sources */,
 				D22B403B2151F80900E8FB06 /* PyramidGrid.swift in Sources */,
 				D22B40322151F80900E8FB06 /* DistanceGrid.swift in Sources */,
@@ -566,10 +636,8 @@
 				D22B40442151F80900E8FB06 /* Wilsons.swift in Sources */,
 				D22B40362151F80900E8FB06 /* ColoredPolarGrid.swift in Sources */,
 				D22B40242151F80900E8FB06 /* TriangularMazeHelper.swift in Sources */,
-				D2478AE523484CC700D57A22 /* FileWriter.swift in Sources */,
 				D22B40262151F80900E8FB06 /* Cell.swift in Sources */,
 				D22B40372151F80900E8FB06 /* HexGrid.swift in Sources */,
-				D2478AED23484CC700D57A22 /* ImageRenderer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -597,8 +665,6 @@
 				D21955E2216C4642003703C5 /* DiamondGrid.swift in Sources */,
 				D22B401A2151ECB900E8FB06 /* Cell.swift in Sources */,
 				D22B400B2151ECB900E8FB06 /* PyramidMazeHelper.swift in Sources */,
-				D2478AE623484CC700D57A22 /* CGContextExtensions.swift in Sources */,
-				D2478AEA23484CC700D57A22 /* Image.swift in Sources */,
 				D22B3FF92151ECB900E8FB06 /* MazeHelper.swift in Sources */,
 				D2478AD623484BB600D57A22 /* MazeImageExtensions.swift in Sources */,
 				D22B40002151ECB900E8FB06 /* PyramidGrid.swift in Sources */,
@@ -609,14 +675,12 @@
 				D22B40172151ECB900E8FB06 /* Distances.swift in Sources */,
 				D22B40042151ECB900E8FB06 /* HexagonalMazeHelper.swift in Sources */,
 				D22B40062151ECB900E8FB06 /* AldousBroder.swift in Sources */,
-				D2478AE423484CC700D57A22 /* FileWriter.swift in Sources */,
 				D2570473234EDCB80062447A /* ImageRendererExtensions.swift in Sources */,
 				D2F5531E21A269250057C2E6 /* WeightedGrid.swift in Sources */,
 				D22B40122151ECB900E8FB06 /* HuntAndKill.swift in Sources */,
 				D22B401B2151ECB900E8FB06 /* DistanceGrid.swift in Sources */,
 				D22B40092151ECB900E8FB06 /* PolarCell.swift in Sources */,
 				D22B40082151ECB900E8FB06 /* PyramidCell.swift in Sources */,
-				D2478AEC23484CC700D57A22 /* ImageRenderer.swift in Sources */,
 				D22B40162151ECB900E8FB06 /* IntExtensions.swift in Sources */,
 				D22B40152151ECB900E8FB06 /* RenderingMode.swift in Sources */,
 				D2F5531B21A25E4B0057C2E6 /* WeightedCell.swift in Sources */,
@@ -637,7 +701,6 @@
 				D22B40052151ECB900E8FB06 /* ColoredGrid.swift in Sources */,
 				D238C7F42103CD9600909855 /* main.swift in Sources */,
 				D22B400C2151ECB900E8FB06 /* HexGrid.swift in Sources */,
-				D2478AE823484CC700D57A22 /* CGColorExtensions.swift in Sources */,
 				D22B40072151ECB900E8FB06 /* HexCell.swift in Sources */,
 				D22B3FFA2151ECB900E8FB06 /* Sidewinder.swift in Sources */,
 				D22B40142151ECB900E8FB06 /* ColoredPyramidGrid.swift in Sources */,
@@ -645,13 +708,65 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D2D639B92412006C00DE74E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2D639E5241200C500DE74E3 /* IntExtensions.swift in Sources */,
+				D2D639D6241200C500DE74E3 /* WeightedGrid.swift in Sources */,
+				D2D639D5241200C500DE74E3 /* Grid.swift in Sources */,
+				D2D639E1241200C500DE74E3 /* PyramidGrid.swift in Sources */,
+				D2D639E7241200C500DE74E3 /* Mask.swift in Sources */,
+				D2D639C6241200C500DE74E3 /* HexagonalMazeHelper.swift in Sources */,
+				D2D639E3241200C500DE74E3 /* DiamondGrid.swift in Sources */,
+				D2D639D2241200C500DE74E3 /* RenderingMode.swift in Sources */,
+				D2D639DB241200C500DE74E3 /* PolarGrid.swift in Sources */,
+				D2D639E6241200C500DE74E3 /* Distances.swift in Sources */,
+				D2D639DC241200C500DE74E3 /* ColoredPolarGrid.swift in Sources */,
+				D2D639CE241200C500DE74E3 /* HexCell.swift in Sources */,
+				D2D639D3241200C500DE74E3 /* Random.swift in Sources */,
+				D2D639E0241200C500DE74E3 /* ColoredTriangleGrid.swift in Sources */,
+				D2D639E4241200C500DE74E3 /* ColoredDiamondGrid.swift in Sources */,
+				D2D639D1241200C500DE74E3 /* DiamondCell.swift in Sources */,
+				D2D639D4241200C500DE74E3 /* CollectionExtension.swift in Sources */,
+				D2D639EF241200C500DE74E3 /* MazeImageExtensions.swift in Sources */,
+				D2D639E9241200C500DE74E3 /* Sidewinder.swift in Sources */,
+				D2D639CD241200C500DE74E3 /* PolarCell.swift in Sources */,
+				D2D639EC241200C500DE74E3 /* Wilsons.swift in Sources */,
+				D2D639E8241200C500DE74E3 /* MazeGenerator.swift in Sources */,
+				D2D639EB241200C500DE74E3 /* AldousBroder.swift in Sources */,
+				D2D639DD241200C500DE74E3 /* HexGrid.swift in Sources */,
+				D2D639CC241200C500DE74E3 /* RectCell.swift in Sources */,
+				D2D639D8241200C500DE74E3 /* ColoredGrid.swift in Sources */,
+				D2D639D9241200C500DE74E3 /* MaskedGrid.swift in Sources */,
+				D2D639D0241200C500DE74E3 /* PyramidCell.swift in Sources */,
+				D2D639D7241200C500DE74E3 /* DistanceGrid.swift in Sources */,
+				D2D639C4241200C500DE74E3 /* MazeHelper.swift in Sources */,
+				D2D639DE241200C500DE74E3 /* ColoredHexGrid.swift in Sources */,
+				D2D639C02412006C00DE74E3 /* MazeKitLib.swift in Sources */,
+				D2D639C8241200C500DE74E3 /* PyramidMazeHelper.swift in Sources */,
+				D2D639E2241200C500DE74E3 /* ColoredPyramidGrid.swift in Sources */,
+				D2D639CB241200C500DE74E3 /* WeightedCell.swift in Sources */,
+				D2D639EA241200C500DE74E3 /* BinaryTree.swift in Sources */,
+				D2D639ED241200C500DE74E3 /* HuntAndKill.swift in Sources */,
+				D2D639C7241200C500DE74E3 /* TriangularMazeHelper.swift in Sources */,
+				D2D639CA241200C500DE74E3 /* Cell.swift in Sources */,
+				D2D639DF241200C500DE74E3 /* TriangleGrid.swift in Sources */,
+				D2D639CF241200C500DE74E3 /* TriangleCell.swift in Sources */,
+				D2D639DA241200C500DE74E3 /* ColoredMaskedGrid.swift in Sources */,
+				D2D639C5241200C500DE74E3 /* CircularMazeHelper.swift in Sources */,
+				D2D639EE241200C500DE74E3 /* RecursiveBacktracker.swift in Sources */,
+				D2D639C9241200C500DE74E3 /* DiamondMazeHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		D22B3FF42151EC4100E8FB06 /* PBXTargetDependency */ = {
+		D2D639F6241200F100DE74E3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = D22B3FAC2151E79700E8FB06 /* MazeKit */;
-			targetProxy = D22B3FF32151EC4100E8FB06 /* PBXContainerItemProxy */;
+			target = D2D639BC2412006C00DE74E3 /* MazeKitLib */;
+			targetProxy = D2D639F5241200F100DE74E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -694,7 +809,11 @@
 				INFOPLIST_FILE = maze/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tury.shared.MazeKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
@@ -727,7 +846,11 @@
 				INFOPLIST_FILE = maze/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tury.shared.MazeKit;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
@@ -745,7 +868,6 @@
 		D22B3FCB2151E7D800E8FB06 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -759,7 +881,10 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Amaze/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tury.Amaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -774,7 +899,6 @@
 		D22B3FCC2151E7D800E8FB06 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -788,7 +912,10 @@
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Amaze/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tury.Amaze;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -938,6 +1065,52 @@
 			};
 			name = Release;
 		};
+		D2D639C12412006C00DE74E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U5K2PCXQE4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MazeKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D2D639C22412006C00DE74E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U5K2PCXQE4;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = MazeKit;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -977,7 +1150,45 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		D2D639C32412006C00DE74E3 /* Build configuration list for PBXNativeTarget "MazeKitLib" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2D639C12412006C00DE74E3 /* Debug */,
+				D2D639C22412006C00DE74E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		D28A7FA0244D498600337F65 /* XCRemoteSwiftPackageReference "ImageRenderer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stury/ImageRenderer";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		D28A7FA1244D498600337F65 /* ImageRenderer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D28A7FA0244D498600337F65 /* XCRemoteSwiftPackageReference "ImageRenderer" */;
+			productName = ImageRenderer;
+		};
+		D28A7FA3244D49B300337F65 /* ImageRenderer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D28A7FA0244D498600337F65 /* XCRemoteSwiftPackageReference "ImageRenderer" */;
+			productName = ImageRenderer;
+		};
+		D28A7FA5244D49C200337F65 /* ImageRenderer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = D28A7FA0244D498600337F65 /* XCRemoteSwiftPackageReference "ImageRenderer" */;
+			productName = ImageRenderer;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = D238C7E82103CD9500909855 /* Project object */;
 }

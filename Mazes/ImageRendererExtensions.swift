@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ImageRenderer
 
 extension ImageRenderer {
     

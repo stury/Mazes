@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+import ImageRenderer
 
 #if os(macOS)
     import AppKit

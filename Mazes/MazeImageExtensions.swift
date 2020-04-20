@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreGraphics
+import ImageRenderer
 
 extension Image {
     static var strokeColor = (0.0, 0.0, 0.0, 1.0)

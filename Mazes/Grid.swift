@@ -1,5 +1,6 @@
 import Foundation
 import CoreGraphics
+import ImageRenderer
 
 /// Extend String such that we can use multiplication operator to duplicate a String X times...
 extension String {
