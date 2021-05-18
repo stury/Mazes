@@ -1048,7 +1048,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
-				SYMROOT = ./build;
 			};
 			name = Debug;
 		};
@@ -1063,7 +1062,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
-				SYMROOT = ./build;
 			};
 			name = Release;
 		};
