@@ -11,11 +11,17 @@ jobs:
 
     runs-on: macos-latest
 
-    strategy:
-      matrix:
-    	  scheme: ['Mazes', 'MazeKit', 'MazeKitLib', 'Amaze']
+#    strategy:
+#      matrix:
+#    	  scheme: ['Mazes', 'MazeKit', 'MazeKitLib', 'Amaze']
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build
-      run: xcodebuild -project Mazes.xcodeproj -scheme "${scheme}" -configuration Debug clean build 
+    - name: Build Mazes
+      run: xcodebuild -project Mazes.xcodeproj -scheme Mazes -configuration Debug clean build 
+    - name: Build MazeKit
+      run: xcodebuild -project Mazes.xcodeproj -scheme MazeKit -configuration Debug clean build 
+    - name: Build MazeKitLib
+      run: xcodebuild -project Mazes.xcodeproj -scheme MazeKitLib -configuration Debug clean build 
+    - name: Build Amaze
+      run: xcodebuild -project Mazes.xcodeproj -scheme Amaze -configuration Debug clean build 
