@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ImageRenderer",
+        "repositoryURL": "https://github.com/stury/ImageRenderer",
+        "state": {
+          "branch": "master",
+          "revision": "c86fa2d9794c4e4c229838b729f0caf232526e0a",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

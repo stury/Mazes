@@ -163,7 +163,7 @@ class DetailViewController: UIViewController, UIScrollViewDelegate, SettingsView
         // Should I send the PDF, or the Bitmap image?
         // Looking online I see that if you provide a URL to the image, that will give you a basic
         // filename for the file, and allow you to use the save to Files capabilities.  If you
-        // don't, it'll let ou print the image, but not save it to Photos.
+        // don't, it'll let you print the image, but not save it to Photos.
         // If I include both, I get the option to save the image, as well as Print.  Printing prints
         // both images.  So you get a PDF printing, and a Raster printing of the image.
 //        if let pdfImage = pdfImage {
