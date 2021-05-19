@@ -5,11 +5,6 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
-uses: apple-actions/import-codesign-certs@v1
-with: 
-  p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
-  p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
   
 jobs:
   build:
@@ -22,7 +17,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build Mazes
+    - name: Install Certificates
+      uses: apple-actions/import-codesign-certs@v1
+        with: 
+          p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
+          p12-password: ${{ secrets.CERTIFICATES_P12_PASSWORD }}
+
       run: xcodebuild -project Mazes.xcodeproj -scheme Mazes -configuration Debug clean build 
     - name: Build MazeKit
       run: xcodebuild -project Mazes.xcodeproj -scheme MazeKit -configuration Debug clean build 
