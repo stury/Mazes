@@ -52,6 +52,24 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Please give this application access to save mazes you create in this app to your Photo Library!</string>
+	<string>Please give this application access to save mazes you create in this app to your Photo Library!</string>	
+	<key>UIApplicationSceneManifest</key>
+	<dict>
+		<key>UIApplicationSupportsMultipleScenes</key>
+		<false/>
+		<key>UISceneConfigurations</key>
+		<dict>
+			<key>UIWindowSceneSessionRoleApplication</key>
+			<array>
+				<dict>
+					<key>UISceneConfigurationName</key>
+					<string>Default Configuration</string>
+					<key>UISceneDelegateClassName</key>
+					<!-- Use $(PRODUCT_MODULE_NAME).SceneDelegate for Swift, or SceneDelegate for Objective-C -->
+					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>		
 </dict>
 </plist>
